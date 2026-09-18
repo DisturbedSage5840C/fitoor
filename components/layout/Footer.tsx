@@ -16,7 +16,14 @@ export function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 sm:px-6">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
-            <p className="font-wordmark text-3xl italic text-gold">fitoor</p>
+            <div className="flex items-baseline gap-2">
+              <p className="font-wordmark text-3xl italic text-gold">fitoor</p>
+              <span className="flex items-center gap-1" aria-hidden>
+                <span className="size-1.5 rounded-full bg-dance" />
+                <span className="size-1.5 rounded-full bg-gold" />
+                <span className="size-1.5 rounded-full bg-sunset" />
+              </span>
+            </div>
             <p className="font-body mt-1 text-sm text-cream/60">
               {fest.university} &middot; {fest.dates}
             </p>

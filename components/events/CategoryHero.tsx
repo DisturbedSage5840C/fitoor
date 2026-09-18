@@ -10,7 +10,7 @@ export function CategoryHero({ category }: { category: Category }) {
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
           background:
-            "radial-gradient(60% 60% at 50% 0%, var(--category), transparent 70%)",
+            "radial-gradient(60% 60% at 50% 0%, var(--category-glow), transparent 70%)",
         }}
         aria-hidden
       />

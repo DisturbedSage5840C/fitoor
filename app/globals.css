@@ -48,6 +48,13 @@
   --color-gold-bright: var(--gold-bright);
   --color-cream: var(--cream);
 
+  /* Figma brand-guide accents, blended in alongside the base palette as
+     connective glows/highlights (not a base-palette replacement). */
+  --color-apricot: var(--apricot);
+  --color-sunset: var(--sunset);
+  --color-electric-magenta: var(--electric-magenta);
+  --color-electric-blue: var(--electric-blue);
+
   /*
     Category accents. Named --category / --category-light (NOT --accent)
     on purpose: shadcn's own semantic --accent/--accent-foreground tokens
@@ -148,6 +155,15 @@
   --gold-bright: #f4d896;
   --cream: #f5e9d3;
 
+  /* Figma brand-guide colors (github.com/DisturbedSage5840C/fitoor Figma
+     "Fitoor '26" brand guide). Same warm-to-electric maximalism as the
+     maroon/gold/category system, kept as separate glow/highlight tokens
+     rather than replacing any base hue. */
+  --apricot: #feb879;
+  --sunset: #ff6350;
+  --electric-magenta: #d80cce;
+  --electric-blue: #5203bb;
+
   /* Category fills (borders/glows/buttons) + light tints (text/icons on dark bg) */
   --music: #5b2a86;
   --music-light: #c9a6f0;
@@ -163,6 +179,13 @@
   /* Default (non-category-page) accent = base maroon */
   --category: var(--misc);
   --category-light: var(--misc-light);
+
+  /* Glow-only accent, consumed by glow-category / CategoryHero's radial
+     backdrop. Defaults to tracking --category; Music and Business (whose
+     hues are muted cousins of Figma's Interdimensional Blue / Deep
+     Magenta) override it below to a more electric, Figma-matched glow
+     while their fills/borders/text keep the original muted hue. */
+  --category-glow: var(--category);
 
   /* shadcn structural tokens, mapped onto the brand palette */
   --background: var(--maroon-deepest);
@@ -189,6 +212,7 @@
 [data-category="music"] {
   --category: var(--music);
   --category-light: var(--music-light);
+  --category-glow: var(--electric-blue);
 }
 [data-category="dance"] {
   --category: var(--dance);
@@ -205,6 +229,7 @@
 [data-category="business"] {
   --category: var(--business);
   --category-light: var(--business-light);
+  --category-glow: var(--electric-magenta);
 }
 
 @layer base {
@@ -250,8 +275,8 @@
 
 @utility glow-category {
   box-shadow:
-    0 0 32px -6px var(--category),
-    0 0 64px -14px var(--category);
+    0 0 32px -6px var(--category-glow),
+    0 0 64px -14px var(--category-glow);
 }
 
 @utility glow-gold {

@@ -56,7 +56,17 @@ export function Hero() {
           </div>
         </div>
 
-        <Mascot className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-md" />
+        <div className="relative">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40 blur-2xl"
+            style={{
+              background:
+                "radial-gradient(55% 55% at 50% 40%, var(--sunset), var(--apricot) 60%, transparent 75%)",
+            }}
+            aria-hidden
+          />
+          <Mascot className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-md" />
+        </div>
       </div>
     </section>
   );
