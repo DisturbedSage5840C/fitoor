@@ -10,7 +10,7 @@ interface ContactChipProps {
 
 export function ContactChip({ icon: Icon, label, href, className }: ContactChipProps) {
   const classes = cn(
-    "inline-flex items-center gap-2 rounded-full border border-cream/15 bg-maroon px-4 py-2 font-body text-sm text-cream/90 transition-colors hover:border-gold/50 hover:text-gold",
+    "inline-flex items-center gap-2 rounded-full border border-cream/15 bg-surface px-4 py-2 font-body text-sm text-cream/90 transition-colors hover:border-pink/50 hover:text-pink",
     className,
   );
 

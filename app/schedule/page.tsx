@@ -57,7 +57,7 @@ export default function SchedulePage() {
       <SectionHeading eyebrow="02 — Schedule" title="The running order" />
 
       <Tabs defaultValue="day1" className="gap-6">
-        <TabsList className="h-auto w-full gap-1 bg-maroon p-1 sm:w-fit">
+        <TabsList className="h-auto w-full gap-1 bg-surface p-1 sm:w-fit">
           <TabsTrigger value="day1" className="flex-1 py-2 sm:flex-none sm:px-6">
             Day 1 · Nov 14
           </TabsTrigger>

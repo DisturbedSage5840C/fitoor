@@ -18,16 +18,16 @@ export function ContentsNav() {
         <RevealOnScroll key={item.href} delay={i * 0.04}>
           <Link
             href={item.href}
-            className="group flex items-center justify-between gap-4 bg-maroon px-6 py-6 transition-colors hover:bg-maroon-light sm:px-8"
+            className="group flex items-center justify-between gap-4 bg-surface px-6 py-6 transition-colors hover:bg-surface-light sm:px-8"
           >
             <span className="flex items-baseline gap-4">
-              <span className="font-pixel text-xs text-gold/70">{item.number}</span>
-              <span className="font-display text-xl text-cream group-hover:text-gold sm:text-2xl">
+              <span className="font-body text-xs font-semibold tracking-[0.15em] text-pink/70">{item.number}</span>
+              <span className="font-display text-xl text-cream group-hover:text-pink sm:text-2xl">
                 {item.label}
               </span>
             </span>
             <ArrowUpRight
-              className="size-5 shrink-0 text-cream/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold"
+              className="size-5 shrink-0 text-cream/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-pink"
               aria-hidden
             />
           </Link>

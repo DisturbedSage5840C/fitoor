@@ -21,24 +21,36 @@ function getTimeLeft(): TimeLeft {
   };
 }
 
-function DigitBlock({ value, label }: { value: number; label: string }) {
+function DigitBlock({
+  value,
+  label,
+  animate,
+}: {
+  value: number;
+  label: string;
+  animate: boolean;
+}) {
   const padded = String(value).padStart(2, "0");
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="relative overflow-hidden rounded-xl border border-gold/30 bg-maroon px-3 py-2.5 sm:px-4 sm:py-3">
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.span
-            key={padded}
-            initial={{ rotateX: -90, opacity: 0 }}
-            animate={{ rotateX: 0, opacity: 1 }}
-            exit={{ rotateX: 90, opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="font-pixel block text-xl text-gold sm:text-3xl"
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {padded}
-          </motion.span>
-        </AnimatePresence>
+      <div className="relative overflow-hidden rounded-xl border border-pink/30 bg-surface px-3 py-2.5 sm:px-4 sm:py-3">
+        {animate ? (
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.span
+              key={padded}
+              initial={{ rotateX: -90, opacity: 0 }}
+              animate={{ rotateX: 0, opacity: 1 }}
+              exit={{ rotateX: 90, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="font-display block text-xl text-pink sm:text-3xl"
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              {padded}
+            </motion.span>
+          </AnimatePresence>
+        ) : (
+          <span className="font-display block text-xl text-pink sm:text-3xl">{padded}</span>
+        )}
       </div>
       <span className="font-body text-[10px] uppercase tracking-[0.2em] text-cream/60 sm:text-xs">
         {label}
@@ -73,10 +85,10 @@ export function Countdown() {
           : "Loading countdown"
       }
     >
-      <DigitBlock value={mounted ? timeLeft.days : 0} label="Days" />
-      <DigitBlock value={mounted ? timeLeft.hours : 0} label="Hrs" />
-      <DigitBlock value={mounted ? timeLeft.minutes : 0} label="Min" />
-      <DigitBlock value={mounted ? timeLeft.seconds : 0} label="Sec" />
+      <DigitBlock value={mounted ? timeLeft.days : 0} label="Days" animate={mounted} />
+      <DigitBlock value={mounted ? timeLeft.hours : 0} label="Hrs" animate={mounted} />
+      <DigitBlock value={mounted ? timeLeft.minutes : 0} label="Min" animate={mounted} />
+      <DigitBlock value={mounted ? timeLeft.seconds : 0} label="Sec" animate={mounted} />
     </div>
   );
 }

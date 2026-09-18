@@ -23,7 +23,7 @@ export default function GeneralitiesPage() {
           <ol className="font-body flex flex-col gap-3 text-base text-cream/80">
             {generalRules.map((rule, i) => (
               <li key={rule} className="flex gap-3">
-                <span className="font-pixel shrink-0 text-sm text-gold/70">
+                <span className="font-body shrink-0 text-sm font-semibold text-pink/70">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-pretty">{rule}</span>
@@ -39,7 +39,7 @@ export default function GeneralitiesPage() {
           <Accordion>
             {generalFaqs.map((faq, i) => (
               <AccordionItem key={faq.question} value={`faq-${i}`}>
-                <AccordionTrigger className="font-body text-base text-cream hover:text-gold">
+                <AccordionTrigger className="font-body text-base text-cream hover:text-pink">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent>

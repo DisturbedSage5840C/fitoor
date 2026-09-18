@@ -29,7 +29,7 @@ export default function ContactPage() {
             {studentCoordinators.map((person) => (
               <li
                 key={person.role}
-                className="flex flex-col gap-1 bg-maroon px-5 py-4 sm:px-6"
+                className="flex flex-col gap-1 bg-surface px-5 py-4 sm:px-6"
               >
                 <span className="font-body text-xs tracking-wide text-category-light uppercase">
                   {person.role}
