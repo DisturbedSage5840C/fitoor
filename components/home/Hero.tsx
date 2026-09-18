@@ -58,10 +58,18 @@ export function Hero() {
 
         <div className="relative">
           <div
-            className="pointer-events-none absolute inset-0 opacity-40 blur-2xl"
+            className="pointer-events-none absolute -inset-10 opacity-70 blur-3xl"
             style={{
               background:
-                "radial-gradient(55% 55% at 50% 40%, var(--sunset), var(--apricot) 60%, transparent 75%)",
+                "radial-gradient(60% 60% at 50% 40%, var(--sunset), var(--apricot) 55%, transparent 78%)",
+            }}
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute -inset-4 opacity-40 blur-xl"
+            style={{
+              background:
+                "radial-gradient(50% 50% at 30% 65%, var(--electric-magenta), transparent 70%)",
             }}
             aria-hidden
           />

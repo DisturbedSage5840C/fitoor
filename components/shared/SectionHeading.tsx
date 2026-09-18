@@ -24,8 +24,15 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <span className="font-pixel text-[10px] tracking-[0.2em] text-category-light uppercase">
-          {eyebrow}
+        <span className="flex items-center gap-2">
+          <span className="flex items-center gap-1" aria-hidden>
+            <span className="size-1.5 rounded-full bg-dance" />
+            <span className="size-1.5 rounded-full bg-gold" />
+            <span className="size-1.5 rounded-full bg-sunset" />
+          </span>
+          <span className="font-pixel text-[10px] tracking-[0.2em] text-category-light uppercase">
+            {eyebrow}
+          </span>
         </span>
       ) : null}
       <h2 className="font-display text-4xl sm:text-5xl font-bold text-cream text-balance">

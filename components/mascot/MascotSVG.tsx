@@ -43,6 +43,12 @@ export function MascotSVG({ className, layerRefs }: MascotSVGProps) {
           <stop offset="0%" stopColor="var(--category-light)" />
           <stop offset="100%" stopColor="var(--category)" />
         </linearGradient>
+        <clipPath id="mascot-lens-left">
+          <path d="M112 148 C112 132 130 124 150 128 C166 131 172 140 172 150 C172 164 160 172 142 172 C124 172 112 162 112 148 Z" />
+        </clipPath>
+        <clipPath id="mascot-lens-right">
+          <path d="M248 148 C248 132 230 124 210 128 C194 131 188 140 188 150 C188 164 200 172 218 172 C236 172 248 162 248 148 Z" />
+        </clipPath>
       </defs>
 
       {/* glow */}
@@ -119,17 +125,29 @@ export function MascotSVG({ className, layerRefs }: MascotSVGProps) {
         <circle cx="180" cy="300" r="6" fill="var(--gold-bright)" />
       </g>
 
-      {/* glasses: oversized Y2K cat-eye sunglasses */}
+      {/* glasses: oversized Y2K cat-eye sunglasses, tricolor lenses matching
+          the Figma "Fitoor '26" mascot (teal / gold / coral lens bands) */}
       <g ref={layerRefs?.glasses} data-layer="glasses">
+        <g clipPath="url(#mascot-lens-left)">
+          <rect x="106" y="118" width="22" height="60" fill="var(--dance)" />
+          <rect x="128" y="118" width="22" height="60" fill="var(--gold)" />
+          <rect x="150" y="118" width="28" height="60" fill="var(--sunset)" />
+        </g>
+        <g clipPath="url(#mascot-lens-right)">
+          <rect x="182" y="118" width="28" height="60" fill="var(--sunset)" />
+          <rect x="210" y="118" width="22" height="60" fill="var(--gold)" />
+          <rect x="232" y="118" width="22" height="60" fill="var(--dance)" />
+        </g>
+
         <path
           d="M112 148 C112 132 130 124 150 128 C166 131 172 140 172 150 C172 164 160 172 142 172 C124 172 112 162 112 148 Z"
-          fill="#14090c"
+          fill="none"
           stroke="var(--gold)"
           strokeWidth="4"
         />
         <path
           d="M248 148 C248 132 230 124 210 128 C194 131 188 140 188 150 C188 164 200 172 218 172 C236 172 248 162 248 148 Z"
-          fill="#14090c"
+          fill="none"
           stroke="var(--gold)"
           strokeWidth="4"
         />

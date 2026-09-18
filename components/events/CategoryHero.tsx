@@ -7,10 +7,11 @@ export function CategoryHero({ category }: { category: Category }) {
   return (
     <div data-category={category.slug} className="relative overflow-hidden">
       <div
-        className="pointer-events-none absolute inset-0 opacity-30"
+        className="pointer-events-none absolute inset-0"
         style={{
+          opacity: "var(--category-glow-opacity)",
           background:
-            "radial-gradient(60% 60% at 50% 0%, var(--category-glow), transparent 70%)",
+            "radial-gradient(65% 65% at 50% 0%, var(--category-glow), transparent 72%)",
         }}
         aria-hidden
       />
