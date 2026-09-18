@@ -12,20 +12,20 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Fitoor 2026 — Retro, Reloaded. | Plaksha University",
+    default: "Fitoor 2026 — Young, Dumb & Desi | Plaksha University",
     template: "%s | Fitoor 2026",
   },
   description:
-    "Fitoor is Plaksha University's annual cultural fest — Nov 14–15, 2026. This year's theme: Retro, Reloaded.",
+    "Fitoor is Plaksha University's annual cultural fest — Nov 14–15, 2026. This year's theme: Young, Dumb & Desi.",
   openGraph: {
-    title: "Fitoor 2026 — Retro, Reloaded.",
+    title: "Fitoor 2026 — Young, Dumb & Desi",
     description:
       "Plaksha University's annual cultural fest — Nov 14–15, 2026.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fitoor 2026 — Retro, Reloaded.",
+    title: "Fitoor 2026 — Young, Dumb & Desi",
     description:
       "Plaksha University's annual cultural fest — Nov 14–15, 2026.",
   },

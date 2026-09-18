@@ -27,11 +27,12 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-cream/10 bg-bg-deep/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-cream/10 bg-maroon-deepest/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-baseline gap-2">
-          <span className="font-serif rounded-full bg-pink px-3 py-1 text-2xl italic text-cream glow-pink">
-            fitoor
+          <span className="font-wordmark text-2xl italic text-gold">fitoor</span>
+          <span className="font-nastaliq text-lg text-cream/70" dir="rtl">
+            فتور
           </span>
         </Link>
 
@@ -45,7 +46,7 @@ export function Navbar() {
                 className={cn(
                   "font-body rounded-full px-3.5 py-2 text-sm transition-colors",
                   active
-                    ? "bg-pink/15 text-pink"
+                    ? "bg-gold/15 text-gold"
                     : "text-cream/75 hover:bg-cream/5 hover:text-cream",
                 )}
               >
@@ -62,9 +63,9 @@ export function Navbar() {
             <Menu />
             <span className="sr-only">Open menu</span>
           </SheetTrigger>
-          <SheetContent side="right" className="border-cream/10 bg-bg-deep">
+          <SheetContent side="right" className="border-cream/10 bg-maroon-deepest">
             <SheetHeader>
-              <SheetTitle className="font-serif text-xl italic text-pink">
+              <SheetTitle className="font-wordmark text-xl italic text-gold">
                 fitoor
               </SheetTitle>
             </SheetHeader>
@@ -75,7 +76,7 @@ export function Navbar() {
                     className={cn(
                       "font-body block rounded-lg px-3 py-2.5 text-base",
                       pathname === link.href
-                        ? "bg-pink/15 text-pink"
+                        ? "bg-gold/15 text-gold"
                         : "text-cream/80",
                     )}
                   >

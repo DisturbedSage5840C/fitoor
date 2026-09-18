@@ -15,10 +15,10 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#000716",
+          background: "#1c0407",
           backgroundImage:
-            "radial-gradient(circle at 50% 25%, #16161f 0%, #000716 65%)",
-          color: "#fdf0cc",
+            "radial-gradient(circle at 50% 25%, #5c1119 0%, #1c0407 65%)",
+          color: "#f5e9d3",
           fontFamily: "sans-serif",
         }}
       >
@@ -28,7 +28,7 @@ export default async function Image() {
             fontSize: 24,
             letterSpacing: 8,
             textTransform: "uppercase",
-            color: "#ff6fa3",
+            color: "#e8c77e",
             marginBottom: 24,
           }}
         >
@@ -39,7 +39,7 @@ export default async function Image() {
             display: "flex",
             fontSize: 160,
             fontWeight: 700,
-            color: "#fc4a87",
+            color: "#f4d896",
           }}
         >
           {fest.name}
@@ -49,7 +49,7 @@ export default async function Image() {
             display: "flex",
             fontSize: 34,
             marginTop: 20,
-            color: "#fdf0cc",
+            color: "#f5e9d3",
           }}
         >
           {fest.theme}
@@ -59,7 +59,7 @@ export default async function Image() {
             display: "flex",
             fontSize: 26,
             marginTop: 28,
-            color: "#feba7d",
+            color: "#c9a6f0",
             letterSpacing: 2,
           }}
         >

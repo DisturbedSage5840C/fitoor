@@ -1,10 +1,9 @@
-export type CategorySlug = "esports" | "music" | "naatak" | "artwork";
+export type CategorySlug = "music" | "dance" | "art" | "misc" | "business";
 
 export interface Category {
   slug: CategorySlug;
   name: string;
-  /** Secondary caption shown under the name, e.g. "BANDS", "DRAMATICS" */
-  subLabel: string;
+  hindiName: string;
   tagline: string;
   description: string;
   /** lucide-react icon component name, e.g. "Music", "Drama" */

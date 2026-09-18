@@ -28,7 +28,7 @@ export function EventCard({ event, className }: { event: EventItem; className?: 
   return (
     <article
       className={cn(
-        "flex flex-col gap-4 rounded-2xl border border-category/40 bg-surface/60 p-5 transition-all hover:border-category hover:bg-surface sm:p-6",
+        "flex flex-col gap-4 rounded-2xl border border-category/40 bg-maroon/60 p-5 transition-all hover:border-category hover:bg-maroon sm:p-6",
         className,
       )}
     >
@@ -43,7 +43,7 @@ export function EventCard({ event, className }: { event: EventItem; className?: 
             {event.teamSize ? ` · ${event.teamSize}` : ""}
           </Badge>
           {event.isPlaceholder ? (
-            <span className="font-body rounded-full bg-bg-deep/80 px-2 py-1 text-[9px] font-semibold tracking-wider text-pink/70 uppercase">
+            <span className="font-pixel rounded-full bg-maroon-deepest/80 px-2 py-1 text-[9px] tracking-wider text-gold/70 uppercase">
               Details TBD
             </span>
           ) : null}
@@ -62,7 +62,7 @@ export function EventCard({ event, className }: { event: EventItem; className?: 
       {event.rules.length > 0 ? (
         <Accordion>
           <AccordionItem value="rules" className="border-category/30">
-            <AccordionTrigger className="font-body text-sm text-cream hover:text-pink">
+            <AccordionTrigger className="font-body text-sm text-cream hover:text-gold">
               Rules & format
             </AccordionTrigger>
             <AccordionContent>

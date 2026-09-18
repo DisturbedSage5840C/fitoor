@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
 import {
   motion,
   useMotionValue,
@@ -9,9 +8,27 @@ import {
   useTransform,
   useReducedMotion,
 } from "motion/react";
+import { MascotSVG } from "@/components/mascot/MascotSVG";
+
+// Depth order back-to-front. Layers further "forward" swing further under
+// the same tilt, which is what reads as parallax depth even though SVG
+// groups don't get real translateZ the way DOM layers in a preserve-3d
+// scene would — differential 2D offset + whole-card rotateX/rotateY sells
+// the same illusion far more reliably across browsers.
+const LAYER_DEPTH = {
+  glow: 4,
+  body: 8,
+  hair: 12,
+  jewelry: 18,
+  glasses: 22,
+  prop: 28,
+} as const;
+
+type LayerName = keyof typeof LAYER_DEPTH;
 
 export function Mascot({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const layerRefs = useRef<Partial<Record<LayerName, SVGGElement | null>>>({});
   const prefersReducedMotion = useReducedMotion();
 
   const mx = useMotionValue(0);
@@ -27,6 +44,31 @@ export function Mascot({ className }: { className?: string }) {
     [shineX, shineY],
     ([sx, sy]) => `radial-gradient(circle at ${sx}% ${sy}%, rgba(255,255,255,0.5), transparent 45%)`,
   );
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    const unsubscribeX = springX.on("change", applyParallax);
+    const unsubscribeY = springY.on("change", applyParallax);
+
+    function applyParallax() {
+      const x = springX.get();
+      const y = springY.get();
+      for (const [name, depth] of Object.entries(LAYER_DEPTH) as [
+        LayerName,
+        number,
+      ][]) {
+        const el = layerRefs.current[name];
+        if (!el) continue;
+        el.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+      }
+    }
+
+    return () => {
+      unsubscribeX();
+      unsubscribeY();
+    };
+  }, [prefersReducedMotion, springX, springY]);
 
   function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
     if (prefersReducedMotion || event.pointerType === "touch") return;
@@ -62,23 +104,36 @@ export function Mascot({ className }: { className?: string }) {
         }
         className="relative"
       >
-        <div className="glow-category relative overflow-hidden rounded-[2.5rem] bg-bg-deep">
-          <Image
-            src="/mascot/mascot-color.png"
-            alt="Fitoor mascot — a retro line-art illustration of a woman's face with big curly hair and oversized round sunglasses"
-            width={243}
-            height={237}
-            priority
-            className="h-auto w-full drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+        <MascotSVG
+          className="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+          layerRefs={{
+            glow: (el) => {
+              layerRefs.current.glow = el;
+            },
+            body: (el) => {
+              layerRefs.current.body = el;
+            },
+            hair: (el) => {
+              layerRefs.current.hair = el;
+            },
+            jewelry: (el) => {
+              layerRefs.current.jewelry = el;
+            },
+            glasses: (el) => {
+              layerRefs.current.glasses = el;
+            },
+            prop: (el) => {
+              layerRefs.current.prop = el;
+            },
+          }}
+        />
+        {!prefersReducedMotion ? (
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-full mix-blend-soft-light"
+            style={{ background: shineBackground }}
           />
-          {!prefersReducedMotion ? (
-            <motion.div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 mix-blend-soft-light"
-              style={{ background: shineBackground }}
-            />
-          ) : null}
-        </div>
+        ) : null}
       </motion.div>
     </motion.div>
   );

@@ -8,7 +8,7 @@ import { getEventsByCategory } from "@/data/events";
 
 export const metadata: Metadata = {
   title: "Events",
-  description: "All four Fitoor 2026 event categories — Esports, Fitoor (Music), Naatak (Theatre), and 1900AD (Artwork).",
+  description: "All five Fitoor 2026 event categories — Music, Dance, Art, Miscellaneous, and Business.",
 };
 
 export default function EventsPage() {
@@ -16,7 +16,7 @@ export default function EventsPage() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-16 sm:px-6 sm:py-20">
       <SectionHeading
         eyebrow="03 — Events"
-        title="Four categories, one fest"
+        title="Five categories, one fest"
         description="Pick a category to see the full lineup, rules, and coordinators."
       />
 
@@ -29,14 +29,14 @@ export default function EventsPage() {
               <Link
                 href={`/events/${category.slug}`}
                 data-category={category.slug}
-                className="group flex h-full flex-col gap-4 rounded-2xl border border-category/40 bg-surface/60 p-6 transition-all hover:border-category hover:bg-surface hover:glow-category"
+                className="group flex h-full flex-col gap-4 rounded-2xl border border-category/40 bg-maroon/60 p-6 transition-all hover:border-category hover:bg-maroon hover:glow-category"
               >
                 <div className="flex items-start justify-between">
-                  <span className="flex size-12 items-center justify-center rounded-full border border-category bg-bg-deep/60 text-category-light">
+                  <span className="flex size-12 items-center justify-center rounded-full border border-category bg-maroon-deepest/60 text-category-light">
                     <Icon className="size-6" aria-hidden />
                   </span>
                   <ArrowUpRight
-                    className="size-5 text-cream/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-pink"
+                    className="size-5 text-cream/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold"
                     aria-hidden
                   />
                 </div>

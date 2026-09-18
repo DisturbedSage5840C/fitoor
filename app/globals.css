@@ -5,17 +5,15 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Fitoor 2026 design tokens — sourced from the real Figma brand guide
-  (file NIQUvxxjq6TF0KN11oE4tr, "Fitoor Brand Guide" section): near-black
-  backgrounds, a signature pink wordmark-pill accent, and four category
-  accents (Esports/apricot, Fitoor-Music/sunset orange, Naatak/purple,
-  1900AD-Artwork/jungle green). Single fixed dark theme — no light/dark
-  toggle, the brand IS the dark theme.
+  Fitoor 2026 design tokens.
+  Single fixed dark "maroon & gold" theme — no light/dark toggle, the
+  brand IS the dark theme, so :root carries the real values directly
+  instead of a neutral default + a .dark override block.
 
   Font families are intentionally NOT registered inside @theme inline.
   Tailwind v4 resolves @theme inline var() references at parse time, but
   next/font only injects its --font-* custom properties at runtime via a
-  className on <html>. Putting `--font-sans: var(--font-montserrat)` in
+  className on <html>. Putting `--font-sans: var(--font-inter)` in
   @theme inline resolves to nothing (this is the well-known shadcn-init
   "--font-sans: var(--font-sans)" circular bug). Plain CSS declarations
   below (outside @theme) resolve var() live in the browser, so font
@@ -42,12 +40,12 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Brand palette, exposed as bg-surface / text-pink / border-cream/10 etc. */
-  --color-bg-deep: var(--bg-deep);
-  --color-surface: var(--surface);
-  --color-surface-light: var(--surface-light);
-  --color-pink: var(--pink);
-  --color-pink-bright: var(--pink-bright);
+  /* Brand palette, exposed as bg-gold / text-cream / border-maroon-light etc. */
+  --color-maroon-deepest: var(--maroon-deepest);
+  --color-maroon: var(--maroon);
+  --color-maroon-light: var(--maroon-light);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
   --color-cream: var(--cream);
 
   /*
@@ -56,7 +54,7 @@
     already exist above for component styling (focus rings, subtle
     highlights, etc). Reusing that name for the per-event-category
     reskinning mechanism would silently fight shadcn's Accordion/Tabs/
-    Sheet/Badge styling. [data-category="esports"] etc. (set below) remap
+    Sheet/Badge styling. [data-category="music"] etc. (set below) remap
     --category/--category-light; components consume bg-category /
     text-category-light / border-category.
   */
@@ -64,15 +62,17 @@
   --color-category-light: var(--category-light);
 
   /* Raw per-category swatches, for things like the events index legend
-     that need to show all four colors at once regardless of page context. */
-  --color-esports: var(--esports);
-  --color-esports-light: var(--esports-light);
+     that need to show all five colors at once regardless of page context. */
   --color-music: var(--music);
   --color-music-light: var(--music-light);
-  --color-naatak: var(--naatak);
-  --color-naatak-light: var(--naatak-light);
-  --color-artwork: var(--artwork);
-  --color-artwork-light: var(--artwork-light);
+  --color-dance: var(--dance);
+  --color-dance-light: var(--dance-light);
+  --color-art: var(--art);
+  --color-art-light: var(--art-light);
+  --color-misc: var(--misc);
+  --color-misc-light: var(--misc-light);
+  --color-business: var(--business);
+  --color-business-light: var(--business-light);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -140,66 +140,71 @@
 }
 
 :root {
-  /* Brand base — near-black backgrounds from the Figma brand guide
-     (#000716 on cover/mascot pages, #000000/#1f1f1f elsewhere) */
-  --bg-deep: #000716;
-  --surface: #16161f;
-  --surface-light: #1f2029;
-  --pink: #fc4a87;
-  --pink-bright: #ff6fa3;
-  --cream: #fdf0cc;
+  /* Brand base */
+  --maroon-deepest: #1c0407;
+  --maroon: #3a0a10;
+  --maroon-light: #5c1119;
+  --gold: #e8c77e;
+  --gold-bright: #f4d896;
+  --cream: #f5e9d3;
 
   /* Category fills (borders/glows/buttons) + light tints (text/icons on dark bg) */
-  --esports: #feba7d;
-  --esports-light: #ffd9b0;
-  --music: #ff6653;
-  --music-light: #ffb3a8;
-  --naatak: #8731fc;
-  --naatak-light: #c9a0ff;
-  --artwork: #23a094;
-  --artwork-light: #7fe0d3;
+  --music: #5b2a86;
+  --music-light: #c9a6f0;
+  --dance: #0f6e5c;
+  --dance-light: #7fe3c9;
+  --art: #b8860b;
+  --art-light: #f0cf6e;
+  --misc: #7a1420;
+  --misc-light: #f2a4ad;
+  --business: #c2186d;
+  --business-light: #f5a8d1;
 
-  /* Default (non-category-page) accent = the wordmark pink */
-  --category: var(--pink);
-  --category-light: var(--pink-bright);
+  /* Default (non-category-page) accent = base maroon */
+  --category: var(--misc);
+  --category-light: var(--misc-light);
 
   /* shadcn structural tokens, mapped onto the brand palette */
-  --background: var(--bg-deep);
+  --background: var(--maroon-deepest);
   --foreground: var(--cream);
-  --card: var(--surface);
+  --card: var(--maroon);
   --card-foreground: var(--cream);
-  --popover: var(--surface);
+  --popover: var(--maroon);
   --popover-foreground: var(--cream);
-  --primary: var(--pink);
-  --primary-foreground: var(--cream);
-  --secondary: var(--surface-light);
+  --primary: var(--gold);
+  --primary-foreground: var(--maroon-deepest);
+  --secondary: var(--maroon-light);
   --secondary-foreground: var(--cream);
-  --muted: var(--surface-light);
+  --muted: var(--maroon-light);
   --muted-foreground: color-mix(in oklab, var(--cream) 65%, transparent);
-  --accent: var(--pink);
-  --accent-foreground: var(--cream);
+  --accent: var(--gold);
+  --accent-foreground: var(--maroon-deepest);
   --destructive: #e35b4f;
   --border: color-mix(in oklab, var(--cream) 14%, transparent);
   --input: color-mix(in oklab, var(--cream) 16%, transparent);
-  --ring: var(--pink);
+  --ring: var(--gold);
   --radius: 0.85rem;
 }
 
-[data-category="esports"] {
-  --category: var(--esports);
-  --category-light: var(--esports-light);
-}
 [data-category="music"] {
   --category: var(--music);
   --category-light: var(--music-light);
 }
-[data-category="naatak"] {
-  --category: var(--naatak);
-  --category-light: var(--naatak-light);
+[data-category="dance"] {
+  --category: var(--dance);
+  --category-light: var(--dance-light);
 }
-[data-category="artwork"] {
-  --category: var(--artwork);
-  --category-light: var(--artwork-light);
+[data-category="art"] {
+  --category: var(--art);
+  --category-light: var(--art-light);
+}
+[data-category="misc"] {
+  --category: var(--misc);
+  --category-light: var(--misc-light);
+}
+[data-category="business"] {
+  --category: var(--business);
+  --category-light: var(--business-light);
 }
 
 @layer base {
@@ -213,24 +218,34 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   }
 }
 
-/* Font role utilities — deliberately plain CSS (see file header comment).
-   Druk Text Trial -> Anton, Maung -> Cormorant, Amithen -> Pacifico,
-   Montserrat -> Montserrat (literal match with the brand guide). */
+/* Font role utilities — deliberately plain CSS (see file header comment). */
 .font-display {
-  font-family: var(--font-anton), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-baloo), ui-rounded, system-ui, sans-serif;
 }
-.font-serif {
-  font-family: var(--font-cormorant), serif;
+.font-display-ur {
+  font-family: var(--font-baloo-bhaijaan), var(--font-baloo), sans-serif;
 }
-.font-script {
-  font-family: var(--font-pacifico), cursive;
+.font-nastaliq {
+  font-family: var(--font-nastaliq), serif;
+}
+.font-wordmark {
+  font-family: var(--font-playfair), serif;
+}
+.font-serif-dev {
+  font-family: var(--font-noto-serif-devanagari), serif;
 }
 .font-body {
-  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+.font-body-dev {
+  font-family: var(--font-noto-sans-devanagari), sans-serif;
+}
+.font-pixel {
+  font-family: var(--font-press-start), monospace;
 }
 
 @utility glow-category {
@@ -239,8 +254,10 @@
     0 0 64px -14px var(--category);
 }
 
-@utility glow-pink {
-  box-shadow: 0px 4px 25px 0px var(--pink-bright);
+@utility glow-gold {
+  box-shadow:
+    0 0 32px -6px var(--gold),
+    0 0 64px -16px var(--gold);
 }
 
 @utility text-glow-category {

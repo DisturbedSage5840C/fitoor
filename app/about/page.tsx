@@ -16,7 +16,7 @@ export default function AboutPage() {
       <RevealOnScroll className="flex flex-col gap-6">
         <p className="font-body text-lg text-cream/85 text-pretty">{about.intro}</p>
 
-        <blockquote className="border-l-2 border-pink/60 pl-5">
+        <blockquote className="border-l-2 border-gold/60 pl-5">
           <p className="font-body text-base text-cream/75 italic text-pretty">
             {about.themeStatement}
           </p>

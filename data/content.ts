@@ -2,8 +2,10 @@ import type { FaqItem } from "./types";
 
 export const fest = {
   name: "Fitoor",
+  nastaliqName: "فتور",
+  devanagariName: "फ़ितूर",
   year: 2026,
-  theme: "Retro, Reloaded.",
+  theme: "Young, Dumb & Desi",
   dates: "Nov 14–15, 2026",
   startDateISO: "2026-11-14T09:00:00+05:30",
   university: "Plaksha University",
@@ -13,7 +15,7 @@ export const hero = {
   eyebrow: "Plaksha University presents",
   title: "Fitoor",
   subtitle:
-    "Two days. Four categories. One obsession. Bold type, retro shades, and neon-bright energy — Fitoor is Plaksha's biggest stage for gaming, music, theatre, and art.",
+    "Two days. Five categories. One obsession. This year's theme — Young, Dumb & Desi — is a love letter to Y2K nostalgia, old Bollywood glamour, and the desi household that raised us, remixed for right now.",
   cta: {
     primary: { label: "See the Line-up", href: "/events" },
     secondary: { label: "View Schedule", href: "/schedule" },
@@ -22,12 +24,12 @@ export const hero = {
 
 export const about = {
   intro:
-    "Fitoor is Plaksha University's annual cultural fest — two days where the campus turns into a stage, a gallery, an arena, and a dance floor all at once. It's the one weekend a year built entirely around obsession: with music, with performance, with color, with competition.",
+    "Fitoor is Plaksha University's annual cultural fest — two days where the campus turns into a stage, a gallery, a dance floor, and a bazaar all at once. It's the one weekend a year built entirely around obsession: with music, with movement, with color, with performance.",
   themeStatement:
-    "\"Retro, Reloaded.\" is this year's theme — vintage line-art glamour and bold, oversized type, rewired with neon-bright modern energy. Be bold. Be retro. Be Fitoor.",
+    "\"Young, Dumb & Desi\" is this year's theme — equal parts 2000s nostalgia and old-school Indian household charm. Think boomboxes and bindis, cassette tapes and chai, cyber-café internet and cinema-hall Bollywood. It's tech-forward and thoroughly desi, dumb in the best way, and unapologetically young.",
   paragraphs: [
-    "Every year, Fitoor brings together gamers, performers, artists, and musicians from across the country for a weekend of competition, performance, and pure chaos in the best sense.",
-    "Whether you're here to compete, perform, watch, or just vibe — there's a place for you across our four event categories: Esports, Fitoor (Music), Naatak (Theatre), and 1900AD (Artwork).",
+    "Every year, Fitoor brings together performers, artists, dancers, musicians, and entrepreneurs from across the country for a weekend of competition, performance, and pure chaos in the best sense.",
+    "Whether you're here to compete, perform, watch, or just vibe — there's a place for you across our five event categories: Music, Dance, Art, Miscellaneous, and Business.",
   ],
 };
 

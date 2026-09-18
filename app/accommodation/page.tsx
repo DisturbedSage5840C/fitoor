@@ -21,9 +21,9 @@ function InfoBlock({
   points: string[];
 }) {
   return (
-    <RevealOnScroll className="flex flex-col gap-5 rounded-2xl border border-cream/10 bg-surface/50 p-6 sm:p-8">
+    <RevealOnScroll className="flex flex-col gap-5 rounded-2xl border border-cream/10 bg-maroon/50 p-6 sm:p-8">
       <div className="flex items-center gap-3">
-        <span className="flex size-10 items-center justify-center rounded-full border border-pink/40 text-pink">
+        <span className="flex size-10 items-center justify-center rounded-full border border-gold/40 text-gold">
           <Icon className="size-5" aria-hidden />
         </span>
         <h2 className="font-display text-2xl text-cream">{title}</h2>
@@ -32,7 +32,7 @@ function InfoBlock({
       <ul className="font-body flex flex-col gap-2.5 text-sm text-cream/70">
         {points.map((point) => (
           <li key={point} className="flex gap-2.5">
-            <span className="text-pink/70" aria-hidden>
+            <span className="text-gold/70" aria-hidden>
               &bull;
             </span>
             <span className="text-pretty">{point}</span>
