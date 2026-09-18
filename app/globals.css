@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Fitoor 2026 design tokens.
+  Single fixed dark "maroon & gold" theme — no light/dark toggle, the
+  brand IS the dark theme, so :root carries the real values directly
+  instead of a neutral default + a .dark override block.
+
+  Font families are intentionally NOT registered inside @theme inline.
+  Tailwind v4 resolves @theme inline var() references at parse time, but
+  next/font only injects its --font-* custom properties at runtime via a
+  className on <html>. Putting `--font-sans: var(--font-inter)` in
+  @theme inline resolves to nothing (this is the well-known shadcn-init
+  "--font-sans: var(--font-sans)" circular bug). Plain CSS declarations
+  below (outside @theme) resolve var() live in the browser, so font
+  utility classes are hand-written instead.
+*/
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand palette, exposed as bg-gold / text-cream / border-maroon-light etc. */
+  --color-maroon-deepest: var(--maroon-deepest);
+  --color-maroon: var(--maroon);
+  --color-maroon-light: var(--maroon-light);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-cream: var(--cream);
+
+  /*
+    Category accents. Named --category / --category-light (NOT --accent)
+    on purpose: shadcn's own semantic --accent/--accent-foreground tokens
+    already exist above for component styling (focus rings, subtle
+    highlights, etc). Reusing that name for the per-event-category
+    reskinning mechanism would silently fight shadcn's Accordion/Tabs/
+    Sheet/Badge styling. [data-category="music"] etc. (set below) remap
+    --category/--category-light; components consume bg-category /
+    text-category-light / border-category.
+  */
+  --color-category: var(--category);
+  --color-category-light: var(--category-light);
+
+  /* Raw per-category swatches, for things like the events index legend
+     that need to show all five colors at once regardless of page context. */
+  --color-music: var(--music);
+  --color-music-light: var(--music-light);
+  --color-dance: var(--dance);
+  --color-dance-light: var(--dance-light);
+  --color-art: var(--art);
+  --color-art-light: var(--art-light);
+  --color-misc: var(--misc);
+  --color-misc-light: var(--misc-light);
+  --color-business: var(--business);
+  --color-business-light: var(--business-light);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  @keyframes grain-shift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    10% {
+      transform: translate(-1%, -3%);
+    }
+    20% {
+      transform: translate(-3%, 2%);
+    }
+    30% {
+      transform: translate(2%, -4%);
+    }
+    40% {
+      transform: translate(-2%, 3%);
+    }
+    50% {
+      transform: translate(3%, 1%);
+    }
+    60% {
+      transform: translate(-3%, -2%);
+    }
+    70% {
+      transform: translate(2%, 4%);
+    }
+    80% {
+      transform: translate(-1%, -1%);
+    }
+    90% {
+      transform: translate(1%, 2%);
+    }
+  }
+
+  @keyframes digit-flip {
+    0% {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+    49% {
+      opacity: 1;
+    }
+    50% {
+      transform: rotateX(-90deg);
+      opacity: 0;
+    }
+    51% {
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+  }
+}
+
+:root {
+  /* Brand base */
+  --maroon-deepest: #1c0407;
+  --maroon: #3a0a10;
+  --maroon-light: #5c1119;
+  --gold: #e8c77e;
+  --gold-bright: #f4d896;
+  --cream: #f5e9d3;
+
+  /* Category fills (borders/glows/buttons) + light tints (text/icons on dark bg) */
+  --music: #5b2a86;
+  --music-light: #c9a6f0;
+  --dance: #0f6e5c;
+  --dance-light: #7fe3c9;
+  --art: #b8860b;
+  --art-light: #f0cf6e;
+  --misc: #7a1420;
+  --misc-light: #f2a4ad;
+  --business: #c2186d;
+  --business-light: #f5a8d1;
+
+  /* Default (non-category-page) accent = base maroon */
+  --category: var(--misc);
+  --category-light: var(--misc-light);
+
+  /* shadcn structural tokens, mapped onto the brand palette */
+  --background: var(--maroon-deepest);
+  --foreground: var(--cream);
+  --card: var(--maroon);
+  --card-foreground: var(--cream);
+  --popover: var(--maroon);
+  --popover-foreground: var(--cream);
+  --primary: var(--gold);
+  --primary-foreground: var(--maroon-deepest);
+  --secondary: var(--maroon-light);
+  --secondary-foreground: var(--cream);
+  --muted: var(--maroon-light);
+  --muted-foreground: color-mix(in oklab, var(--cream) 65%, transparent);
+  --accent: var(--gold);
+  --accent-foreground: var(--maroon-deepest);
+  --destructive: #e35b4f;
+  --border: color-mix(in oklab, var(--cream) 14%, transparent);
+  --input: color-mix(in oklab, var(--cream) 16%, transparent);
+  --ring: var(--gold);
+  --radius: 0.85rem;
+}
+
+[data-category="music"] {
+  --category: var(--music);
+  --category-light: var(--music-light);
+}
+[data-category="dance"] {
+  --category: var(--dance);
+  --category-light: var(--dance-light);
+}
+[data-category="art"] {
+  --category: var(--art);
+  --category-light: var(--art-light);
+}
+[data-category="misc"] {
+  --category: var(--misc);
+  --category-light: var(--misc-light);
+}
+[data-category="business"] {
+  --category: var(--business);
+  --category-light: var(--business-light);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+/* Font role utilities — deliberately plain CSS (see file header comment). */
+.font-display {
+  font-family: var(--font-baloo), ui-rounded, system-ui, sans-serif;
+}
+.font-display-ur {
+  font-family: var(--font-baloo-bhaijaan), var(--font-baloo), sans-serif;
+}
+.font-nastaliq {
+  font-family: var(--font-nastaliq), serif;
+}
+.font-wordmark {
+  font-family: var(--font-playfair), serif;
+}
+.font-serif-dev {
+  font-family: var(--font-noto-serif-devanagari), serif;
+}
+.font-body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+.font-body-dev {
+  font-family: var(--font-noto-sans-devanagari), sans-serif;
+}
+.font-pixel {
+  font-family: var(--font-press-start), monospace;
+}
+
+@utility glow-category {
+  box-shadow:
+    0 0 32px -6px var(--category),
+    0 0 64px -14px var(--category);
+}
+
+@utility glow-gold {
+  box-shadow:
+    0 0 32px -6px var(--gold),
+    0 0 64px -16px var(--gold);
+}
+
+@utility text-glow-category {
+  text-shadow: 0 0 24px var(--category);
+}
+
+/* Full-viewport film grain texture, meant to sit behind a single root-level
+   <Grain /> component (fixed, inset-0, pointer-events-none, mix-blend-overlay). */
+@utility grain-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: grain-shift 1.2s steps(6) infinite;
+}
