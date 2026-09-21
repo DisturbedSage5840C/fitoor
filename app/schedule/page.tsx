@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Clock, MapPin, Sparkles, Utensils, Mic2, CalendarDays } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { CollageCard } from "@/components/zine/CollageCard";
+import { SpacingDivider } from "@/components/zine/SpacingDivider";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { categoryIcons } from "@/data/categories";
 import { getScheduleByDay } from "@/data/schedule";
@@ -24,8 +26,13 @@ function ScheduleRow({ entry, index }: { entry: ScheduleEntry; index: number }) 
 
   return (
     <div data-category={entry.category}>
-      <RevealOnScroll delay={index * 0.03}>
-        <div className="flex items-center gap-4 border-b border-cream/10 py-4">
+      <RevealOnScroll delay={index * 0.03} variant="torn">
+        <CollageCard
+          seed={index + 1}
+          torn={index % 2 === 0 ? "top" : "bottom"}
+          intensity="low"
+          className="flex items-center gap-4 px-4 py-3 sm:px-5"
+        >
           <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-category/50 text-category-light">
             <Icon className="size-4" aria-hidden />
           </span>
@@ -42,7 +49,7 @@ function ScheduleRow({ entry, index }: { entry: ScheduleEntry; index: number }) 
               </span>
             </span>
           </div>
-        </div>
+        </CollageCard>
       </RevealOnScroll>
     </div>
   );
@@ -54,7 +61,9 @@ export default function SchedulePage() {
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-10 px-4 py-16 sm:px-6 sm:py-20">
-      <SectionHeading eyebrow="02 — Schedule" title="The running order" />
+      <SectionHeading eyebrow="02 — Schedule" title="The running order" frame="zine" />
+
+      <SpacingDivider label="PG. 02" seed={12} />
 
       <Tabs defaultValue="day1" className="gap-6">
         <TabsList className="h-auto w-full gap-1 bg-maroon p-1 sm:w-fit">
@@ -66,13 +75,13 @@ export default function SchedulePage() {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="day1" className="flex flex-col">
+        <TabsContent value="day1" className="flex flex-col gap-3">
           {day1.map((entry, i) => (
             <ScheduleRow key={entry.id} entry={entry} index={i} />
           ))}
         </TabsContent>
 
-        <TabsContent value="day2" className="flex flex-col">
+        <TabsContent value="day2" className="flex flex-col gap-3">
           {day2.map((entry, i) => (
             <ScheduleRow key={entry.id} entry={entry} index={i} />
           ))}

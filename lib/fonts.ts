@@ -7,7 +7,9 @@ import {
   Inter,
   Noto_Sans_Devanagari,
   Press_Start_2P,
+  Montserrat,
 } from "next/font/google";
+import localFont from "next/font/local";
 
 export const baloo = Baloo_2({
   variable: "--font-baloo",
@@ -65,6 +67,36 @@ export const pressStart = Press_Start_2P({
   display: "swap",
 });
 
+/**
+ * DRUK — the real Fitoor brand guide's display type ("BE BOLD."). Loaded
+ * locally from assets/fonts since it isn't on Google Fonts; only a Bold
+ * weight is bundled since `.font-display` call sites only ever use
+ * `font-bold`.
+ */
+export const druk = localFont({
+  src: "../assets/fonts/Druk-Bold.otf",
+  variable: "--font-druk",
+  weight: "700",
+  display: "swap",
+});
+
+/**
+ * Amithen — the brand guide's script accent ("be swift."). Loaded locally
+ * from assets/fonts since it isn't on Google Fonts.
+ */
+export const amithen = localFont({
+  src: "../assets/fonts/Amithen.otf",
+  variable: "--font-amithen",
+  display: "swap",
+});
+
+export const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
 export const fontVariables = [
   baloo.variable,
   balooBhaijaan.variable,
@@ -74,4 +106,7 @@ export const fontVariables = [
   inter.variable,
   notoSansDevanagari.variable,
   pressStart.variable,
+  druk.variable,
+  amithen.variable,
+  montserrat.variable,
 ].join(" ");

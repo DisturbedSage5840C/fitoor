@@ -3,6 +3,7 @@ import { AtSign, Mail, MapPin, Phone } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ContactChip } from "@/components/shared/ContactChip";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { SpacingDivider } from "@/components/zine/SpacingDivider";
 import { generalContact, studentCoordinators } from "@/data/contacts";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function ContactPage() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-14 px-4 py-16 sm:px-6 sm:py-20">
       <div className="flex flex-col gap-6">
-        <SectionHeading eyebrow="06 — Contact Us" title="Reach the committee" />
+        <SectionHeading eyebrow="06 — Contact Us" title="Reach the committee" frame="zine" />
         <RevealOnScroll className="flex flex-wrap gap-3">
           <ContactChip icon={AtSign} label={generalContact.instagram.handle} href={generalContact.instagram.url} />
           <ContactChip icon={Mail} label={generalContact.email} href={`mailto:${generalContact.email}`} />
@@ -22,8 +23,10 @@ export default function ContactPage() {
         </RevealOnScroll>
       </div>
 
+      <SpacingDivider label="PG. 06" seed={20} />
+
       <div className="flex flex-col gap-6">
-        <SectionHeading title="Student coordinators" />
+        <SectionHeading eyebrow="Coordinators" title="Student coordinators" frame="zine" />
         <RevealOnScroll>
           <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2">
             {studentCoordinators.map((person) => (

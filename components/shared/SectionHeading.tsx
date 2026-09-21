@@ -5,6 +5,8 @@ interface SectionHeadingProps {
   title: string;
   description?: string;
   align?: "left" | "center";
+  /** "plain" (default) is the original eyebrow treatment, unchanged. "zine" wraps it as a rotated stamp. */
+  frame?: "plain" | "zine";
   className?: string;
 }
 
@@ -13,8 +15,14 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  frame = "plain",
   className,
 }: SectionHeadingProps) {
+  // Deterministic per-instance tilt (from title length) rather than a fixed
+  // angle, so a page with several zine-framed headings doesn't repeat the
+  // exact same stamp rotation.
+  const stampRotate = frame === "zine" ? ((title.length * 7) % 5) - 2 : 0;
+
   return (
     <div
       className={cn(
@@ -24,7 +32,14 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <span className="flex items-center gap-2">
+        <span
+          className={cn(
+            "flex items-center gap-2",
+            frame === "zine" &&
+              "w-fit border border-gold/30 bg-maroon-light/30 px-3 py-1.5 shadow-[0_4px_12px_-6px_rgba(0,0,0,0.6)]",
+          )}
+          style={frame === "zine" ? { transform: `rotate(${stampRotate}deg)` } : undefined}
+        >
           <span className="flex items-center gap-1" aria-hidden>
             <span className="size-1.5 rounded-full bg-dance" />
             <span className="size-1.5 rounded-full bg-gold" />

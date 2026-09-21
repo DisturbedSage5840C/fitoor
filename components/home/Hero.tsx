@@ -2,6 +2,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Mascot } from "@/components/home/Mascot";
 import { Countdown } from "@/components/home/Countdown";
+import { HeroScene } from "@/components/three/HeroScene";
 import { hero, fest } from "@/data/content";
 import { cn } from "@/lib/utils";
 
@@ -57,22 +58,7 @@ export function Hero() {
         </div>
 
         <div className="relative">
-          <div
-            className="pointer-events-none absolute -inset-10 opacity-70 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(60% 60% at 50% 40%, var(--sunset), var(--apricot) 55%, transparent 78%)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute -inset-4 opacity-40 blur-xl"
-            style={{
-              background:
-                "radial-gradient(50% 50% at 30% 65%, var(--electric-magenta), transparent 70%)",
-            }}
-            aria-hidden
-          />
+          <HeroScene />
           <Mascot className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-md" />
         </div>
       </div>

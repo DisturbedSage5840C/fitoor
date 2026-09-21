@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { CategoryHero } from "@/components/events/CategoryHero";
 import { EventCard } from "@/components/events/EventCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { CollageCard } from "@/components/zine/CollageCard";
 import { categories, categoryList } from "@/data/categories";
 import { getEventsByCategory } from "@/data/events";
 import type { CategorySlug } from "@/data/types";
@@ -36,8 +37,15 @@ export default async function CategoryPage({ params }: PageProps<"/events/[categ
 
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-2">
         {events.map((event, i) => (
-          <RevealOnScroll key={event.id} delay={i * 0.04}>
-            <EventCard event={event} />
+          <RevealOnScroll key={event.id} delay={i * 0.04} variant="torn" className="h-full">
+            <CollageCard
+              seed={i + 1}
+              torn={i % 2 === 0 ? "top" : "bottom"}
+              intensity="low"
+              className="h-full"
+            >
+              <EventCard event={event} />
+            </CollageCard>
           </RevealOnScroll>
         ))}
       </div>

@@ -55,6 +55,37 @@
   --color-electric-magenta: var(--electric-magenta);
   --color-electric-blue: var(--electric-blue);
 
+  /* Full 6-tint Figma ramps (the brand guide's actual "Orange/Apricot",
+     "Sunset", "Magenta/Pink", "Interdimensional Blue" families), for the
+     zine/collage system's richer palette needs — swatch strips, torn-paper
+     layering, collage-card accents. 400 = the original flat token above,
+     unchanged, so nothing that already consumes --apricot/--sunset/etc.
+     regresses. */
+  --color-apricot-100: var(--apricot-100);
+  --color-apricot-200: var(--apricot-200);
+  --color-apricot-300: var(--apricot-300);
+  --color-apricot-400: var(--apricot-400);
+  --color-apricot-500: var(--apricot-500);
+  --color-apricot-600: var(--apricot-600);
+  --color-sunset-100: var(--sunset-100);
+  --color-sunset-200: var(--sunset-200);
+  --color-sunset-300: var(--sunset-300);
+  --color-sunset-400: var(--sunset-400);
+  --color-sunset-500: var(--sunset-500);
+  --color-sunset-600: var(--sunset-600);
+  --color-magenta-100: var(--magenta-100);
+  --color-magenta-200: var(--magenta-200);
+  --color-magenta-300: var(--magenta-300);
+  --color-magenta-400: var(--magenta-400);
+  --color-magenta-500: var(--magenta-500);
+  --color-magenta-600: var(--magenta-600);
+  --color-blue-100: var(--blue-100);
+  --color-blue-200: var(--blue-200);
+  --color-blue-300: var(--blue-300);
+  --color-blue-400: var(--blue-400);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600);
+
   /*
     Category accents. Named --category / --category-light (NOT --accent)
     on purpose: shadcn's own semantic --accent/--accent-foreground tokens
@@ -158,11 +189,53 @@
   /* Figma brand-guide colors (github.com/DisturbedSage5840C/fitoor Figma
      "Fitoor '26" brand guide). Same warm-to-electric maximalism as the
      maroon/gold/category system, kept as separate glow/highlight tokens
-     rather than replacing any base hue. */
-  --apricot: #feb879;
-  --sunset: #ff6350;
-  --electric-magenta: #d80cce;
-  --electric-blue: #5203bb;
+     rather than replacing any base hue.
+
+     Full 6-tint ramps, synthesized via color-mix(in oklch, ...) from the
+     original flat hex — each family's *-400 tier IS that original value
+     (not re-derived), so the flat --apricot/--sunset/--electric-magenta/
+     --electric-blue aliases below stay pixel-identical to before this
+     ramp existed. 100-300 lighten toward white, 500-600 darken toward
+     black. Ramps power the zine/collage system (swatch strips, torn-paper
+     layering); nothing that already consumed the 4 flat tokens changes. */
+  --apricot-400: #feb879;
+  --apricot-100: color-mix(in oklch, var(--apricot-400), white 70%);
+  --apricot-200: color-mix(in oklch, var(--apricot-400), white 45%);
+  --apricot-300: color-mix(in oklch, var(--apricot-400), white 20%);
+  --apricot-500: color-mix(in oklch, var(--apricot-400), black 15%);
+  --apricot-600: color-mix(in oklch, var(--apricot-400), black 30%);
+  --apricot: var(--apricot-400);
+
+  --sunset-400: #ff6350;
+  --sunset-100: color-mix(in oklch, var(--sunset-400), white 70%);
+  --sunset-200: color-mix(in oklch, var(--sunset-400), white 45%);
+  --sunset-300: color-mix(in oklch, var(--sunset-400), white 20%);
+  --sunset-500: color-mix(in oklch, var(--sunset-400), black 15%);
+  --sunset-600: color-mix(in oklch, var(--sunset-400), black 30%);
+  --sunset: var(--sunset-400);
+
+  --magenta-400: #d80cce;
+  --magenta-100: color-mix(in oklch, var(--magenta-400), white 70%);
+  --magenta-200: color-mix(in oklch, var(--magenta-400), white 45%);
+  --magenta-300: color-mix(in oklch, var(--magenta-400), white 20%);
+  --magenta-500: color-mix(in oklch, var(--magenta-400), black 15%);
+  --magenta-600: color-mix(in oklch, var(--magenta-400), black 30%);
+  --electric-magenta: var(--magenta-400);
+
+  --blue-400: #5203bb;
+  --blue-100: color-mix(in oklch, var(--blue-400), white 70%);
+  --blue-200: color-mix(in oklch, var(--blue-400), white 45%);
+  --blue-300: color-mix(in oklch, var(--blue-400), white 20%);
+  --blue-500: color-mix(in oklch, var(--blue-400), black 15%);
+  --blue-600: color-mix(in oklch, var(--blue-400), black 30%);
+  --electric-blue: var(--blue-400);
+
+  /* Spacing discipline ("rule of 8s"): Tailwind v4's base-4 scale already
+     lands on 8-multiples at every even step (2=8px, 4=16px, 6=24px...),
+     so no scale override is needed — just a convention. Use even spacing
+     steps (p-2, gap-4, py-6, p-8...) for zine-grid layout and section
+     rhythm; reserve odd steps (p-1, gap-3, p-5...) for hairline/texture
+     details only (tape-corner offsets, torn-edge overlap, badge padding). */
 
   /* Category fills (borders/glows/buttons) + light tints (text/icons on dark bg) */
   --music: #5b2a86;
@@ -250,8 +323,19 @@
   }
 }
 
-/* Font role utilities — deliberately plain CSS (see file header comment). */
+/* Font role utilities — deliberately plain CSS (see file header comment).
+
+   .font-display now carries the brand guide's DRUK-style bold display
+   role ("BE BOLD.") site-wide — every existing call site (SectionHeading,
+   Hero theme line, EventCard, ScheduleRow) upgrades automatically. The
+   old Baloo 2 treatment survives as `.font-display-fallback` for any spot
+   that still wants the rounder, softer look. `--font-druk`/`--font-amithen`
+   load real local DRUK/Amithen font files via next/font/local — see
+   lib/fonts.ts and assets/fonts/. */
 .font-display {
+  font-family: var(--font-druk), var(--font-baloo), Impact, "Arial Black", ui-sans-serif, sans-serif;
+}
+.font-display-fallback {
   font-family: var(--font-baloo), ui-rounded, system-ui, sans-serif;
 }
 .font-display-ur {
@@ -269,11 +353,17 @@
 .font-body {
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
+.font-body-alt {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}
 .font-body-dev {
   font-family: var(--font-noto-sans-devanagari), sans-serif;
 }
 .font-pixel {
   font-family: var(--font-press-start), monospace;
+}
+.font-script {
+  font-family: var(--font-amithen), cursive;
 }
 
 @utility glow-category {

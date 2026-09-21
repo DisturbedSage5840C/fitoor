@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { EventsIconCluster } from "@/components/three/EventsIconCluster";
 import { categoryList, categoryIcons } from "@/data/categories";
 import { getEventsByCategory } from "@/data/events";
 
@@ -18,7 +19,10 @@ export default function EventsPage() {
         eyebrow="03 — Events"
         title="Five categories, one fest"
         description="Pick a category to see the full lineup, rules, and coordinators."
+        frame="zine"
       />
+
+      <EventsIconCluster />
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {categoryList.map((category, i) => {

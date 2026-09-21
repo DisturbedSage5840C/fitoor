@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -29,7 +29,14 @@ type LayerName = keyof typeof LAYER_DEPTH;
 export function Mascot({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const layerRefs = useRef<Partial<Record<LayerName, SVGGElement | null>>>({});
-  const prefersReducedMotion = useReducedMotion();
+  const reducedMotionPreference = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  // Gate on `mounted` so the first client render always matches the server's
+  // (reduced-motion-unaware) output — motion/react's own preference read
+  // resolves after hydration, and reading it directly here before that point
+  // caused a hydration mismatch when the OS/browser reduced-motion flag was on.
+  const prefersReducedMotion = mounted ? reducedMotionPreference : false;
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);

@@ -13,6 +13,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { MascotFaceLogomark } from "@/components/mascot/MascotFaceLogomark";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -29,10 +30,13 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-cream/10 bg-maroon-deepest/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-baseline gap-2">
-          <span className="font-wordmark text-2xl italic text-gold">fitoor</span>
-          <span className="font-nastaliq text-lg text-cream/70" dir="rtl">
-            فتور
+        <Link href="/" className="flex items-center gap-2">
+          <MascotFaceLogomark size={28} className="shrink-0" />
+          <span className="flex items-baseline gap-2">
+            <span className="font-wordmark text-2xl italic text-gold">fitoor</span>
+            <span className="font-nastaliq text-lg text-cream/70" dir="rtl">
+              فتور
+            </span>
           </span>
         </Link>
 
