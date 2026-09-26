@@ -1,63 +1,96 @@
 import type { Metadata } from "next";
-import { SectionHeading } from "@/components/shared/SectionHeading";
-import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { CollageCard } from "@/components/zine/CollageCard";
-import { SpacingDivider } from "@/components/zine/SpacingDivider";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { generalRules, generalFaqs } from "@/data/content";
+import { PageHeader } from "@/components/shared/PageHeader";
+import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { generalFaqs, generalRules, security } from "@/data/content";
 
 export const metadata: Metadata = {
-  title: "Generalities",
-  description: "General rules and frequently asked questions for Fitoor 2026.",
+  title: "Rules & FAQ",
+  description:
+    "General rules, security guidelines and FAQs for Fitoor 2026 participants.",
 };
 
 export default function GeneralitiesPage() {
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-16 px-4 py-16 sm:px-6 sm:py-20">
-      <div className="flex flex-col gap-10">
-        <SectionHeading eyebrow="04 — Generalities" title="General rules" frame="zine" />
-        <RevealOnScroll variant="collage-in">
-          <CollageCard seed={8} torn="top" intensity="high" className="p-6 sm:p-8">
-            <ol className="font-body flex flex-col gap-3 text-base text-cream/80">
-              {generalRules.map((rule, i) => (
-                <li key={rule} className="flex gap-3">
-                  <span className="font-pixel shrink-0 text-sm text-gold/70">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-pretty">{rule}</span>
+    <>
+      <PageHeader
+        title="generalities"
+        script="rules, security & the usual questions"
+        intro="These apply to every participant, across every event. Event-specific rules live on each event's page."
+        art={{
+          src: "/art/puppets.webp",
+          alt: "Two Rajasthani kathputli puppets, one wearing sunglasses",
+          width: 768,
+          height: 1024,
+        }}
+      />
+
+      <div className="mx-auto grid grid-cols-1 max-w-6xl gap-16 px-4 py-16 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:py-24">
+        <RevealOnScroll>
+          <h2 className="font-title neon text-5xl lowercase">general rules</h2>
+          <ol className="mt-8 space-y-5">
+            {generalRules.map((rule, i) => (
+              <li key={rule} className="flex gap-5">
+                <span className="font-display w-10 shrink-0 text-3xl leading-none text-gold">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="font-body leading-relaxed text-cream/80">
+                  {rule}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </RevealOnScroll>
+
+        <RevealOnScroll delay={0.1}>
+          <div className="rounded-2xl border border-rose/40 bg-maroon p-7">
+            <h2 className="font-title text-4xl text-cream lowercase">
+              security
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {security.map((point) => (
+                <li
+                  key={point}
+                  className="font-body flex gap-3 text-sm leading-relaxed text-cream/75"
+                >
+                  <span
+                    className="mt-2 size-1.5 shrink-0 rounded-full bg-rose"
+                    aria-hidden
+                  />
+                  {point}
                 </li>
               ))}
-            </ol>
-          </CollageCard>
+            </ul>
+          </div>
         </RevealOnScroll>
       </div>
 
-      <SpacingDivider label="PG. 04" seed={9} />
-
-      <div className="flex flex-col gap-10">
-        <SectionHeading eyebrow="FAQs" title="Frequently asked questions" frame="zine" />
-        <RevealOnScroll variant="collage-in">
-          <CollageCard seed={10} torn="bottom" intensity="high" className="p-6 sm:p-8">
-            <Accordion>
-              {generalFaqs.map((faq, i) => (
-                <AccordionItem key={faq.question} value={`faq-${i}`}>
-                  <AccordionTrigger className="font-body text-base text-cream hover:text-gold">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <p className="font-body text-sm text-cream/70 text-pretty">{faq.answer}</p>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CollageCard>
-        </RevealOnScroll>
-      </div>
-    </div>
+      <section className="border-t border-gold/15 bg-maroon">
+        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+          <h2 className="font-title neon text-5xl lowercase">faq</h2>
+          <Accordion className="mt-8">
+            {generalFaqs.map((faq) => (
+              <AccordionItem
+                key={faq.question}
+                value={faq.question}
+                className="border-cream/10"
+              >
+                <AccordionTrigger className="font-body py-4 text-base font-semibold text-cream hover:text-gold hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="font-body pb-4 text-cream/70">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+    </>
   );
 }

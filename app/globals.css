@@ -5,19 +5,17 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Fitoor 2026 design tokens.
-  Single fixed dark "maroon & gold" theme — no light/dark toggle, the
-  brand IS the dark theme, so :root carries the real values directly
-  instead of a neutral default + a .dark override block.
+  Fitoor 2026 — tokens pulled from the official brochure.
 
-  Font families are intentionally NOT registered inside @theme inline.
-  Tailwind v4 resolves @theme inline var() references at parse time, but
-  next/font only injects its --font-* custom properties at runtime via a
-  className on <html>. Putting `--font-sans: var(--font-inter)` in
-  @theme inline resolves to nothing (this is the well-known shadcn-init
-  "--font-sans: var(--font-sans)" circular bug). Plain CSS declarations
-  below (outside @theme) resolve var() live in the browser, so font
-  utility classes are hand-written instead.
+  One fixed dark maroon & gold theme. Each event category gets its own
+  page colour (violet music, teal dance, olive art, burnt-orange misc,
+  plum business) exactly like the brochure spreads, swapped in through
+  [data-category] so a single component can wear any category.
+
+  Font families are NOT registered in @theme inline: Tailwind resolves
+  those var()s at build time, but next/font injects --font-* at runtime
+  via a class on <html>. The .font-* classes below are plain CSS so the
+  variables resolve live.
 */
 
 @theme inline {
@@ -40,77 +38,35 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Brand palette, exposed as bg-gold / text-cream / border-maroon-light etc. */
   --color-maroon-deepest: var(--maroon-deepest);
   --color-maroon: var(--maroon);
   --color-maroon-light: var(--maroon-light);
   --color-gold: var(--gold);
   --color-gold-bright: var(--gold-bright);
   --color-cream: var(--cream);
+  --color-rose: var(--rose);
 
-  /* Figma brand-guide accents, blended in alongside the base palette as
-     connective glows/highlights (not a base-palette replacement). */
-  --color-apricot: var(--apricot);
-  --color-sunset: var(--sunset);
-  --color-electric-magenta: var(--electric-magenta);
-  --color-electric-blue: var(--electric-blue);
-
-  /* Full 6-tint Figma ramps (the brand guide's actual "Orange/Apricot",
-     "Sunset", "Magenta/Pink", "Interdimensional Blue" families), for the
-     zine/collage system's richer palette needs — swatch strips, torn-paper
-     layering, collage-card accents. 400 = the original flat token above,
-     unchanged, so nothing that already consumes --apricot/--sunset/etc.
-     regresses. */
-  --color-apricot-100: var(--apricot-100);
-  --color-apricot-200: var(--apricot-200);
-  --color-apricot-300: var(--apricot-300);
-  --color-apricot-400: var(--apricot-400);
-  --color-apricot-500: var(--apricot-500);
-  --color-apricot-600: var(--apricot-600);
-  --color-sunset-100: var(--sunset-100);
-  --color-sunset-200: var(--sunset-200);
-  --color-sunset-300: var(--sunset-300);
-  --color-sunset-400: var(--sunset-400);
-  --color-sunset-500: var(--sunset-500);
-  --color-sunset-600: var(--sunset-600);
-  --color-magenta-100: var(--magenta-100);
-  --color-magenta-200: var(--magenta-200);
-  --color-magenta-300: var(--magenta-300);
-  --color-magenta-400: var(--magenta-400);
-  --color-magenta-500: var(--magenta-500);
-  --color-magenta-600: var(--magenta-600);
-  --color-blue-100: var(--blue-100);
-  --color-blue-200: var(--blue-200);
-  --color-blue-300: var(--blue-300);
-  --color-blue-400: var(--blue-400);
-  --color-blue-500: var(--blue-500);
-  --color-blue-600: var(--blue-600);
-
-  /*
-    Category accents. Named --category / --category-light (NOT --accent)
-    on purpose: shadcn's own semantic --accent/--accent-foreground tokens
-    already exist above for component styling (focus rings, subtle
-    highlights, etc). Reusing that name for the per-event-category
-    reskinning mechanism would silently fight shadcn's Accordion/Tabs/
-    Sheet/Badge styling. [data-category="music"] etc. (set below) remap
-    --category/--category-light; components consume bg-category /
-    text-category-light / border-category.
-  */
+  /* Per-category, context-aware (set by [data-category]) */
   --color-category: var(--category);
   --color-category-light: var(--category-light);
+  --color-category-bg: var(--category-bg);
 
-  /* Raw per-category swatches, for things like the events index legend
-     that need to show all five colors at once regardless of page context. */
+  /* Raw per-category swatches, for places that show all five at once */
   --color-music: var(--music);
   --color-music-light: var(--music-light);
+  --color-music-bg: var(--music-bg);
   --color-dance: var(--dance);
   --color-dance-light: var(--dance-light);
+  --color-dance-bg: var(--dance-bg);
   --color-art: var(--art);
   --color-art-light: var(--art-light);
+  --color-art-bg: var(--art-bg);
   --color-misc: var(--misc);
   --color-misc-light: var(--misc-light);
+  --color-misc-bg: var(--misc-bg);
   --color-business: var(--business);
   --color-business-light: var(--business-light);
+  --color-business-bg: var(--business-bg);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -120,148 +76,71 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-spin-slow: spin 22s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   @keyframes grain-shift {
     0%,
     100% {
       transform: translate(0, 0);
     }
-    10% {
-      transform: translate(-1%, -3%);
-    }
     20% {
       transform: translate(-3%, 2%);
-    }
-    30% {
-      transform: translate(2%, -4%);
     }
     40% {
       transform: translate(-2%, 3%);
     }
-    50% {
-      transform: translate(3%, 1%);
-    }
     60% {
       transform: translate(-3%, -2%);
     }
-    70% {
-      transform: translate(2%, 4%);
-    }
     80% {
       transform: translate(-1%, -1%);
-    }
-    90% {
-      transform: translate(1%, 2%);
-    }
-  }
-
-  @keyframes digit-flip {
-    0% {
-      transform: rotateX(0deg);
-      opacity: 1;
-    }
-    49% {
-      opacity: 1;
-    }
-    50% {
-      transform: rotateX(-90deg);
-      opacity: 0;
-    }
-    51% {
-      transform: rotateX(90deg);
-      opacity: 0;
-    }
-    100% {
-      transform: rotateX(0deg);
-      opacity: 1;
     }
   }
 }
 
 :root {
-  /* Brand base */
   --maroon-deepest: #1c0407;
-  --maroon: #3a0a10;
-  --maroon-light: #5c1119;
+  --maroon: #2c0a0d;
+  --maroon-light: #4a1017;
   --gold: #e8c77e;
   --gold-bright: #f4d896;
-  --cream: #f5e9d3;
+  --cream: #f7ecd9;
+  /* The hot pink-red the brochure uses for its neon halos */
+  --rose: #ff4f6d;
 
-  /* Figma brand-guide colors (github.com/DisturbedSage5840C/fitoor Figma
-     "Fitoor '26" brand guide). Same warm-to-electric maximalism as the
-     maroon/gold/category system, kept as separate glow/highlight tokens
-     rather than replacing any base hue.
+  /* Category: fill/accent · light text tint · page background */
+  --music: #8b5cf6;
+  --music-light: #cdb6ff;
+  --music-bg: #1f0a38;
+  --dance: #3fa39c;
+  --dance-light: #a3ebe1;
+  --dance-bg: #173d3a;
+  --art: #c29a45;
+  --art-light: #ecd58f;
+  --art-bg: #1b1809;
+  --misc: #f08a4b;
+  --misc-light: #ffc9a3;
+  --misc-bg: #8e441f;
+  --business: #de4f93;
+  --business-light: #f8b3d5;
+  --business-bg: #3e1125;
 
-     Full 6-tint ramps, synthesized via color-mix(in oklch, ...) from the
-     original flat hex — each family's *-400 tier IS that original value
-     (not re-derived), so the flat --apricot/--sunset/--electric-magenta/
-     --electric-blue aliases below stay pixel-identical to before this
-     ramp existed. 100-300 lighten toward white, 500-600 darken toward
-     black. Ramps power the zine/collage system (swatch strips, torn-paper
-     layering); nothing that already consumed the 4 flat tokens changes. */
-  --apricot-400: #feb879;
-  --apricot-100: color-mix(in oklch, var(--apricot-400), white 70%);
-  --apricot-200: color-mix(in oklch, var(--apricot-400), white 45%);
-  --apricot-300: color-mix(in oklch, var(--apricot-400), white 20%);
-  --apricot-500: color-mix(in oklch, var(--apricot-400), black 15%);
-  --apricot-600: color-mix(in oklch, var(--apricot-400), black 30%);
-  --apricot: var(--apricot-400);
+  /* Default context = the fest's own maroon + rose neon */
+  --category: var(--rose);
+  --category-light: var(--gold);
+  --category-bg: var(--maroon);
+  --glow: var(--rose);
 
-  --sunset-400: #ff6350;
-  --sunset-100: color-mix(in oklch, var(--sunset-400), white 70%);
-  --sunset-200: color-mix(in oklch, var(--sunset-400), white 45%);
-  --sunset-300: color-mix(in oklch, var(--sunset-400), white 20%);
-  --sunset-500: color-mix(in oklch, var(--sunset-400), black 15%);
-  --sunset-600: color-mix(in oklch, var(--sunset-400), black 30%);
-  --sunset: var(--sunset-400);
-
-  --magenta-400: #d80cce;
-  --magenta-100: color-mix(in oklch, var(--magenta-400), white 70%);
-  --magenta-200: color-mix(in oklch, var(--magenta-400), white 45%);
-  --magenta-300: color-mix(in oklch, var(--magenta-400), white 20%);
-  --magenta-500: color-mix(in oklch, var(--magenta-400), black 15%);
-  --magenta-600: color-mix(in oklch, var(--magenta-400), black 30%);
-  --electric-magenta: var(--magenta-400);
-
-  --blue-400: #5203bb;
-  --blue-100: color-mix(in oklch, var(--blue-400), white 70%);
-  --blue-200: color-mix(in oklch, var(--blue-400), white 45%);
-  --blue-300: color-mix(in oklch, var(--blue-400), white 20%);
-  --blue-500: color-mix(in oklch, var(--blue-400), black 15%);
-  --blue-600: color-mix(in oklch, var(--blue-400), black 30%);
-  --electric-blue: var(--blue-400);
-
-  /* Spacing discipline ("rule of 8s"): Tailwind v4's base-4 scale already
-     lands on 8-multiples at every even step (2=8px, 4=16px, 6=24px...),
-     so no scale override is needed — just a convention. Use even spacing
-     steps (p-2, gap-4, py-6, p-8...) for zine-grid layout and section
-     rhythm; reserve odd steps (p-1, gap-3, p-5...) for hairline/texture
-     details only (tape-corner offsets, torn-edge overlap, badge padding). */
-
-  /* Category fills (borders/glows/buttons) + light tints (text/icons on dark bg) */
-  --music: #5b2a86;
-  --music-light: #c9a6f0;
-  --dance: #0f6e5c;
-  --dance-light: #7fe3c9;
-  --art: #b8860b;
-  --art-light: #f0cf6e;
-  --misc: #7a1420;
-  --misc-light: #f2a4ad;
-  --business: #c2186d;
-  --business-light: #f5a8d1;
-
-  /* Default (non-category-page) accent = base maroon */
-  --category: var(--misc);
-  --category-light: var(--misc-light);
-
-  /* Glow-only accent, consumed by glow-category / CategoryHero's radial
-     backdrop. Defaults to tracking --category; Music and Business (whose
-     hues are muted cousins of Figma's Interdimensional Blue / Deep
-     Magenta) override it below to a more electric, Figma-matched glow
-     while their fills/borders/text keep the original muted hue. */
-  --category-glow: var(--category);
-  --category-glow-opacity: 0.3;
-
-  /* shadcn structural tokens, mapped onto the brand palette */
   --background: var(--maroon-deepest);
   --foreground: var(--cream);
   --card: var(--maroon);
@@ -280,32 +159,38 @@
   --border: color-mix(in oklab, var(--cream) 14%, transparent);
   --input: color-mix(in oklab, var(--cream) 16%, transparent);
   --ring: var(--gold);
-  --radius: 0.85rem;
+  --radius: 0.75rem;
 }
 
 [data-category="music"] {
   --category: var(--music);
   --category-light: var(--music-light);
-  --category-glow: var(--electric-blue);
-  --category-glow-opacity: 0.55;
+  --category-bg: var(--music-bg);
+  --glow: var(--music);
 }
 [data-category="dance"] {
   --category: var(--dance);
   --category-light: var(--dance-light);
+  --category-bg: var(--dance-bg);
+  --glow: #4fe0d2;
 }
 [data-category="art"] {
   --category: var(--art);
   --category-light: var(--art-light);
+  --category-bg: var(--art-bg);
+  --glow: #f0b94a;
 }
 [data-category="misc"] {
   --category: var(--misc);
   --category-light: var(--misc-light);
+  --category-bg: var(--misc-bg);
+  --glow: #ff6a2b;
 }
 [data-category="business"] {
   --category: var(--business);
   --category-light: var(--business-light);
-  --category-glow: var(--electric-magenta);
-  --category-glow-opacity: 0.55;
+  --category-bg: var(--business-bg);
+  --glow: #ff3d9a;
 }
 
 @layer base {
@@ -315,77 +200,94 @@
 
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  ::selection {
+    background: var(--rose);
+    color: var(--cream);
   }
 }
 
-/* Font role utilities — deliberately plain CSS (see file header comment).
-
-   .font-display now carries the brand guide's DRUK-style bold display
-   role ("BE BOLD.") site-wide — every existing call site (SectionHeading,
-   Hero theme line, EventCard, ScheduleRow) upgrades automatically. The
-   old Baloo 2 treatment survives as `.font-display-fallback` for any spot
-   that still wants the rounder, softer look. `--font-druk`/`--font-amithen`
-   load real local DRUK/Amithen font files via next/font/local — see
-   lib/fonts.ts and assets/fonts/. */
-.font-display {
-  font-family: var(--font-druk), var(--font-baloo), Impact, "Arial Black", ui-sans-serif, sans-serif;
-}
-.font-display-fallback {
-  font-family: var(--font-baloo), ui-rounded, system-ui, sans-serif;
-}
-.font-display-ur {
-  font-family: var(--font-baloo-bhaijaan), var(--font-baloo), sans-serif;
-}
-.font-nastaliq {
-  font-family: var(--font-nastaliq), serif;
+/* Font roles */
+.font-title {
+  font-family: var(--font-yatra), var(--font-rozha), serif;
 }
 .font-wordmark {
-  font-family: var(--font-playfair), serif;
-}
-.font-serif-dev {
-  font-family: var(--font-noto-serif-devanagari), serif;
-}
-.font-body {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-}
-.font-body-alt {
-  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-}
-.font-body-dev {
-  font-family: var(--font-noto-sans-devanagari), sans-serif;
-}
-.font-pixel {
-  font-family: var(--font-press-start), monospace;
+  font-family: var(--font-rozha), serif;
 }
 .font-script {
   font-family: var(--font-amithen), cursive;
 }
-
-@utility glow-category {
-  box-shadow:
-    0 0 40px -4px var(--category-glow),
-    0 0 88px -10px var(--category-glow);
+.font-body {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}
+.font-display {
+  font-family: var(--font-druk), Impact, "Arial Black", sans-serif;
+}
+.font-nastaliq {
+  font-family: var(--font-nastaliq), serif;
+}
+.font-serif-dev {
+  font-family: var(--font-noto-serif-devanagari), serif;
 }
 
-@utility glow-gold {
-  box-shadow:
-    0 0 32px -6px var(--gold),
-    0 0 64px -16px var(--gold);
+/* The brochure's neon title: cream core, coloured halo. --glow follows
+   the category context, so the same heading glows violet on /events/music. */
+@utility neon {
+  color: #fff6ee;
+  text-shadow:
+    0 0 2px color-mix(in oklab, var(--glow) 60%, white),
+    0 0 12px var(--glow),
+    0 0 32px color-mix(in oklab, var(--glow) 70%, transparent),
+    0 0 64px color-mix(in oklab, var(--glow) 40%, transparent);
 }
 
-@utility text-glow-category {
-  text-shadow: 0 0 24px var(--category);
+@utility neon-soft {
+  color: #fff6ee;
+  text-shadow:
+    0 0 10px color-mix(in oklab, var(--glow) 70%, transparent),
+    0 0 28px color-mix(in oklab, var(--glow) 35%, transparent);
 }
 
-/* Full-viewport film grain texture, meant to sit behind a single root-level
-   <Grain /> component (fixed, inset-0, pointer-events-none, mix-blend-overlay). */
+/* Print-style halftone dots, like the brochure's screened backgrounds */
+@utility halftone {
+  background-image: radial-gradient(
+    color-mix(in oklab, black 45%, transparent) 1.1px,
+    transparent 1.4px
+  );
+  background-size: 7px 7px;
+}
+
+@utility halftone-light {
+  background-image: radial-gradient(
+    color-mix(in oklab, white 10%, transparent) 1px,
+    transparent 1.3px
+  );
+  background-size: 6px 6px;
+}
+
 @utility grain-texture {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  animation: grain-shift 1.2s steps(6) infinite;
+  animation: grain-shift 1.2s steps(5) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-spin-slow,
+  .grain-texture {
+    animation: none;
+  }
 }

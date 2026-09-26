@@ -1,87 +1,121 @@
 import type { FaqItem } from "./types";
 
 export const fest = {
-  name: "Fitoor",
+  name: "fitoor",
   nastaliqName: "فتور",
   devanagariName: "फ़ितूर",
   year: 2026,
+  edition: "3rd",
   theme: "Young, Dumb & Desi",
-  dates: "Nov 14–15, 2026",
+  dates: "14–15 Nov 2026",
+  datesLong: "14th & 15th November, 2026",
   startDateISO: "2026-11-14T09:00:00+05:30",
   university: "Plaksha University",
+  region: "Tricity Chandigarh",
 };
 
-export const hero = {
-  eyebrow: "Plaksha University presents",
-  title: "Fitoor",
-  subtitle:
-    "Two days. Five categories. One obsession. This year's theme — Young, Dumb & Desi — is a love letter to Y2K nostalgia, old Bollywood glamour, and the desi household that raised us, remixed for right now.",
-  cta: {
-    primary: { label: "See the Line-up", href: "/events" },
-    secondary: { label: "View Schedule", href: "/schedule" },
-  },
-};
+export const stats = [
+  { value: "3rd", label: "edition" },
+  { value: "2", label: "days" },
+  { value: "20", label: "events" },
+  { value: "800+", label: "students expected" },
+];
 
 export const about = {
-  intro:
-    "Fitoor is Plaksha University's annual cultural fest — two days where the campus turns into a stage, a gallery, a dance floor, and a bazaar all at once. It's the one weekend a year built entirely around obsession: with music, with movement, with color, with performance.",
-  themeStatement:
-    "\"Young, Dumb & Desi\" is this year's theme — equal parts 2000s nostalgia and old-school Indian household charm. Think boomboxes and bindis, cassette tapes and chai, cyber-café internet and cinema-hall Bollywood. It's tech-forward and thoroughly desi, dumb in the best way, and unapologetically young.",
-  paragraphs: [
-    "Every year, Fitoor brings together performers, artists, dancers, musicians, and entrepreneurs from across the country for a weekend of competition, performance, and pure chaos in the best sense.",
-    "Whether you're here to compete, perform, watch, or just vibe — there's a place for you across our five event categories: Music, Dance, Art, Miscellaneous, and Business.",
+  theme:
+    "This year's theme, Young, Dumb & Desi, is all about the raw energy of youth through the vibrant lens of Indian street style and hip-hop. Fitoor brings together bold fashion, music, movement and desi culture — a space where tradition meets contemporary expression and creativity knows no rules.",
+  fitoor: [
+    "Fitoor 2026 marks the third edition of our fest — a two-day inter-collegiate techno-cultural event where creativity and innovation meet. It's a chance to show off your talent and connect with peers, industry leaders and sponsors.",
+    "With over 400 students from Plaksha University and 400+ more expected from the Tricity area and Delhi NCR, it promises to be vibrant, competitive and diverse — through workshops, talks, hackathons and competitions.",
+  ],
+  plaksha: [
+    "Located in Mohali, Punjab, Plaksha University aims to reimagine technology education. It began in 2015 as a conversation among friends, took shape as an idea endorsed by entrepreneurs and business leaders in 2017, and became a university in 2021.",
+    "Its curriculum integrates engineering, design and entrepreneurship to nurture tech leaders who can think across disciplines — hands-on, research-driven, and built from a clean slate.",
   ],
 };
 
 export const generalRules: string[] = [
-  "Valid college/university ID is mandatory for all participants and attendees.",
-  "Registrations for individual events close 24 hours before the event's scheduled slot, unless stated otherwise.",
-  "Fitoor merchandise and event passes are non-transferable.",
-  "The organizing committee's decision on all competitive matters is final.",
-  "Any change in event schedule, venue, or rules will be communicated via the official Instagram page (@fitoor.plaksha) and on-ground notice boards.",
-  "Participants are expected to conduct themselves respectfully — any form of misconduct will lead to immediate disqualification.",
+  "Participants must be UG/PG students under the age of 25, and must present a valid physical Aadhaar card and college ID at registration.",
+  "Every university/college must designate a Point of Contact for each event, who stays in touch with the Fitoor team and is responsible for their participants' actions during the fest.",
+  "Team/group POCs who aren't participating in the event are not allowed into the fest.",
+  "Group music and dance teams may bring one or two non-performing members for sound cues, light cues and tech support. They pay the event fee and count as team members.",
+  "Register for as many events as you like, as long as there are no scheduling conflicts. One registration gets you in on both days.",
+  "Day 1 wraps at 9 PM and Day 2 at 8 PM — all participants must leave by then.",
+  "Every participant gets an e-certificate of participation; winners also get a certificate of merit.",
+  "A 30% tax deduction applies to individual prize amounts over ₹10,000. The prize pool is subject to change.",
+];
+
+export const security: string[] = [
+  "Carry your college ID at all times. Plaksha University's rules apply to every participant and contingent member on campus.",
+  "Everyone gets an entry wristband at the gate. Wear it at all times — it's non-transferable.",
+  "Plaksha has strict policies against substance abuse, violence, sexual harassment and property damage. Violations mean disqualification, without a refund.",
+  "The fest can't be held responsible for any loss or theft of belongings.",
+  "The Organising Committee's decision is final and binding.",
+];
+
+export const hotels = [
+  { name: "Hotel Anande", distance: "4.6 km" },
+  { name: "Hotel Kenview", distance: "4.9 km" },
+  { name: "Hotel Tamarind", distance: "6.2 km" },
+];
+
+export const accommodationNote =
+  "Participants can also stay at homestays nearby. Team Fitoor × Prayas isn't responsible for hotel bookings or transport — participants bear the cost of rooms and any damages.";
+
+/** The one-liners people actually need before they turn up. */
+export const quickRules = [
+  { title: "Under 25, UG/PG", body: "Bring a physical Aadhaar card and your college ID." },
+  { title: "One entry, two days", body: "Register for any event and you're in on both days." },
+  { title: "Stack events", body: "Enter as many as you like — as long as they don't clash." },
+  { title: "Curfew", body: "Day 1 wraps at 9 PM, Day 2 at 8 PM." },
 ];
 
 export const generalFaqs: FaqItem[] = [
   {
-    question: "How do I register for an event?",
+    question: "How do I register?",
     answer:
-      "Registration details and links will be posted on the official Instagram page (@fitoor.plaksha) and updated here closer to the event.",
+      "Registrations open soon. Links will go up on Instagram (@fitoor.plaksha) and on this site — each college also nominates a Point of Contact per event.",
   },
   {
-    question: "Is there a registration fee?",
-    answer: "Fee details vary by event category and will be announced alongside registration links.",
+    question: "How much are registration fees and prizes?",
+    answer:
+      "Fees and prize pools for each event will be announced with registrations. Prizes over ₹10,000 per person carry a 30% tax deduction.",
   },
   {
-    question: "Can outside colleges participate?",
+    question: "Who can participate?",
     answer:
-      "Yes — Fitoor welcomes participants from other colleges and universities across most event categories. Specific eligibility will be listed per event.",
+      "Any UG or PG student under 25 from any college — bring a physical Aadhaar card and your college ID.",
   },
   {
-    question: "Where can I get updates during the fest?",
+    question: "Can I take part in more than one event?",
     answer:
-      "Follow @fitoor.plaksha on Instagram for real-time schedule changes, venue updates, and announcements.",
+      "Yes, as many as you want, provided the slots don't clash. One registration gets you entry on both days.",
+  },
+  {
+    question: "Is accommodation provided?",
+    answer:
+      "No — but we've listed hotels close to campus (Anande, Kenview, Tamarind) and there are homestays nearby. Bookings and transport are on you.",
+  },
+  {
+    question: "When is the schedule out?",
+    answer:
+      "The timetable is being locked. It'll be announced on Instagram and posted on the schedule page.",
   },
 ];
 
-export const accommodation = {
-  intro:
-    "Outstation participants can request on-campus accommodation for the duration of the fest. Availability is limited and allotted on a first-come, first-served basis once registrations open.",
-  points: [
-    "Accommodation requests must be submitted along with event registration.",
-    "Separate arrangements are made for male and female participants.",
-    "Basic bedding is provided; participants should carry personal essentials and any required medication.",
-    "Campus accommodation is available from the evening of Nov 13 through the morning of Nov 16, 2026.",
-  ],
-};
-
-export const security = {
-  intro:
-    "Plaksha University's security team is present across the campus throughout Fitoor to ensure a safe experience for all participants and guests.",
-  points: [
-    "All attendees must carry a valid ID at all times during the fest.",
-    "Entry to event venues may require a Fitoor wristband or pass — collect yours at the registration desk on arrival.",
-    "Medical assistance is available on campus for the duration of the event — locations will be shared via on-ground signage.",
-    "In case of an emergency, reach out to any volunteer in Fitoor merchandise or the nearest security personnel.",
-  ],
-};
+export const festDays = [
+  {
+    day: 1,
+    weekday: "Saturday",
+    date: "14 Nov",
+    wrapsAt: "9 PM",
+    notes: ["Jeevanth Jeevan teams shoot their footage and hand in clips + wristbands."],
+  },
+  {
+    day: 2,
+    weekday: "Sunday",
+    date: "15 Nov",
+    wrapsAt: "8 PM",
+    notes: ["Jeevanth Jeevan's 5-hour edit submission window opens."],
+  },
+] as const;

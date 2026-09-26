@@ -1,46 +1,92 @@
+import Image from "next/image";
 import type { Metadata } from "next";
-import { SectionHeading } from "@/components/shared/SectionHeading";
+import { PageHeader } from "@/components/shared/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { CollageCard } from "@/components/zine/CollageCard";
-import { ClippingText } from "@/components/zine/ClippingText";
-import { SpacingDivider } from "@/components/zine/SpacingDivider";
-import { about, fest } from "@/data/content";
+import { about, fest, stats } from "@/data/content";
 
 export const metadata: Metadata = {
   title: "About",
-  description: about.intro,
+  description: about.fitoor[0],
 };
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-10 px-4 py-16 sm:px-6 sm:py-20">
-      <SectionHeading eyebrow="01 — About Us" title={`What is ${fest.name}?`} frame="zine" />
+    <>
+      <PageHeader
+        title="about"
+        script="the fest, the theme, the campus"
+        art={{
+          src: "/art/boombox-hand.webp",
+          alt: "A hand carrying a boombox",
+          width: 422,
+          height: 458,
+        }}
+      />
 
-      <RevealOnScroll variant="collage-in">
-        <CollageCard seed={2} torn="top" intensity="high" className="flex flex-col gap-6 p-6 sm:p-8">
-          <p className="font-body text-lg text-cream/85 text-pretty">{about.intro}</p>
-
-          <ClippingText text={`"${fest.theme}"`} seed={3} className="text-lg sm:text-xl" />
-
-          <blockquote className="border-l-2 border-gold/60 pl-5">
-            <p className="font-body text-base text-cream/75 italic text-pretty">
-              {about.themeStatement}
-            </p>
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+        <RevealOnScroll>
+          <p className="font-script text-3xl text-gold">
+            this year&apos;s theme
+          </p>
+          <blockquote className="font-title mt-2 max-w-4xl text-3xl leading-snug text-cream text-balance sm:text-4xl">
+            &ldquo;{about.theme}&rdquo;
           </blockquote>
-        </CollageCard>
-      </RevealOnScroll>
+        </RevealOnScroll>
+      </section>
 
-      <SpacingDivider label="PG. 01" seed={4} />
+      <section className="border-y border-gold/15 bg-maroon">
+        <div className="mx-auto grid grid-cols-1 max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+          <RevealOnScroll>
+            <h2 className="font-title neon text-5xl lowercase">
+              what is {fest.name}?
+            </h2>
+            {about.fitoor.map((p) => (
+              <p
+                key={p}
+                className="font-body mt-5 leading-relaxed text-cream/80"
+              >
+                {p}
+              </p>
+            ))}
+            <dl className="mt-10 grid grid-cols-2 gap-6">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="flex flex-col-reverse border-l-2 border-rose pl-4"
+                >
+                  <dt className="font-body mt-1 text-xs font-semibold tracking-[0.2em] text-cream/55 uppercase">
+                    {stat.label}
+                  </dt>
+                  <dd className="font-display text-5xl leading-none text-gold">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </RevealOnScroll>
 
-      <RevealOnScroll variant="collage-in">
-        <CollageCard seed={5} torn="bottom" intensity="high" className="flex flex-col gap-6 p-6 sm:p-8">
-          {about.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="font-body text-base text-cream/70 text-pretty">
-              {paragraph}
-            </p>
-          ))}
-        </CollageCard>
-      </RevealOnScroll>
-    </div>
+          <RevealOnScroll delay={0.1}>
+            <h2 className="font-title neon text-5xl lowercase">
+              where it happens
+            </h2>
+            {about.plaksha.map((p) => (
+              <p
+                key={p}
+                className="font-body mt-5 leading-relaxed text-cream/80"
+              >
+                {p}
+              </p>
+            ))}
+            <Image
+              src="/brand/plaksha.png"
+              alt="Plaksha University"
+              width={600}
+              height={180}
+              className="mt-10 h-12 w-auto opacity-80"
+            />
+          </RevealOnScroll>
+        </div>
+      </section>
+    </>
   );
 }

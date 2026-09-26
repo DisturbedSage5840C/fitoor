@@ -1,54 +1,28 @@
 import { Hero } from "@/components/home/Hero";
-import { MascotReveal } from "@/components/home/MascotReveal";
-import { ColorRamps } from "@/components/home/ColorRamps";
-import { TypeSpecimen } from "@/components/home/TypeSpecimen";
-import { IconCluster } from "@/components/home/IconCluster";
-import { CollageMoment } from "@/components/home/CollageMoment";
-import { ContentsNav } from "@/components/home/ContentsNav";
-import { SectionHeading } from "@/components/shared/SectionHeading";
-import { SpacingDivider } from "@/components/zine/SpacingDivider";
-import { PageTurnMoment } from "@/components/three/PageTurnMoment";
+import { AboutBlock } from "@/components/home/AboutBlock";
+import { Lineup } from "@/components/home/Lineup";
+import { BeforeYouCome } from "@/components/home/BeforeYouCome";
+import { ContactBlock } from "@/components/home/ContactBlock";
+import { ClubsStrip } from "@/components/home/ClubsStrip";
+import { Marquee } from "@/components/shared/Marquee";
+import { events } from "@/data/events";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col">
+    <>
       <Hero />
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <SpacingDivider label="PG. 02" seed={2} />
-      </div>
-      <MascotReveal />
-
-      <PageTurnMoment label="PG. 03" seed={5} />
-      <ColorRamps />
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <SpacingDivider label="PG. 04" seed={8} />
-      </div>
-      <TypeSpecimen />
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <SpacingDivider label="PG. 05" seed={11} />
-      </div>
-      <IconCluster />
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <SpacingDivider label="PG. 06" seed={14} />
-      </div>
-      <CollageMoment />
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <SpacingDivider label="PG. 07" seed={17} />
-      </div>
-      <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <SectionHeading
-          eyebrow="Contents"
-          title="Find your way in"
-          frame="zine"
-          className="mb-10"
+      {/* The strip is tilted, so clip its overhang instead of letting it scroll the page. */}
+      <div className="overflow-hidden py-3">
+        <Marquee
+          items={events.map((e) => e.title.toLowerCase())}
+          className="font-title -mx-4 -rotate-1 border-y-2 border-maroon-deepest bg-gold py-3 text-2xl text-maroon-deepest sm:text-3xl"
         />
-        <ContentsNav />
-      </section>
-    </div>
+      </div>
+      <AboutBlock />
+      <Lineup />
+      <BeforeYouCome />
+      <ContactBlock />
+      <ClubsStrip />
+    </>
   );
 }

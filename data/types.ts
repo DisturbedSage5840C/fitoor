@@ -4,53 +4,52 @@ export interface Category {
   slug: CategorySlug;
   name: string;
   hindiName: string;
-  tagline: string;
+  /** Blurb lifted from the brochure's "themes and events" page. */
   description: string;
-  /** lucide-react icon component name, e.g. "Music", "Drama" */
-  icon: string;
+  /** Brochure cut-out used as the category's hero illustration. */
+  art: string;
+  artAlt: string;
 }
 
-export interface EventCoordinator {
+export type ClubId =
+  | "crescendo"
+  | "one-o-one"
+  | "rangrez"
+  | "spine"
+  | "pqc"
+  | "lamhe"
+  | "spotlight"
+  | "ecell"
+  | "pfc"
+  | "pcc";
+
+export interface Club {
+  id: ClubId;
   name: string;
-  phone: string;
+  /** e.g. "the Plaksha Music Club" — as printed on the brochure. */
+  description: string;
+  logo: string;
 }
 
 export interface EventItem {
+  /** URL-safe slug, also used as the anchor id on the category page. */
   id: string;
   category: CategorySlug;
   title: string;
-  tagline: string;
+  /** Script subtitle from the brochure, e.g. "classical vocal performance". */
+  subtitle: string;
   description: string;
-  format: "Solo" | "Duo" | "Team";
-  teamSize?: string;
-  day: 1 | 2;
-  time: string;
-  venue: string;
-  prize: string;
+  /** Participation format exactly as the brochure words it. */
+  format: string;
+  /** Extra one-liner facts (duration, rounds…) shown as chips. */
+  facts?: string[];
   rules: string[];
-  coordinators: EventCoordinator[];
-  /** true while real event details are still placeholders */
-  isPlaceholder: boolean;
-}
-
-export type ScheduleEntryKind = "event" | "ceremony" | "performance" | "break";
-
-export interface ScheduleEntry {
-  id: string;
-  day: 1 | 2;
-  date: string;
-  time: string;
-  title: string;
-  venue: string;
-  category?: CategorySlug;
-  kind: ScheduleEntryKind;
+  club?: ClubId;
 }
 
 export interface ContactPerson {
   name: string;
-  role: string;
   phone: string;
-  email?: string;
 }
 
 export interface FaqItem {

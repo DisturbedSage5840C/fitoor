@@ -19,11 +19,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  const categoryEntries: MetadataRoute.Sitemap = categoryList.map((category) => ({
-    url: `${siteUrl}/events/${category.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  const categoryEntries: MetadataRoute.Sitemap = categoryList.map(
+    (category) => ({
+      url: `${siteUrl}/events/${category.slug}`,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }),
+  );
 
   return [...staticEntries, ...categoryEntries];
 }

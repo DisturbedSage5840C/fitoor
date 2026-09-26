@@ -1,11 +1,3 @@
-import {
-  Music,
-  PersonStanding,
-  Palette,
-  PartyPopper,
-  Briefcase,
-  type LucideIcon,
-} from "lucide-react";
 import type { Category, CategorySlug } from "./types";
 
 export const categories: Record<CategorySlug, Category> = {
@@ -13,56 +5,47 @@ export const categories: Record<CategorySlug, Category> = {
     slug: "music",
     name: "Music",
     hindiName: "संगीत",
-    tagline: "Boombox nostalgia meets open mic",
     description:
-      "From solo crooners to full bands — battle it out across genres, decades, and languages on Fitoor's biggest stage.",
-    icon: "Music",
+      "Battles that bring solo singers, bands and instrumentalists to the stage — Western and Classical — filling the air with melodies and harmonies.",
+    art: "/art/mic-hand.webp",
+    artAlt: "A ringed hand gripping a vintage microphone",
   },
   dance: {
     slug: "dance",
     name: "Dance",
     hindiName: "नृत्य",
-    tagline: "Bollywood beats, desi footwork",
     description:
-      "Classical, western, fusion, or straight-up filmy — bring the choreography that gets the whole crowd on its feet.",
-    icon: "PersonStanding",
+      "Competitions spanning classical to contemporary, solo and group, for anyone who wants to show off their rhythm and moves.",
+    art: "/art/sneaker-jutti.webp",
+    artAlt: "A worn high-top sneaker next to an embroidered jutti with ghungroo",
   },
   art: {
     slug: "art",
     name: "Art",
     hindiName: "कला",
-    tagline: "Retro visuals, Y2K color palettes",
     description:
-      "Canvas, digital, street-style, or improvised on the spot — every category for every kind of visual artist.",
-    icon: "Palette",
+      "A platform for creativity to shine — traditional art and innovative mixed-media work, made live on the day.",
+    art: "/art/painting.jpg",
+    artAlt: "A bangled hand painting a miniature-style portrait",
   },
   misc: {
     slug: "misc",
     name: "Miscellaneous",
     hindiName: "विविध",
-    tagline: "The wildcard lineup",
     description:
-      "Gaming, quizzing, stand-up, fashion — the events that don't fit a neat box but you'd never skip.",
-    icon: "PartyPopper",
+      "Quizzes, interactive challenges, murder mysteries, theatre, film and style showcases — the events that refuse to fit in a box.",
+    art: "/art/soda-can.webp",
+    artAlt: "Henna-painted hands crushing a soda can",
   },
   business: {
     slug: "business",
     name: "Business",
     hindiName: "व्यवसाय",
-    tagline: "Case studies with a Fitoor twist",
     description:
-      "Pitch decks, case competitions, and strategy sprints for the crowd that came to fest AND to hustle.",
-    icon: "Briefcase",
+      "Case competitions, market simulations and more — sharp strategy, quick thinking and business acumen, on stage.",
+    art: "/art/business-collage.webp",
+    artAlt: "Collage of gold jewellery, a vintage car and a colonial facade",
   },
 };
 
 export const categoryList: Category[] = Object.values(categories);
-
-/** Resolved icon components, keyed by category — avoids a runtime string→component lookup. */
-export const categoryIcons: Record<CategorySlug, LucideIcon> = {
-  music: Music,
-  dance: PersonStanding,
-  art: Palette,
-  misc: PartyPopper,
-  business: Briefcase,
-};

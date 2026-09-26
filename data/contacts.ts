@@ -1,21 +1,27 @@
 import type { ContactPerson } from "./types";
 
-export const generalContact = {
-  email: "fitoor@plaksha.edu.in",
-  instagram: {
-    handle: "@fitoor.plaksha",
-    url: "https://www.instagram.com/fitoor.plaksha/",
-  },
-  address: "Plaksha University, Sector 101, SAS Nagar, Punjab, India",
+/** Organising team contacts, as listed on the brochure's "contact us" page. */
+export const contacts: ContactPerson[] = [
+  { name: "Aadi Batra", phone: "+91 63609 06386" },
+  { name: "Sia Jain", phone: "+91 96670 35800" },
+  { name: "Sahil Gada", phone: "+91 83698 07001" },
+  { name: "Sameera John", phone: "+91 98405 74132" },
+  { name: "Mukund", phone: "+91 97790 53750" },
+  { name: "Jigisha", phone: "+91 89297 50700" },
+];
+
+export const socials = {
+  instagramHandle: "fitoor.plaksha",
+  instagram: "https://www.instagram.com/fitoor.plaksha/",
 };
 
-export const studentCoordinators: ContactPerson[] = [
-  { name: "TBD", role: "Fest Convener", phone: "TBD" },
-  { name: "TBD", role: "Music Coordinator", phone: "TBD" },
-  { name: "TBD", role: "Dance Coordinator", phone: "TBD" },
-  { name: "TBD", role: "Art Coordinator", phone: "TBD" },
-  { name: "TBD", role: "Miscellaneous Events Coordinator", phone: "TBD" },
-  { name: "TBD", role: "Business Events Coordinator", phone: "TBD" },
-  { name: "TBD", role: "Accommodation & Logistics", phone: "TBD" },
-  { name: "TBD", role: "Security Coordinator", phone: "TBD" },
-];
+export const venue = {
+  name: "Plaksha University",
+  address: "Sector 101, SAS Nagar (Mohali), Punjab",
+  region: "Tricity Chandigarh",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Plaksha+University+Mohali",
+};
+
+export function telHref(phone: string): string {
+  return `tel:${phone.replace(/\s+/g, "")}`;
+}

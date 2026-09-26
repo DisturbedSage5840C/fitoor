@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CategoryHero } from "@/components/events/CategoryHero";
 import { EventCard } from "@/components/events/EventCard";
+import Link from "next/link";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { CollageCard } from "@/components/zine/CollageCard";
 import { categories, categoryList } from "@/data/categories";
 import { getEventsByCategory } from "@/data/events";
 import type { CategorySlug } from "@/data/types";
@@ -24,30 +24,41 @@ export async function generateMetadata({
   };
 }
 
-export default async function CategoryPage({ params }: PageProps<"/events/[category]">) {
+export default async function CategoryPage({
+  params,
+}: PageProps<"/events/[category]">) {
   const { category: slug } = await params;
   const category = categories[slug as CategorySlug];
   if (!category) notFound();
 
   const events = getEventsByCategory(category.slug);
+  const index = categoryList.findIndex((c) => c.slug === category.slug);
+  const next = categoryList[(index + 1) % categoryList.length];
 
   return (
-    <div data-category={category.slug} className="flex flex-col gap-12 pb-20">
-      <CategoryHero category={category} />
+    <div data-category={category.slug}>
+      <CategoryHero category={category} events={events} />
 
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-2">
-        {events.map((event, i) => (
-          <RevealOnScroll key={event.id} delay={i * 0.04} variant="torn" className="h-full">
-            <CollageCard
-              seed={i + 1}
-              torn={i % 2 === 0 ? "top" : "bottom"}
-              intensity="low"
-              className="h-full"
-            >
-              <EventCard event={event} />
-            </CollageCard>
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-14 sm:px-6">
+        {events.map((event) => (
+          <RevealOnScroll key={event.id}>
+            <EventCard event={event} />
           </RevealOnScroll>
         ))}
+      </div>
+
+      <div data-category={next.slug} className="border-t border-cream/10">
+        <Link
+          href={`/events/${next.slug}`}
+          className="group mx-auto flex max-w-5xl items-baseline justify-between gap-4 px-4 py-12 sm:px-6"
+        >
+          <span className="font-body text-xs font-semibold tracking-[0.25em] text-cream/50 uppercase">
+            Next up
+          </span>
+          <span className="font-title neon-soft text-5xl lowercase transition-transform group-hover:-translate-x-1 sm:text-6xl">
+            {next.name} →
+          </span>
+        </Link>
       </div>
     </div>
   );

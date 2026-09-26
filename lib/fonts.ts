@@ -1,27 +1,36 @@
 import {
-  Baloo_2,
-  Baloo_Bhaijaan_2,
-  Noto_Nastaliq_Urdu,
-  Playfair_Display,
-  Noto_Serif_Devanagari,
-  Inter,
-  Noto_Sans_Devanagari,
-  Press_Start_2P,
   Montserrat,
+  Noto_Nastaliq_Urdu,
+  Noto_Serif_Devanagari,
+  Rozha_One,
+  Yatra_One,
 } from "next/font/google";
 import localFont from "next/font/local";
 
-export const baloo = Baloo_2({
-  variable: "--font-baloo",
-  subsets: ["latin", "devanagari"],
-  weight: ["500", "600", "700", "800"],
+/**
+ * Yatra One — the Devanagari-flavoured Latin display face that matches the
+ * brochure's neon section titles ("music", "dance", "general"…).
+ */
+export const yatra = Yatra_One({
+  variable: "--font-yatra",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
-export const balooBhaijaan = Baloo_Bhaijaan_2({
-  variable: "--font-baloo-bhaijaan",
-  subsets: ["latin", "arabic"],
-  weight: ["500", "600", "700"],
+/** Rozha One — high-contrast serif for the "fitoor" wordmark, after the brochure cover. */
+export const rozha = Rozha_One({
+  variable: "--font-rozha",
+  subsets: ["latin", "devanagari"],
+  weight: "400",
+  display: "swap",
+});
+
+/** Montserrat — the brochure's body copy. */
+export const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -32,14 +41,6 @@ export const nastaliq = Noto_Nastaliq_Urdu({
   display: "swap",
 });
 
-export const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
 export const notoSerifDevanagari = Noto_Serif_Devanagari({
   variable: "--font-noto-serif-devanagari",
   subsets: ["devanagari", "latin"],
@@ -47,42 +48,10 @@ export const notoSerifDevanagari = Noto_Serif_Devanagari({
   display: "swap",
 });
 
-export const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export const notoSansDevanagari = Noto_Sans_Devanagari({
-  variable: "--font-noto-sans-devanagari",
-  subsets: ["devanagari", "latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-export const pressStart = Press_Start_2P({
-  variable: "--font-press-start",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
 /**
- * DRUK — the real Fitoor brand guide's display type ("BE BOLD."). Loaded
- * locally from assets/fonts since it isn't on Google Fonts; only a Bold
- * weight is bundled since `.font-display` call sites only ever use
- * `font-bold`.
- */
-export const druk = localFont({
-  src: "../assets/fonts/Druk-Bold.otf",
-  variable: "--font-druk",
-  weight: "700",
-  display: "swap",
-});
-
-/**
- * Amithen — the brand guide's script accent ("be swift."). Loaded locally
- * from assets/fonts since it isn't on Google Fonts.
+ * Amithen — the italic script used for the brochure's subtitles
+ * ("competitions and informations", "classical vocal performance").
+ * Not on Google Fonts, so it's loaded from assets/fonts.
  */
 export const amithen = localFont({
   src: "../assets/fonts/Amithen.otf",
@@ -90,23 +59,20 @@ export const amithen = localFont({
   display: "swap",
 });
 
-export const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+/** Druk — condensed display face for big numerals (countdown, stats). */
+export const druk = localFont({
+  src: "../assets/fonts/Druk-Bold.otf",
+  variable: "--font-druk",
+  weight: "700",
   display: "swap",
 });
 
 export const fontVariables = [
-  baloo.variable,
-  balooBhaijaan.variable,
-  nastaliq.variable,
-  playfair.variable,
-  notoSerifDevanagari.variable,
-  inter.variable,
-  notoSansDevanagari.variable,
-  pressStart.variable,
-  druk.variable,
-  amithen.variable,
+  yatra.variable,
+  rozha.variable,
   montserrat.variable,
+  nastaliq.variable,
+  notoSerifDevanagari.variable,
+  amithen.variable,
+  druk.variable,
 ].join(" ");
