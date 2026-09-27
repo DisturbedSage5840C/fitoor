@@ -1,10 +1,7 @@
 import type { CategorySlug, EventItem } from "./types";
 
 /**
- * All 20 Fitoor 2026 events, transcribed from the official brochure.
- * Registration fees, prize pools and slots are TBA in the brochure, so
- * they're deliberately not modelled here — the UI prints "TBA" instead
- * of inventing numbers.
+ * All 21 Fitoor 2026 events, transcribed from the official brochure.
  */
 export const events: EventItem[] = [
   // ─── Music ────────────────────────────────────────────────
@@ -28,6 +25,9 @@ export const events: EventItem[] = [
       "Inappropriate or offensive content will not be permitted.",
     ],
     club: "crescendo",
+    fee: "₹100 per head",
+    prizePool: "₹8,000",
+    dateTime: "14 Nov · 3 – 4:30 PM",
   },
   {
     id: "euphony",
@@ -40,7 +40,7 @@ export const events: EventItem[] = [
     facts: ["Max 5 min", "One song, many, or a medley"],
     rules: [
       "Open to solo and duet performances.",
-      "Any Western vocal style — pop, rock, jazz, blues and related genres. Any song that isn't \"Classical Music\" is permitted.",
+      'Any Western vocal style — pop, rock, jazz, blues and related genres. Any song that isn\'t "Classical Music" is permitted.',
       "Each performance must not exceed 5 minutes, including any introduction.",
       "You may perform one song, multiple songs, or a medley.",
       "Only backing tracks without vocals are allowed. No live instrumental accompaniment.",
@@ -51,6 +51,9 @@ export const events: EventItem[] = [
       "Inappropriate or offensive content will not be permitted.",
     ],
     club: "crescendo",
+    fee: "₹100 per head",
+    prizePool: "₹8,000",
+    dateTime: "14 Nov · 4:30 – 6 PM",
   },
   {
     id: "battle-of-bands",
@@ -72,6 +75,9 @@ export const events: EventItem[] = [
       "Inappropriate or offensive content will not be permitted.",
     ],
     club: "crescendo",
+    fee: "₹100 per head",
+    prizePool: "₹25,000",
+    dateTime: "14 Nov · 6 – 10 PM",
   },
 
   // ─── Dance ────────────────────────────────────────────────
@@ -96,6 +102,9 @@ export const events: EventItem[] = [
       "Derogatory language or explicit movements are strictly prohibited.",
     ],
     club: "one-o-one",
+    fee: "₹100",
+    prizePool: "₹10,000",
+    dateTime: "15 Nov · 10 AM – 1 PM",
   },
   {
     id: "riwayat",
@@ -118,6 +127,9 @@ export const events: EventItem[] = [
       "Derogatory language or explicit movements are strictly prohibited.",
     ],
     club: "one-o-one",
+    fee: "₹100 per head",
+    prizePool: "₹15,000",
+    dateTime: "15 Nov · 10 AM – 1 PM",
   },
   {
     id: "rogue",
@@ -137,6 +149,9 @@ export const events: EventItem[] = [
       "No derogatory lyrics or explicit moves — the organising committee has full discretion on this.",
     ],
     club: "one-o-one",
+    fee: "₹100",
+    prizePool: "₹10,000",
+    dateTime: "15 Nov · 2 – 5 PM",
   },
   {
     id: "reverb",
@@ -155,6 +170,9 @@ export const events: EventItem[] = [
       "No derogatory lyrics or explicit moves — the organising committee has full discretion on this.",
     ],
     club: "one-o-one",
+    fee: "₹200 per duo",
+    prizePool: "₹15,000",
+    dateTime: "15 Nov · 2 – 5 PM",
   },
   {
     id: "revolution",
@@ -174,6 +192,9 @@ export const events: EventItem[] = [
       "No derogatory lyrics or explicit moves — the organising committee has full discretion on this.",
     ],
     club: "one-o-one",
+    fee: "₹1,200 per group",
+    prizePool: "₹25,000",
+    dateTime: "15 Nov · 2 – 5 PM",
   },
   {
     id: "rivals-riot",
@@ -195,6 +216,9 @@ export const events: EventItem[] = [
       "The organising committee has final discretion over music, format and progression.",
     ],
     club: "one-o-one",
+    fee: "₹100",
+    prizePool: "₹10,000",
+    dateTime: "15 Nov · 10 AM – 1 PM",
   },
 
   // ─── Art ──────────────────────────────────────────────────
@@ -213,6 +237,9 @@ export const events: EventItem[] = [
       "Judging round: one internal and one external judge pick first, second and third place.",
     ],
     club: "rangrez",
+    fee: "₹100",
+    prizePool: "₹10,000",
+    dateTime: "14 Nov · 10 AM – 3 PM",
   },
 
   // ─── Miscellaneous ────────────────────────────────────────
@@ -233,6 +260,9 @@ export const events: EventItem[] = [
       "Judged on narrative & theme, design creativity & sustainability, choreography, posture & confidence, and overall visual impact.",
       "Explicit, offensive or derogatory themes, graphics or gestures lead to immediate disqualification.",
     ],
+    fee: "₹500 per group",
+    prizePool: "₹25,000",
+    dateTime: "15 Nov · 10 AM – 2 PM",
   },
   {
     id: "murder-ballad",
@@ -249,6 +279,9 @@ export const events: EventItem[] = [
       "Round 3 — The Final Verdict: return to HQ and present your theory of the crime as a poem or a song, judged on creativity and on how close you get to the truth.",
     ],
     club: "spine",
+    fee: "₹300",
+    prizePool: "₹25,000",
+    dateTime: "15 Nov · time TBA",
   },
   {
     id: "20-20-vision",
@@ -266,6 +299,28 @@ export const events: EventItem[] = [
       "Questions may reference earlier eras if they connect to the 2020s. Final question formulation is at the quizmaster's discretion.",
     ],
     club: "pqc",
+    fee: "₹200 per group",
+    prizePool: "₹10,000",
+    dateTime: "14 Nov · 10 AM – 3 PM",
+  },
+  {
+    id: "slumdog-questionnaire",
+    category: "misc",
+    title: "Slumdog Questionnaire",
+    subtitle: "mela: music, entertainment, literature, arts",
+    description:
+      "For everyone who's chronically online and whose Letterboxd top 4 has Rang De Basanti in it — a pop-culture quiz through the gossip, discourse and desi entertainment landscape. If you know who Kutta Singh and Gajinder are, this one's for you.",
+    format: "Team quiz",
+    facts: ["Written prelims", "Top 6–10 to finals"],
+    rules: [
+      "Preliminary round: a written quiz on the theme. The top 6–10 teams qualify for the finals.",
+      "Finals: a multi-round quiz with creative rounds and twists. Any additional rules are announced during the event.",
+      "Final question formulation is at the quizmaster's discretion.",
+    ],
+    club: "pqc",
+    fee: "₹200 per group",
+    prizePool: "₹10,000",
+    dateTime: "14 Nov · 10 AM – 3 PM",
   },
   {
     id: "rangeen-jeevan",
@@ -285,6 +340,9 @@ export const events: EventItem[] = [
       "Judged on storytelling, composition, style and relevance to the theme.",
     ],
     club: "lamhe",
+    fee: "₹100",
+    prizePool: "₹15,000",
+    dateTime: "15 Nov · 10 AM – 6 PM",
   },
   {
     id: "jeevanth-jeevan",
@@ -305,6 +363,9 @@ export const events: EventItem[] = [
       "Judged on storytelling, composition, style and relevance to the theme.",
     ],
     club: "lamhe",
+    fee: "₹300 per group",
+    prizePool: "₹15,000",
+    dateTime: "14 Nov 10 AM – 9 PM & 15 Nov 10 AM – 6 PM",
   },
   {
     id: "baal-ki-khaal",
@@ -312,7 +373,7 @@ export const events: EventItem[] = [
     title: "Baal ki Khaal",
     subtitle: "open-style theatrics",
     description:
-      "\"Har kahaani ke peeche ek aur kahaani hoti hai.\" Take a simple idea and push it to its dramatic extreme — unravel a hidden social reality, or find chaos in the mundane. Stage play, nukkad natak, experimental — the canvas is yours.",
+      '"Har kahaani ke peeche ek aur kahaani hoti hai." Take a simple idea and push it to its dramatic extreme — unravel a hidden social reality, or find chaos in the mundane. Stage play, nukkad natak, experimental — the canvas is yours.',
     format: "Teams of 5–10",
     facts: ["7–12 min", "Hindi or English"],
     rules: [
@@ -322,6 +383,9 @@ export const events: EventItem[] = [
       "Stage furniture needs must be communicated to the organisers beforehand; provision is subject to availability.",
     ],
     club: "spotlight",
+    fee: "₹500 per group",
+    prizePool: "₹15,000",
+    dateTime: "14 Nov · 10 AM – 12 PM",
   },
   {
     id: "pandoras-box",
@@ -338,27 +402,32 @@ export const events: EventItem[] = [
       "Duration: 7–10 minutes. Team size: 5–10. Language: Hindi or English.",
     ],
     club: "spotlight",
+    fee: "₹500 per group",
+    prizePool: "₹10,000",
+    dateTime: "14 Nov · 12 – 3 PM",
   },
 
   // ─── Business ─────────────────────────────────────────────
   {
-    id: "margin-call",
+    id: "revival",
     category: "business",
-    title: "Margin Call",
-    subtitle: "finance & investment simulation",
+    title: "Revival",
+    subtitle: "bring back the dead",
     description:
-      "A high-stakes market simulation: act as investors, analyse companies, react to breaking news and trade in a market that never sits still. Manage risk and maximise your portfolio before the final bell.",
+      "Teams are handed a real or fictional bankrupt company and have to bring it back from the dead — diagnose what went wrong, redesign the business model, and pitch a revival plan to investors.",
     format: "Teams of 3–4",
-    facts: ["No eliminations", "Virtual capital"],
+    facts: ["Live curveballs", "Pitch to judges"],
     rules: [
-      "Teams start with virtual capital and information on several companies.",
-      "Buy, sell and trade shares throughout the simulation.",
-      "News, incidents and market developments will periodically move valuations.",
-      "Some teams may receive confidential information or rumours — decide with incomplete information.",
-      "No team is eliminated; everyone trades until the final market close.",
-      "The highest final portfolio value wins, with strategic bonuses where applicable.",
+      "Each team receives a failed company along with its financials, problems and market position.",
+      "Teams have limited time and resources to build a revival strategy — product, target market, pricing, marketing, operations or business model are all fair game to change.",
+      "Midway through the event, new challenges or breaking news are introduced that teams must respond to.",
+      "Teams present their final revival plan to a panel of judges.",
+      "Judged on the viability, creativity, financial potential and execution of the revival strategy.",
     ],
     club: "ecell",
+    fee: "₹300",
+    prizePool: "₹20,000",
+    dateTime: "14 Nov · 4 – 6 PM",
   },
   {
     id: "wolf-of-dalal-street",
@@ -376,6 +445,9 @@ export const events: EventItem[] = [
       "Final portfolio value decides the winner. The organisers' decision is final and binding.",
     ],
     club: "pfc",
+    fee: "₹200",
+    prizePool: "₹20,000",
+    dateTime: "14 Nov · 11 AM – 3 PM",
   },
   {
     id: "cut-to-the-case",
@@ -395,6 +467,11 @@ export const events: EventItem[] = [
       "Stick to the time limits — overruns may be penalised. Misconduct or unfair means can lead to disqualification.",
     ],
     club: "pcc",
+    fee: "₹200",
+    prizePool: "₹20,000",
+    // Brochure prints "11 PM to 2 PM", which can't be right for a daytime
+    // event that wraps well before the fest's 8 PM Day 2 curfew — read as 11 AM.
+    dateTime: "15 Nov · 11 AM – 2 PM",
   },
 ];
 

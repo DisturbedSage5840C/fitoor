@@ -5,10 +5,11 @@ import { PageHeader } from "@/components/shared/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { socials } from "@/data/contacts";
 import { fest, festDays } from "@/data/content";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Schedule",
-  description: `Fitoor 2026 runs over two days, ${fest.datesLong}. The full timetable is announced soon.`,
+  description: `Fitoor 2026 runs over two days, ${fest.datesLong}. See the full event-by-event timetable.`,
 };
 
 export default function SchedulePage() {
@@ -16,12 +17,12 @@ export default function SchedulePage() {
     <>
       <PageHeader
         title="schedule"
-        script="two days, one timetable (dropping soon)"
+        script="two days, one timetable"
         intro={
           <>
-            The slot-by-slot timetable is being locked with the clubs. Until
-            then, here&apos;s what we know for sure. It&apos;ll be posted here
-            and on Instagram first.
+            Timings are as printed in the brochure and can shift slightly as
+            clubs lock in venues. Overlapping events run in parallel, so plan
+            your day around what you&apos;ve registered for.
           </>
         }
         art={{
@@ -50,15 +51,7 @@ export default function SchedulePage() {
               </h2>
               <p className="font-display mt-1 text-3xl text-gold">{day.date}</p>
 
-              <dl className="mt-8 grid grid-cols-2 gap-4 border-t border-dashed border-gold/25 pt-6">
-                <div>
-                  <dt className="font-body text-[10px] font-semibold tracking-[0.2em] text-cream/50 uppercase">
-                    Events
-                  </dt>
-                  <dd className="font-body mt-0.5 font-semibold text-cream/45">
-                    Timings TBA
-                  </dd>
-                </div>
+              <dl className="mt-8 grid grid-cols-1 border-t border-dashed border-gold/25 pt-6">
                 <div>
                   <dt className="font-body text-[10px] font-semibold tracking-[0.2em] text-cream/50 uppercase">
                     Wraps at
@@ -68,6 +61,24 @@ export default function SchedulePage() {
                   </dd>
                 </div>
               </dl>
+              <ol className="font-body mt-6 space-y-2 border-t border-dashed border-gold/25 pt-6 text-sm">
+                {day.schedule.map((slot) => (
+                  <li
+                    key={slot.title}
+                    className="flex items-baseline justify-between gap-4"
+                  >
+                    <span className="text-cream/85">{slot.title}</span>
+                    <span
+                      className={cn(
+                        "shrink-0 font-semibold tabular-nums",
+                        slot.time === "TBA" ? "text-cream/45" : "text-gold",
+                      )}
+                    >
+                      {slot.time}
+                    </span>
+                  </li>
+                ))}
+              </ol>
               <ul className="font-body mt-6 space-y-2 text-sm text-cream/70">
                 {day.notes.map((note) => (
                   <li key={note} className="flex gap-2">

@@ -45,6 +45,12 @@ export interface EventItem {
   facts?: string[];
   rules: string[];
   club?: ClubId;
+  /** As printed on the brochure, e.g. "₹100 per head". */
+  fee: string;
+  /** As printed on the brochure, e.g. "₹8,000". */
+  prizePool: string;
+  /** As printed on the brochure, e.g. "14 Nov · 3 – 4:30 PM". */
+  dateTime: string;
 }
 
 export interface ContactPerson {

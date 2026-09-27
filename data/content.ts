@@ -17,7 +17,7 @@ export const fest = {
 export const stats = [
   { value: "3rd", label: "edition" },
   { value: "2", label: "days" },
-  { value: "20", label: "events" },
+  { value: "21", label: "events" },
   { value: "800+", label: "students expected" },
 ];
 
@@ -64,9 +64,18 @@ export const accommodationNote =
 
 /** The one-liners people actually need before they turn up. */
 export const quickRules = [
-  { title: "Under 25, UG/PG", body: "Bring a physical Aadhaar card and your college ID." },
-  { title: "One entry, two days", body: "Register for any event and you're in on both days." },
-  { title: "Stack events", body: "Enter as many as you like — as long as they don't clash." },
+  {
+    title: "Under 25, UG/PG",
+    body: "Bring a physical Aadhaar card and your college ID.",
+  },
+  {
+    title: "One entry, two days",
+    body: "Register for any event and you're in on both days.",
+  },
+  {
+    title: "Stack events",
+    body: "Enter as many as you like — as long as they don't clash.",
+  },
   { title: "Curfew", body: "Day 1 wraps at 9 PM, Day 2 at 8 PM." },
 ];
 
@@ -109,7 +118,22 @@ export const festDays = [
     weekday: "Saturday",
     date: "14 Nov",
     wrapsAt: "9 PM",
-    notes: ["Jeevanth Jeevan teams shoot their footage and hand in clips + wristbands."],
+    notes: [
+      "Jeevanth Jeevan teams shoot their footage and hand in clips + wristbands.",
+    ],
+    schedule: [
+      { time: "10 AM", title: "Canvas" },
+      { time: "10 AM", title: "Baal ki Khaal" },
+      { time: "10 AM", title: "20/20 Vision" },
+      { time: "10 AM", title: "Slumdog Questionnaire" },
+      { time: "10 AM", title: "Jeevanth Jeevan (shoot day)" },
+      { time: "11 AM", title: "The Wolf of Dalal Street" },
+      { time: "12 PM", title: "Pandora's Box" },
+      { time: "3 PM", title: "Sargam" },
+      { time: "4 PM", title: "Revival" },
+      { time: "4:30 PM", title: "Euphony" },
+      { time: "6 PM", title: "Battle of Bands" },
+    ],
   },
   {
     day: 2,
@@ -117,5 +141,18 @@ export const festDays = [
     date: "15 Nov",
     wrapsAt: "8 PM",
     notes: ["Jeevanth Jeevan's 5-hour edit submission window opens."],
+    schedule: [
+      { time: "10 AM", title: "Rooh" },
+      { time: "10 AM", title: "Riwayat" },
+      { time: "10 AM", title: "Rivals Riot" },
+      { time: "10 AM", title: "Rangeen Jeevan" },
+      { time: "10 AM", title: "Jeevanth Jeevan (submission)" },
+      { time: "10 AM", title: "Jugaad Couture" },
+      { time: "11 AM", title: "Cut to the Case" },
+      { time: "2 PM", title: "Rogue" },
+      { time: "2 PM", title: "Reverb" },
+      { time: "2 PM", title: "Revolution" },
+      { time: "TBA", title: "Murder Ballad 3.0" },
+    ],
   },
 ] as const;

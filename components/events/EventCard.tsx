@@ -6,8 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * One event, laid out like the brochure page: neon title + script subtitle,
- * the pitch, and a ticket-stub of logistics. Numbers the brochure leaves
- * blank are shown as TBA rather than guessed.
+ * the pitch, and a ticket-stub of logistics.
  */
 export function EventCard({
   event,
@@ -19,9 +18,9 @@ export function EventCard({
   const club = event.club ? clubs[event.club] : undefined;
   const meta = [
     { label: "Format", value: event.format },
-    { label: "Registration fee", value: "TBA" },
-    { label: "Prize pool", value: "TBA" },
-    { label: "Date & time", value: "TBA" },
+    { label: "Registration fee", value: event.fee },
+    { label: "Prize pool", value: event.prizePool },
+    { label: "Date & time", value: event.dateTime },
   ];
 
   return (
@@ -94,7 +93,7 @@ export function EventCard({
               <dd
                 className={cn(
                   "font-body mt-0.5 text-sm font-semibold",
-                  item.value === "TBA" ? "text-cream/45" : "text-cream",
+                  item.value.includes("TBA") ? "text-cream/45" : "text-cream",
                 )}
               >
                 {item.value}
