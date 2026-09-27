@@ -38,6 +38,12 @@ export function CategoryHero({
             <span className="font-serif-dev text-2xl text-category-light/80">
               {category.hindiName}
             </span>
+            <span
+              className="font-nastaliq text-2xl text-category-light/80"
+              dir="rtl"
+            >
+              {category.urduName}
+            </span>
           </div>
           <p className="font-script mt-2 text-2xl text-cream/85 sm:text-3xl">
             competitions and informations

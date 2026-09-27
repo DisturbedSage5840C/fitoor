@@ -70,8 +70,16 @@ export function Lineup() {
                 />
 
                 <div className="flex items-start justify-between">
-                  <span className="font-serif-dev text-lg text-category-light/80">
-                    {category.hindiName}
+                  <span className="flex items-baseline gap-2">
+                    <span className="font-serif-dev text-lg text-category-light/80">
+                      {category.hindiName}
+                    </span>
+                    <span
+                      className="font-nastaliq text-lg text-category-light/80"
+                      dir="rtl"
+                    >
+                      {category.urduName}
+                    </span>
                   </span>
                   <span className="grid size-10 place-items-center rounded-full border border-category-light/30 text-category-light transition-colors group-hover:bg-category group-hover:text-white">
                     <ArrowUpRight className="size-5" />

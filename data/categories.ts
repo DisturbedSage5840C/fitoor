@@ -5,6 +5,7 @@ export const categories: Record<CategorySlug, Category> = {
     slug: "music",
     name: "Music",
     hindiName: "संगीत",
+    urduName: "موسیقی",
     description:
       "Battles that bring solo singers, bands and instrumentalists to the stage — Western and Classical — filling the air with melodies and harmonies.",
     art: "/art/mic-hand.webp",
@@ -14,6 +15,7 @@ export const categories: Record<CategorySlug, Category> = {
     slug: "dance",
     name: "Dance",
     hindiName: "नृत्य",
+    urduName: "رقص",
     description:
       "Competitions spanning classical to contemporary, solo and group, for anyone who wants to show off their rhythm and moves.",
     art: "/art/sneaker-jutti.webp",
@@ -24,6 +26,7 @@ export const categories: Record<CategorySlug, Category> = {
     slug: "art",
     name: "Art & Expression",
     hindiName: "कला",
+    urduName: "فن",
     description:
       "A celebration of creativity across art, photography, theatre and fashion — traditional forms and bold, innovative expressions sharing one stage.",
     art: "/art/painting.jpg",
@@ -33,6 +36,7 @@ export const categories: Record<CategorySlug, Category> = {
     slug: "wit-whim",
     name: "Wit & Whim",
     hindiName: "चतुराई",
+    urduName: "ذہانت",
     description:
       "From quizzing and clever challenges to literary treasure hunts and murder mysteries — events that put your wit, curiosity and problem-solving skills to the test.",
     art: "/art/puppets.webp",
@@ -42,6 +46,7 @@ export const categories: Record<CategorySlug, Category> = {
     slug: "business",
     name: "Business",
     hindiName: "व्यवसाय",
+    urduName: "کاروبار",
     description:
       "Case competitions, market simulations and more — sharp strategy, quick thinking and business acumen, on stage.",
     art: "/art/business-collage.webp",

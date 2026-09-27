@@ -254,6 +254,17 @@
     0 0 64px color-mix(in oklab, var(--glow) 40%, transparent);
 }
 
+/* Hero wordmark only: hot-pink glyphs (not cream) inside a white-hot halo,
+   closer to the brochure's neon-sign treatment of the "fitoor" logotype. */
+@utility neon-pink {
+  color: var(--rose);
+  text-shadow:
+    0 0 2px color-mix(in oklab, white 70%, transparent),
+    0 0 16px color-mix(in oklab, white 50%, transparent),
+    0 0 36px var(--rose),
+    0 0 72px color-mix(in oklab, var(--rose) 60%, transparent);
+}
+
 @utility neon-soft {
   color: #fff6ee;
   text-shadow:

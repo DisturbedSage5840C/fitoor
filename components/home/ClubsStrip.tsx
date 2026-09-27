@@ -22,7 +22,7 @@ export function ClubsStrip() {
                 alt=""
                 width={64}
                 height={64}
-                className="size-14 rounded-full bg-cream object-cover ring-1 ring-gold/30"
+                className="size-14 rounded-full bg-cream object-contain p-1 ring-1 ring-gold/30"
               />
               <span className="font-body text-[11px] leading-tight text-cream/70">
                 {club.name}

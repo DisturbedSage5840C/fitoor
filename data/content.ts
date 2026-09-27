@@ -2,7 +2,8 @@ import type { FaqItem } from "./types";
 
 export const fest = {
   name: "fitoor",
-  nastaliqName: "فتور",
+  // Kasra under the fe disambiguates the vowel so it reads "fitoor", not "fatoor"/"futoor".
+  nastaliqName: "فِتور",
   devanagariName: "फ़ितूर",
   year: 2026,
   edition: "3rd",

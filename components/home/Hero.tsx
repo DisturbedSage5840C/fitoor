@@ -38,7 +38,7 @@ export function Hero() {
             <span className="sr-only">Fitoor 2026</span>
             <span
               aria-hidden
-              className="font-wordmark neon block text-[clamp(5.5rem,22vw,12.5rem)] leading-[0.8] tracking-tight"
+              className="font-wordmark neon-pink block text-[clamp(5.5rem,22vw,12.5rem)] leading-[0.8] tracking-tight"
             >
               {fest.name}
             </span>
@@ -57,20 +57,12 @@ export function Hero() {
             </span>
           </div>
 
-          <p className="font-script mt-5 text-4xl text-gold sm:text-5xl">
-            young, dumb &amp; desi
-          </p>
-
           <p className="font-body mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold tracking-[0.18em] text-cream uppercase sm:text-base">
             <span>{fest.dates}</span>
             <span className="text-rose" aria-hidden>
               ✦
             </span>
             <span>{fest.university}</span>
-            <span className="text-rose" aria-hidden>
-              ✦
-            </span>
-            <span>{fest.region}</span>
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

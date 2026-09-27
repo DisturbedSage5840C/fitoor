@@ -4,6 +4,7 @@ export interface Category {
   slug: CategorySlug;
   name: string;
   hindiName: string;
+  urduName: string;
   /** Blurb lifted from the brochure's "themes and events" page. */
   description: string;
   /** Brochure cut-out used as the category's hero illustration. */
