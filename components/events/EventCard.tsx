@@ -109,7 +109,7 @@ export function EventCard({
               alt=""
               width={40}
               height={40}
-              className="size-10 shrink-0 rounded-full bg-cream object-cover"
+              className="size-10 shrink-0 rounded-full bg-cream object-contain p-0.5"
             />
             <p className="font-body text-xs leading-snug text-cream/65">
               By <span className="font-semibold text-cream">{club.name}</span>,{" "}

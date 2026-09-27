@@ -35,27 +35,15 @@ export function Hero() {
           </p>
 
           <h1 className="mt-4">
-            <span className="sr-only">Fitoor 2026</span>
-            <span
-              aria-hidden
-              className="font-wordmark neon-pink block text-[clamp(5.5rem,22vw,12.5rem)] leading-[0.8] tracking-tight"
-            >
-              {fest.name}
-            </span>
+            <Image
+              src="/brand/fitoor-wordmark.png"
+              alt="fitoor — फ़ितूर / فتور"
+              width={1359}
+              height={759}
+              priority
+              className="h-auto w-[clamp(15rem,45vw,28rem)]"
+            />
           </h1>
-
-          <div
-            className="mt-3 flex items-baseline gap-4 text-cream/70"
-            aria-hidden
-          >
-            <span className="font-serif-dev text-2xl sm:text-3xl">
-              {fest.devanagariName}
-            </span>
-            <span className="h-px w-8 bg-gold/40" />
-            <span className="font-nastaliq text-2xl sm:text-3xl" dir="rtl">
-              {fest.nastaliqName}
-            </span>
-          </div>
 
           <p className="font-body mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold tracking-[0.18em] text-cream uppercase sm:text-base">
             <span>{fest.dates}</span>
