@@ -11,7 +11,7 @@ import { events, getEventsByCategory } from "@/data/events";
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "All 20 Fitoor 2026 competitions across Music, Dance, Art, Miscellaneous and Business.",
+    "All 21 Fitoor 2026 competitions across Music, Dance, Art & Expression, Wit & Whim and Business.",
 };
 
 export default function EventsPage() {

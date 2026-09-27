@@ -1,4 +1,4 @@
-export type CategorySlug = "music" | "dance" | "art" | "misc" | "business";
+export type CategorySlug = "music" | "dance" | "art" | "wit-whim" | "business";
 
 export interface Category {
   slug: CategorySlug;

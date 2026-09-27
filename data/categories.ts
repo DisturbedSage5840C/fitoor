@@ -17,25 +17,26 @@ export const categories: Record<CategorySlug, Category> = {
     description:
       "Competitions spanning classical to contemporary, solo and group, for anyone who wants to show off their rhythm and moves.",
     art: "/art/sneaker-jutti.webp",
-    artAlt: "A worn high-top sneaker next to an embroidered jutti with ghungroo",
+    artAlt:
+      "A worn high-top sneaker next to an embroidered jutti with ghungroo",
   },
   art: {
     slug: "art",
-    name: "Art",
+    name: "Art & Expression",
     hindiName: "कला",
     description:
-      "A platform for creativity to shine — traditional art and innovative mixed-media work, made live on the day.",
+      "A celebration of creativity across art, photography, theatre and fashion — traditional forms and bold, innovative expressions sharing one stage.",
     art: "/art/painting.jpg",
     artAlt: "A bangled hand painting a miniature-style portrait",
   },
-  misc: {
-    slug: "misc",
-    name: "Miscellaneous",
-    hindiName: "विविध",
+  "wit-whim": {
+    slug: "wit-whim",
+    name: "Wit & Whim",
+    hindiName: "चतुराई",
     description:
-      "Quizzes, interactive challenges, murder mysteries, theatre, film and style showcases — the events that refuse to fit in a box.",
-    art: "/art/soda-can.webp",
-    artAlt: "Henna-painted hands crushing a soda can",
+      "From quizzing and clever challenges to literary treasure hunts and murder mysteries — events that put your wit, curiosity and problem-solving skills to the test.",
+    art: "/art/puppets.webp",
+    artAlt: "A row of string puppets",
   },
   business: {
     slug: "business",

@@ -221,7 +221,7 @@ export const events: EventItem[] = [
     dateTime: "15 Nov · 10 AM – 1 PM",
   },
 
-  // ─── Art ──────────────────────────────────────────────────
+  // ─── Art & Expression ─────────────────────────────────────
   {
     id: "canvas",
     category: "art",
@@ -241,11 +241,9 @@ export const events: EventItem[] = [
     prizePool: "₹10,000",
     dateTime: "14 Nov · 10 AM – 3 PM",
   },
-
-  // ─── Miscellaneous ────────────────────────────────────────
   {
     id: "jugaad-couture",
-    category: "misc",
+    category: "art",
     title: "Jugaad Couture",
     subtitle: "gali meets glam",
     description:
@@ -265,66 +263,8 @@ export const events: EventItem[] = [
     dateTime: "15 Nov · 10 AM – 2 PM",
   },
   {
-    id: "murder-ballad",
-    category: "misc",
-    title: "Murder Ballad 3.0",
-    subtitle: "a murder mystery in verse",
-    description:
-      "A spine-chilling murder investigation where the clues are strung together in song and poetry. The whole campus is the crime scene — probe it, collect evidence, analyse testimonies, and compose the true story. Closest to the truth are crowned the Murder Balladeers.",
-    format: "Groups of 3–5",
-    facts: ["3 rounds", "Campus-wide"],
-    rules: [
-      "Round 1 — Discovery of the Crime: report to Headquarters for a briefing on investigative ethics and procedure, and receive the case file, witness-testimony videos and a brief of the crime.",
-      "Round 2 — The Investigation: examine crime scenes across campus for a few hours. Each location is open to a team for a fixed time, and may need to be visited in sequence.",
-      "Round 3 — The Final Verdict: return to HQ and present your theory of the crime as a poem or a song, judged on creativity and on how close you get to the truth.",
-    ],
-    club: "spine",
-    fee: "₹300",
-    prizePool: "₹25,000",
-    dateTime: "15 Nov · time TBA",
-  },
-  {
-    id: "20-20-vision",
-    category: "misc",
-    title: "20/20 Vision",
-    subtitle: "all about the 2020s",
-    description:
-      "Wars. Pandemics. Reconnection. Climate. Records. Drama. Absurdity. Hope. The last five years have been a whirlwind — think you can cut through the noise? A general quiz on the politics, pop culture, science, sport, movies, music and memes that defined the decade.",
-    format: "Team quiz",
-    facts: ["Written prelims", "Top 6–10 to finals"],
-    rules: [
-      "Offline, on campus at Plaksha University, Mohali.",
-      "Preliminary round: a written quiz on the theme. The top 6–10 teams qualify.",
-      "Finals: a multi-round quiz on the same theme, with creative rounds and twists.",
-      "Questions may reference earlier eras if they connect to the 2020s. Final question formulation is at the quizmaster's discretion.",
-    ],
-    club: "pqc",
-    fee: "₹200 per group",
-    prizePool: "₹10,000",
-    dateTime: "14 Nov · 10 AM – 3 PM",
-  },
-  {
-    id: "slumdog-questionnaire",
-    category: "misc",
-    title: "Slumdog Questionnaire",
-    subtitle: "mela: music, entertainment, literature, arts",
-    description:
-      "For everyone who's chronically online and whose Letterboxd top 4 has Rang De Basanti in it — a pop-culture quiz through the gossip, discourse and desi entertainment landscape. If you know who Kutta Singh and Gajinder are, this one's for you.",
-    format: "Team quiz",
-    facts: ["Written prelims", "Top 6–10 to finals"],
-    rules: [
-      "Preliminary round: a written quiz on the theme. The top 6–10 teams qualify for the finals.",
-      "Finals: a multi-round quiz with creative rounds and twists. Any additional rules are announced during the event.",
-      "Final question formulation is at the quizmaster's discretion.",
-    ],
-    club: "pqc",
-    fee: "₹200 per group",
-    prizePool: "₹10,000",
-    dateTime: "14 Nov · 10 AM – 3 PM",
-  },
-  {
     id: "rangeen-jeevan",
-    category: "misc",
+    category: "art",
     title: "Rangeen Jeevan",
     subtitle: "photography",
     description:
@@ -346,7 +286,7 @@ export const events: EventItem[] = [
   },
   {
     id: "jeevanth-jeevan",
-    category: "misc",
+    category: "art",
     title: "Jeevanth Jeevan",
     subtitle: "videography",
     description:
@@ -369,7 +309,7 @@ export const events: EventItem[] = [
   },
   {
     id: "baal-ki-khaal",
-    category: "misc",
+    category: "art",
     title: "Baal ki Khaal",
     subtitle: "open-style theatrics",
     description:
@@ -389,7 +329,7 @@ export const events: EventItem[] = [
   },
   {
     id: "pandoras-box",
-    category: "misc",
+    category: "art",
     title: "Pandora's Box",
     subtitle: "improv act",
     description:
@@ -405,6 +345,66 @@ export const events: EventItem[] = [
     fee: "₹500 per group",
     prizePool: "₹10,000",
     dateTime: "14 Nov · 12 – 3 PM",
+  },
+
+  // ─── Wit & Whim ───────────────────────────────────────────
+  {
+    id: "murder-ballad",
+    category: "wit-whim",
+    title: "Murder Ballad 3.0",
+    subtitle: "a murder mystery in verse",
+    description:
+      "A spine-chilling murder investigation where the clues are strung together in song and poetry. The whole campus is the crime scene — probe it, collect evidence, analyse testimonies, and compose the true story. Closest to the truth are crowned the Murder Balladeers.",
+    format: "Groups of 3–5",
+    facts: ["3 rounds", "Campus-wide"],
+    rules: [
+      "Round 1 — Discovery of the Crime: report to Headquarters for a briefing on investigative ethics and procedure, and receive the case file, witness-testimony videos and a brief of the crime.",
+      "Round 2 — The Investigation: examine crime scenes across campus for a few hours. Each location is open to a team for a fixed time, and may need to be visited in sequence.",
+      "Round 3 — The Final Verdict: return to HQ and present your theory of the crime as a poem or a song, judged on creativity and on how close you get to the truth.",
+    ],
+    club: "spine",
+    fee: "₹300",
+    prizePool: "₹25,000",
+    dateTime: "15 Nov · time TBA",
+  },
+  {
+    id: "20-20-vision",
+    category: "wit-whim",
+    title: "20/20 Vision",
+    subtitle: "all about the 2020s",
+    description:
+      "Wars. Pandemics. Reconnection. Climate. Records. Drama. Absurdity. Hope. The last five years have been a whirlwind — think you can cut through the noise? A general quiz on the politics, pop culture, science, sport, movies, music and memes that defined the decade.",
+    format: "Team quiz",
+    facts: ["Written prelims", "Top 6–10 to finals"],
+    rules: [
+      "Offline, on campus at Plaksha University, Mohali.",
+      "Preliminary round: a written quiz on the theme. The top 6–10 teams qualify.",
+      "Finals: a multi-round quiz on the same theme, with creative rounds and twists.",
+      "Questions may reference earlier eras if they connect to the 2020s. Final question formulation is at the quizmaster's discretion.",
+    ],
+    club: "pqc",
+    fee: "₹200 per group",
+    prizePool: "₹10,000",
+    dateTime: "14 Nov · 10 AM – 3 PM",
+  },
+  {
+    id: "slumdog-questionnaire",
+    category: "wit-whim",
+    title: "Slumdog Questionnaire",
+    subtitle: "mela: music, entertainment, literature, arts",
+    description:
+      "For everyone who's chronically online and whose Letterboxd top 4 has Rang De Basanti in it — a pop-culture quiz through the gossip, discourse and desi entertainment landscape. If you know who Kutta Singh and Gajinder are, this one's for you.",
+    format: "Team quiz",
+    facts: ["Written prelims", "Top 6–10 to finals"],
+    rules: [
+      "Preliminary round: a written quiz on the theme. The top 6–10 teams qualify for the finals.",
+      "Finals: a multi-round quiz with creative rounds and twists. Any additional rules are announced during the event.",
+      "Final question formulation is at the quizmaster's discretion.",
+    ],
+    club: "pqc",
+    fee: "₹200 per group",
+    prizePool: "₹10,000",
+    dateTime: "14 Nov · 10 AM – 3 PM",
   },
 
   // ─── Business ─────────────────────────────────────────────

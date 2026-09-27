@@ -8,9 +8,9 @@
   Fitoor 2026 — tokens pulled from the official brochure.
 
   One fixed dark maroon & gold theme. Each event category gets its own
-  page colour (violet music, teal dance, olive art, burnt-orange misc,
-  plum business) exactly like the brochure spreads, swapped in through
-  [data-category] so a single component can wear any category.
+  page colour (violet music, teal dance, olive art, burnt-orange wit &
+  whim, plum business) exactly like the brochure spreads, swapped in
+  through [data-category] so a single component can wear any category.
 
   Font families are NOT registered in @theme inline: Tailwind resolves
   those var()s at build time, but next/font injects --font-* at runtime
@@ -61,9 +61,9 @@
   --color-art: var(--art);
   --color-art-light: var(--art-light);
   --color-art-bg: var(--art-bg);
-  --color-misc: var(--misc);
-  --color-misc-light: var(--misc-light);
-  --color-misc-bg: var(--misc-bg);
+  --color-wit-whim: var(--wit-whim);
+  --color-wit-whim-light: var(--wit-whim-light);
+  --color-wit-whim-bg: var(--wit-whim-bg);
   --color-business: var(--business);
   --color-business-light: var(--business-light);
   --color-business-bg: var(--business-bg);
@@ -128,9 +128,9 @@
   --art: #c29a45;
   --art-light: #ecd58f;
   --art-bg: #1b1809;
-  --misc: #f08a4b;
-  --misc-light: #ffc9a3;
-  --misc-bg: #8e441f;
+  --wit-whim: #f08a4b;
+  --wit-whim-light: #ffc9a3;
+  --wit-whim-bg: #8e441f;
   --business: #de4f93;
   --business-light: #f8b3d5;
   --business-bg: #3e1125;
@@ -180,10 +180,10 @@
   --category-bg: var(--art-bg);
   --glow: #f0b94a;
 }
-[data-category="misc"] {
-  --category: var(--misc);
-  --category-light: var(--misc-light);
-  --category-bg: var(--misc-bg);
+[data-category="wit-whim"] {
+  --category: var(--wit-whim);
+  --category-light: var(--wit-whim-light);
+  --category-bg: var(--wit-whim-bg);
   --glow: #ff6a2b;
 }
 [data-category="business"] {

@@ -27,7 +27,7 @@ export function CategoryHero({
             <h1
               className={cn(
                 "font-title neon leading-none lowercase",
-                // "miscellaneous" needs a smaller cap than "art" to stay on one line.
+                // Longer names ("Art & Expression", "Wit & Whim") need a smaller cap to stay on one line.
                 category.name.length > 8
                   ? "text-[clamp(2.5rem,12vw,5.5rem)]"
                   : "text-7xl sm:text-8xl lg:text-9xl",
