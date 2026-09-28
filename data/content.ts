@@ -26,8 +26,8 @@ export const about = {
   theme:
     "This year's theme, Young, Dumb & Desi, is all about the raw energy of youth through the vibrant lens of Indian street style and hip-hop. Fitoor brings together bold fashion, music, movement and desi culture — a space where tradition meets contemporary expression and creativity knows no rules.",
   fitoor: [
-    "Fitoor 2026 marks the third edition of our fest — a two-day inter-collegiate techno-cultural event where creativity and innovation meet. It's a chance to show off your talent and connect with peers, industry leaders and sponsors.",
-    "With over 400 students from Plaksha University and 400+ more expected from the Tricity area and Delhi NCR, it promises to be vibrant, competitive and diverse — through workshops, talks, hackathons and competitions.",
+    "Fitoor 2026 marks the third edition of our fest — a prestigious two-day inter-collegiate cultural fest where creativity and expression meet. It's a chance to show off your talent and connect with peers and performers from across the region.",
+    "With over 400 students from Plaksha University and 400+ more expected from the Tricity area and Delhi NCR, it promises to be vibrant, competitive and diverse — across music, dance, art, business and wit.",
   ],
   plaksha: [
     "Located in Mohali, Punjab, Plaksha University aims to reimagine technology education. It began in 2015 as a conversation among friends, took shape as an idea endorsed by entrepreneurs and business leaders in 2017, and became a university in 2021.",
@@ -41,14 +41,15 @@ export const generalRules: string[] = [
   "Team/group POCs who aren't participating in the event are not allowed into the fest.",
   "Group music and dance teams may bring one or two non-performing members for sound cues, light cues and tech support. They pay the event fee and count as team members.",
   "Register for as many events as you like, as long as there are no scheduling conflicts. One registration gets you in on both days.",
-  "Day 1 wraps at 9 PM and Day 2 at 8 PM — all participants must leave by then.",
+  "Day 1 concludes at 9:30 PM and Day 2 at 8 PM — all participants must leave by then.",
   "Every participant gets an e-certificate of participation; winners also get a certificate of merit.",
-  "A 30% tax deduction applies to individual prize amounts over ₹10,000. The prize pool is subject to change.",
+  "A 30% tax deduction applies to individual prize amounts over ₹10,000.",
+  "Registration fees are non-refundable. The schedule and prize pools are subject to change.",
 ];
 
 export const security: string[] = [
   "Carry your college ID at all times. Plaksha University's rules apply to every participant and contingent member on campus.",
-  "Everyone gets an entry wristband at the gate. Wear it at all times — it's non-transferable.",
+  "An ID card is issued at the gate. Wear it at all times — it's non-transferable.",
   "Plaksha has strict policies against substance abuse, violence, sexual harassment and property damage. Violations mean disqualification, without a refund.",
   "The fest can't be held responsible for any loss or theft of belongings.",
   "The Organising Committee's decision is final and binding.",
@@ -61,7 +62,7 @@ export const hotels = [
 ];
 
 export const accommodationNote =
-  "Participants can also stay at homestays nearby. Team Fitoor × Prayas isn't responsible for hotel bookings or transport — participants bear the cost of rooms and any damages.";
+  "Participants can also stay at homestays nearby. Team Fitoor isn't responsible for hotel bookings or transport — participants bear the cost of rooms and any damages.";
 
 /** The one-liners people actually need before they turn up. */
 export const quickRules = [
@@ -77,19 +78,19 @@ export const quickRules = [
     title: "Stack events",
     body: "Enter as many as you like — as long as they don't clash.",
   },
-  { title: "Curfew", body: "Day 1 wraps at 9 PM, Day 2 at 8 PM." },
+  { title: "Curfew", body: "Day 1 wraps at 9:30 PM, Day 2 at 8 PM." },
 ];
 
 export const generalFaqs: FaqItem[] = [
   {
     question: "How do I register?",
     answer:
-      "Registrations open soon. Links will go up on Instagram (@fitoor.plaksha) and on this site — each college also nominates a Point of Contact per event.",
+      "Registration links are on our Instagram (@fitoor.plaksha). Each college also nominates a Point of Contact per event.",
   },
   {
     question: "How much are registration fees and prizes?",
     answer:
-      "Fees and prize pools for each event will be announced with registrations. Prizes over ₹10,000 per person carry a 30% tax deduction.",
+      "Every event lists its own fee and prize pool — most start at ₹100. Fees are non-refundable, and prizes over ₹10,000 per person carry a 30% tax deduction.",
   },
   {
     question: "Who can participate?",
@@ -107,9 +108,9 @@ export const generalFaqs: FaqItem[] = [
       "No — but we've listed hotels close to campus (Anande, Kenview, Tamarind) and there are homestays nearby. Bookings and transport are on you.",
   },
   {
-    question: "When is the schedule out?",
+    question: "Where is the schedule?",
     answer:
-      "The timetable is being locked. It'll be announced on Instagram and posted on the schedule page.",
+      "On the schedule page. Timings and prize pools are subject to change, so keep an eye on Instagram for updates.",
   },
 ];
 
@@ -118,22 +119,22 @@ export const festDays = [
     day: 1,
     weekday: "Saturday",
     date: "14 Nov",
-    wrapsAt: "9 PM",
+    wrapsAt: "9:30 PM",
     notes: [
-      "Jeevanth Jeevan teams shoot their footage and hand in clips + wristbands.",
+      "Climax teams shoot their footage and hand in clips + coloured lanyards.",
     ],
     schedule: [
-      { time: "10 AM", title: "Canvas" },
-      { time: "10 AM", title: "Baal ki Khaal" },
-      { time: "10 AM", title: "20/20 Vision" },
-      { time: "10 AM", title: "Slumdog Questionnaire" },
-      { time: "10 AM", title: "Jeevanth Jeevan (shoot day)" },
-      { time: "11 AM", title: "The Wolf of Dalal Street" },
-      { time: "12 PM", title: "Pandora's Box" },
-      { time: "3 PM", title: "Sargam" },
-      { time: "4 PM", title: "Revival" },
-      { time: "4:30 PM", title: "Euphony" },
-      { time: "6 PM", title: "Battle of Bands" },
+      { time: "10 AM", title: "Canvas (till 2 PM)" },
+      { time: "10 AM", title: "Baal ki Khaal (till 12 PM)" },
+      { time: "10 AM", title: "20/20 Vision (till 12:30 PM)" },
+      { time: "10 AM", title: "The Wolf of Dalal Street (till 3 PM)" },
+      { time: "10 AM", title: "Climax (shoot day)" },
+      { time: "12 PM", title: "Pandora's Box (till 3 PM)" },
+      { time: "12:30 PM", title: "Slumdog Questionnaire (till 3 PM)" },
+      { time: "3 PM", title: "Sargam (till 4:30 PM)" },
+      { time: "4 PM", title: "Revival (till 6 PM)" },
+      { time: "4:30 PM", title: "Euphony (till 6 PM)" },
+      { time: "6 PM", title: "Battle of Bands (till 9:30 PM)" },
     ],
   },
   {
@@ -141,19 +142,21 @@ export const festDays = [
     weekday: "Sunday",
     date: "15 Nov",
     wrapsAt: "8 PM",
-    notes: ["Jeevanth Jeevan's 5-hour edit submission window opens."],
+    notes: ["Climax's 4-hour edit submission window opens."],
     schedule: [
-      { time: "10 AM", title: "Rooh" },
-      { time: "10 AM", title: "Riwayat" },
-      { time: "10 AM", title: "Rivals Riot" },
-      { time: "10 AM", title: "Rangeen Jeevan" },
-      { time: "10 AM", title: "Jeevanth Jeevan (submission)" },
-      { time: "10 AM", title: "Jugaad Couture" },
-      { time: "11 AM", title: "Cut to the Case" },
-      { time: "2 PM", title: "Rogue" },
-      { time: "2 PM", title: "Reverb" },
-      { time: "2 PM", title: "Revolution" },
-      { time: "TBA", title: "Murder Ballad 3.0" },
+      { time: "10 AM", title: "Rooh (till 11 AM)" },
+      { time: "10 AM", title: "Rangeen Jeevan (till 6 PM)" },
+      { time: "10 AM", title: "Murder Ballad 3.0 (till 6 PM)" },
+      { time: "10 AM", title: "Climax (submission)" },
+      { time: "11 AM", title: "Riwayat (till 12 PM)" },
+      { time: "11 AM", title: "Jugaad Couture (till 2 PM)" },
+      { time: "11 AM", title: "Cut to the Case (till 2 PM)" },
+      { time: "12 PM", title: "Rivals Riot (till 1 PM)" },
+      { time: "2 PM", title: "Rogue (till 3 PM)" },
+      { time: "3 PM", title: "Reverb (till 4 PM)" },
+      { time: "4 PM", title: "Revolution (till 5 PM)" },
+      { time: "6 PM", title: "Artist performance" },
+      { time: "8 PM", title: "DJ night" },
     ],
   },
 ] as const;

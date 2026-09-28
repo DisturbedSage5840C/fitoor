@@ -5,7 +5,6 @@ import { PageHeader } from "@/components/shared/PageHeader";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { socials } from "@/data/contacts";
 import { fest, festDays } from "@/data/content";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Schedule",
@@ -69,10 +68,7 @@ export default function SchedulePage() {
                   >
                     <span className="text-cream/85">{slot.title}</span>
                     <span
-                      className={cn(
-                        "shrink-0 font-semibold tabular-nums",
-                        slot.time === "TBA" ? "text-cream/45" : "text-gold",
-                      )}
+                      className="shrink-0 font-semibold text-gold tabular-nums"
                     >
                       {slot.time}
                     </span>

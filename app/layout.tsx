@@ -16,18 +16,18 @@ export const metadata: Metadata = {
     template: "%s | Fitoor 2026",
   },
   description:
-    "Fitoor is Plaksha University's inter-collegiate techno-cultural fest — 14–15 Nov 2026, Mohali. 20 competitions across music, dance, art, business and more. Theme: Young, Dumb & Desi.",
+    "Fitoor is Plaksha University's inter-collegiate cultural fest — 14–15 Nov 2026, Mohali. 21 competitions across music, dance, art, business and more. Theme: Young, Dumb & Desi.",
   openGraph: {
     title: "Fitoor 2026 — Young, Dumb & Desi",
     description:
-      "Plaksha University's inter-collegiate techno-cultural fest — 14–15 Nov 2026.",
+      "Plaksha University's inter-collegiate cultural fest — 14–15 Nov 2026.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Fitoor 2026 — Young, Dumb & Desi",
     description:
-      "Plaksha University's inter-collegiate techno-cultural fest — 14–15 Nov 2026.",
+      "Plaksha University's inter-collegiate cultural fest — 14–15 Nov 2026.",
   },
 };
 

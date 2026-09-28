@@ -17,7 +17,7 @@ export const categories: Record<CategorySlug, Category> = {
     hindiName: "नृत्य",
     urduName: "رقص",
     description:
-      "Competitions spanning classical to contemporary, solo and group, for anyone who wants to show off their rhythm and moves.",
+      "Competitions from classical to western — solo, group and battle formats — for anyone who wants to show off their rhythm and moves.",
     art: "/art/sneaker-jutti.webp",
     artAlt:
       "A worn high-top sneaker next to an embroidered jutti with ghungroo",
@@ -48,7 +48,7 @@ export const categories: Record<CategorySlug, Category> = {
     hindiName: "व्यवसाय",
     urduName: "کاروبار",
     description:
-      "Case competitions, market simulations and more — sharp strategy, quick thinking and business acumen, on stage.",
+      "Case competitions, M&A simulations and more — sharp strategy, quick thinking and business acumen, on stage.",
     art: "/art/business-collage.webp",
     artAlt: "Collage of gold jewellery, a vintage car and a colonial facade",
   },
