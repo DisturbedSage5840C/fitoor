@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import {
+  motion,
   useScroll,
+  useSpring,
   useTransform,
   useReducedMotion,
 } from "motion/react";
@@ -18,7 +20,7 @@ import { events } from "@/data/events";
 
 function HeroCopy() {
   return (
-    <div className="relative">
+    <div className="relative z-10">
       <p className="font-body text-xs font-semibold tracking-[0.25em] text-gold/80 uppercase">
         {fest.university} presents · {fest.edition} edition
       </p>
@@ -79,14 +81,29 @@ function ScrollMascotHero() {
     offset: ["start start", "end end"],
   });
 
-  // Copy is visible immediately; scrolling scrubs the sitar clip, which
-  // finishes at 85% so the last stretch of pin holds the settled pose.
-  const frameProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1], {
-    clamp: true,
-  });
+  // Smooth out wheel/trackpad jumps so the motion never snaps.
+  const smooth = useSpring(scrollYProgress, { stiffness: 90, damping: 26, mass: 0.6 });
+
+  // Beats: 0–0.4 walk in from the left · 0.4–0.5 sit down · 0.5–1 play.
+  const frameProgress = useTransform(smooth, [0.5, 1], [0, 1], { clamp: true });
+  const x = useTransform(smooth, [0, 0.4], ["-260%", "0%"], { clamp: true });
+  // Footstep bob while walking, then a drop onto the floor when sitting.
+  const y = useTransform(
+    smooth,
+    [0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.45, 0.5],
+    [0, -14, 0, -14, 0, -14, 0, -14, 0, -14, -10, -24, 0],
+    { clamp: true },
+  );
+  const rotate = useTransform(
+    smooth,
+    [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4],
+    [0, -3, 3, -3, 3, -3, 3, -3, 0],
+    { clamp: true },
+  );
+  const scaleY = useTransform(smooth, [0.4, 0.45, 0.5], [1, 1.04, 0.96], { clamp: true });
 
   return (
-    <div ref={wrapperRef} className="relative hidden h-[220vh] lg:block">
+    <div ref={wrapperRef} className="relative hidden h-[600vh] lg:block">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div
           className="halftone-light absolute inset-0 -z-10 opacity-60"
@@ -94,10 +111,12 @@ function ScrollMascotHero() {
         />
         <div className="mx-auto grid w-full max-w-6xl grid-cols-[1.15fr_1fr] items-center gap-6 px-6">
           <HeroCopy />
-          <MascotSequence
-            progress={frameProgress}
-            className="mx-auto h-auto w-[min(100%,460px)] drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
-          />
+          <motion.div style={{ x, y, rotate, scaleY, transformOrigin: "50% 100%" }}>
+            <MascotSequence
+              progress={frameProgress}
+              className="mx-auto h-auto w-[min(100%,460px)] drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+            />
+          </motion.div>
         </div>
       </div>
     </div>
