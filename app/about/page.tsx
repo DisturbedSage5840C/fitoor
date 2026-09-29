@@ -1,8 +1,12 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { about, fest, stats } from "@/data/content";
+import { SectionGround } from "@/components/shared/SectionGround";
+import { StatTapes } from "@/components/shared/StatTapes";
+import { Smiley } from "@/components/shared/Stickers";
+import { Tape } from "@/components/shared/Tape";
+import { TicketCard } from "@/components/shared/TicketCard";
+import { about, fest } from "@/data/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -15,6 +19,9 @@ export default function AboutPage() {
       <PageHeader
         title="about"
         script="the fest, the theme, the campus"
+        ground="halftone"
+        artTilt={-5}
+        sticker={<Smiley />}
         art={{
           src: "/art/boombox-hand.webp",
           alt: "A hand carrying a boombox",
@@ -23,68 +30,63 @@ export default function AboutPage() {
         }}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
-        <RevealOnScroll>
-          <p className="font-script text-3xl text-gold">
-            this year&apos;s theme
-          </p>
-          <blockquote className="font-title mt-2 max-w-4xl text-3xl leading-snug text-cream text-balance sm:text-4xl">
-            &ldquo;{about.theme}&rdquo;
-          </blockquote>
-        </RevealOnScroll>
-      </section>
+      <SectionGround ground="polka">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 pt-28 pb-16 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:pt-32 lg:pb-24">
+          <div>
+            <p className="font-script text-3xl text-gold sm:text-4xl">this year&apos;s theme</p>
+            <p
+              className="font-display mt-2 text-6xl leading-[0.92] text-cream uppercase sm:text-8xl"
+              style={{ textShadow: "5px 5px 0 var(--rose)" }}
+            >
+              {fest.theme}
+            </p>
+          </div>
+          <TicketCard tilt={-1} className="px-7 py-8 sm:px-10 sm:py-10" notchY="30%">
+            <blockquote className="font-title text-2xl leading-snug text-balance sm:text-3xl">
+              &ldquo;{about.theme}&rdquo;
+            </blockquote>
+          </TicketCard>
+        </div>
+      </SectionGround>
 
       <section className="border-y border-gold/15 bg-maroon">
-        <div className="mx-auto grid grid-cols-1 max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
-          <RevealOnScroll>
-            <h2 className="font-title neon text-5xl lowercase">
-              what is {fest.name}?
-            </h2>
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+          <div>
+            <Tape tilt={-2} tone="gold" className="px-6 py-2">
+              <h2 className="font-title text-3xl lowercase sm:text-4xl">what is {fest.name}?</h2>
+            </Tape>
             {about.fitoor.map((p) => (
-              <p
-                key={p}
-                className="font-body mt-5 leading-relaxed text-cream/80"
-              >
+              <p key={p} className="font-body mt-5 leading-relaxed text-cream/85">
                 {p}
               </p>
             ))}
-            <dl className="mt-10 grid grid-cols-2 gap-6">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col-reverse border-l-2 border-rose pl-4"
-                >
-                  <dt className="font-body mt-1 text-xs font-semibold tracking-[0.2em] text-cream/75 uppercase">
-                    {stat.label}
-                  </dt>
-                  <dd className="font-display text-5xl leading-none text-gold">
-                    {stat.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </RevealOnScroll>
+            <StatTapes className="mt-12" />
+          </div>
 
-          <RevealOnScroll delay={0.1}>
-            <h2 className="font-title neon text-5xl lowercase">
-              where it happens
-            </h2>
-            {about.plaksha.map((p) => (
-              <p
-                key={p}
-                className="font-body mt-5 leading-relaxed text-cream/80"
-              >
-                {p}
-              </p>
-            ))}
-            <Image quality={90}
-              src="/brand/plaksha.png"
-              alt="Plaksha University"
-              width={600}
-              height={180}
-              className="mt-10 h-12 w-auto opacity-80"
-            />
-          </RevealOnScroll>
+          <div className="lg:pt-16">
+            <TicketCard
+              tilt={1}
+              notchY="22%"
+              shadow="var(--gold)"
+              className="px-7 py-8 sm:px-9 sm:py-10"
+            >
+              <h2 className="font-title text-3xl lowercase sm:text-4xl">where it happens</h2>
+              {about.plaksha.map((p) => (
+                <p key={p} className="font-body mt-4 leading-relaxed text-maroon-deepest/85">
+                  {p}
+                </p>
+              ))}
+              <Image
+                quality={90}
+                src="/brand/plaksha.png"
+                alt="Plaksha University"
+                width={600}
+                height={180}
+                sizes="200px"
+                className="mt-8 h-12 w-auto brightness-0"
+              />
+            </TicketCard>
+          </div>
         </div>
       </section>
     </>

@@ -1,8 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Sticker } from "@/components/shared/Sticker";
+import { Tape } from "@/components/shared/Tape";
+import { categoryStickers } from "@/components/shared/categoryStickers";
 import type { Category, EventItem } from "@/data/types";
 import { cn } from "@/lib/utils";
+
+const TONES = ["rose", "gold", "bandage"] as const;
+const TILTS = [-2.5, 2, -1.5, 3, -3];
 
 export function CategoryHero({
   category,
@@ -14,11 +20,11 @@ export function CategoryHero({
   return (
     <section className="relative isolate overflow-hidden bg-category-bg">
       <div className="halftone absolute inset-0 -z-10 opacity-60" aria-hidden />
-      <div className="mx-auto grid grid-cols-1 max-w-6xl items-center gap-8 px-4 pt-10 pb-14 sm:px-6 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:pt-14 md:pb-20">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 pt-10 pb-14 sm:px-6 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:pt-14 md:pb-20">
         <div>
           <Link
             href="/events"
-            className="font-body inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold tracking-[0.2em] text-category-light/80 uppercase hover:text-category-light"
+            className="font-body inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold tracking-[0.2em] text-category-light uppercase hover:text-category-light"
           >
             <ArrowLeft className="size-3.5" /> All events
           </Link>
@@ -35,48 +41,51 @@ export function CategoryHero({
             >
               {category.name}
             </h1>
-            <span className="font-serif-dev text-2xl text-category-light/80">
+            <span className="font-serif-dev text-2xl text-category-light">
               {category.hindiName}
             </span>
-            <span
-              className="font-nastaliq text-2xl text-category-light/80"
-              dir="rtl"
-            >
+            <span className="font-nastaliq text-2xl text-category-light" dir="rtl">
               {category.urduName}
             </span>
           </div>
-          <p className="font-script mt-2 text-2xl text-cream/85 sm:text-3xl">
-            competitions and informations
+          <p className="font-script mt-2 text-2xl text-cream sm:text-3xl">
+            {events.length} events
           </p>
-          <p className="font-body mt-6 max-w-xl text-base leading-relaxed text-cream/80 sm:text-lg">
+          <p className="font-body mt-6 max-w-xl text-base leading-relaxed text-cream sm:text-lg">
             {category.description}
           </p>
 
           <nav
             aria-label={`${category.name} events`}
-            className="mt-8 flex flex-wrap gap-2"
+            className="mt-8 flex flex-wrap gap-x-3 gap-y-1"
           >
-            {events.map((event) => (
+            {events.map((event, i) => (
               <a
                 key={event.id}
                 href={`#${event.id}`}
-                className="font-body rounded-full border border-category-light/30 px-4 py-2.5 text-sm font-semibold text-category-light transition-colors hover:bg-category hover:text-white"
+                className="font-body inline-flex min-h-11 items-center text-sm font-bold transition-transform hover:-translate-y-0.5"
               >
-                {event.title}
+                <Tape tilt={TILTS[i % TILTS.length]} tone={TONES[i % TONES.length]}>
+                  {event.title}
+                </Tape>
               </a>
             ))}
           </nav>
         </div>
 
         <div className="relative mx-auto aspect-square w-3/4 max-w-sm md:w-full">
-          <Image quality={90}
+          <Image
+            quality={90}
             src={category.art}
             alt={category.artAlt}
             fill
             preload
             sizes="(min-width: 768px) 380px, 75vw"
-            className="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.5)]"
+            className="sticker-edge rotate-3 object-contain"
           />
+          <Sticker tilt={-12} className="absolute top-0 -left-2 size-16 sm:size-20">
+            {categoryStickers[category.slug]}
+          </Sticker>
         </div>
       </div>
     </section>

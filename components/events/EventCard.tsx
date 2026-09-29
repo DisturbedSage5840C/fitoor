@@ -1,8 +1,11 @@
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
+import { Tape } from "@/components/shared/Tape";
 import { clubs } from "@/data/clubs";
 import type { EventItem } from "@/data/types";
 import { cn } from "@/lib/utils";
+
+const FACT_TILTS = [-2, 1.5, -1, 2.5];
 
 /**
  * One event, laid out like the brochure page: neon title + script subtitle,
@@ -27,10 +30,11 @@ export function EventCard({
     <article
       id={event.id}
       className={cn(
-        "scroll-mt-24 overflow-hidden rounded-2xl border border-category/35 bg-maroon-deepest/55 md:grid md:grid-cols-[1fr_15rem]",
+        "relative isolate scroll-mt-24 overflow-hidden rounded-[6px] bg-maroon-deepest shadow-[6px_7px_0_var(--category)] md:grid md:grid-cols-[1fr_15rem]",
         className,
       )}
     >
+      <div className="halftone-light pointer-events-none absolute inset-0 -z-10 opacity-40" aria-hidden />
       <div className="p-6 sm:p-8">
         <h2 className="font-title neon-soft text-4xl lowercase sm:text-5xl">
           {event.title}
@@ -44,20 +48,23 @@ export function EventCard({
         </p>
 
         {event.facts?.length ? (
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {event.facts.map((fact) => (
-              <li
-                key={fact}
-                className="font-body rounded-full bg-category/20 px-3 py-1 text-xs font-semibold text-category-light"
-              >
-                {fact}
+          <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-3">
+            {event.facts.map((fact, i) => (
+              <li key={fact}>
+                <Tape
+                  tilt={FACT_TILTS[i % FACT_TILTS.length]}
+                  tone="gold"
+                  className="font-body px-3 py-1 text-xs font-bold"
+                >
+                  {fact}
+                </Tape>
               </li>
             ))}
           </ul>
         ) : null}
 
         {event.rules.length > 0 ? (
-          <details className="group mt-6 rounded-xl border border-cream/10 open:bg-maroon/50">
+          <details className="group mt-6 rounded-[4px] border border-dashed border-category-light/40 open:bg-maroon/50">
             <summary className="font-body flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-cream hover:text-gold [&::-webkit-details-marker]:hidden">
               Rules and judging ({event.rules.length})
               <ChevronDown
@@ -76,13 +83,10 @@ export function EventCard({
 
       {/* Ticket stub */}
       <aside className="relative flex flex-col justify-between gap-6 border-t border-dashed border-category/40 bg-category-bg/70 p-6 md:border-t-0 md:border-l">
+        <span aria-hidden className="absolute -top-3 -left-3 size-6 rounded-full bg-background" />
         <span
           aria-hidden
-          className="absolute -top-3 -left-3 hidden size-6 rounded-full bg-background md:block"
-        />
-        <span
-          aria-hidden
-          className="absolute -bottom-3 -left-3 hidden size-6 rounded-full bg-background md:block"
+          className="absolute -top-3 -right-3 size-6 rounded-full bg-background md:top-auto md:right-auto md:-bottom-3 md:-left-3"
         />
         <dl className="grid grid-cols-2 gap-x-4 gap-y-4 md:grid-cols-1">
           {meta.map((item) => (

@@ -7,7 +7,7 @@ interface NeonTitleProps {
   script?: string;
   as?: "h1" | "h2" | "h3";
   align?: "left" | "center";
-  size?: "md" | "lg" | "xl";
+  size?: "md" | "lg" | "xl" | "xl-long";
   className?: string;
 }
 
@@ -15,6 +15,8 @@ const SIZES = {
   md: "text-4xl sm:text-5xl",
   lg: "text-5xl sm:text-7xl",
   xl: "text-6xl sm:text-8xl lg:text-9xl",
+  // Long single words ("accommodation") must fit beside the header art.
+  "xl-long": "text-[clamp(2.5rem,12vw,3.75rem)] sm:text-5xl md:text-6xl lg:text-8xl",
 };
 
 /**

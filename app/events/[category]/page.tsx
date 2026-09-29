@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { CategoryHero } from "@/components/events/CategoryHero";
 import { EventCard } from "@/components/events/EventCard";
 import Link from "next/link";
-import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { categories, categoryList } from "@/data/categories";
 import { getEventsByCategory } from "@/data/events";
 import type { CategorySlug } from "@/data/types";
@@ -41,9 +40,7 @@ export default async function CategoryPage({
 
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-14 sm:px-6">
         {events.map((event) => (
-          <RevealOnScroll key={event.id}>
-            <EventCard event={event} />
-          </RevealOnScroll>
+          <EventCard key={event.id} event={event} />
         ))}
       </div>
 

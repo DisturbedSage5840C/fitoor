@@ -2,89 +2,147 @@ import type { Metadata } from "next";
 import { MapPin, Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/shared/InstagramIcon";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { SectionGround } from "@/components/shared/SectionGround";
+import { BarcodeTag } from "@/components/shared/Stickers";
+import { Sticker } from "@/components/shared/Sticker";
+import { Tape } from "@/components/shared/Tape";
 import { contacts, socials, telHref, venue } from "@/data/contacts";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Phone numbers and Instagram for the Fitoor 2026 organising team.",
+  description: "Phone numbers and Instagram for the Fitoor 2026 organising team.",
 };
+
+/** Torn off a roll by hand: each stub has its own tilt, paper and shadow. */
+const STUBS = [
+  { tilt: 1.5, paper: "bg-cream", shadow: "var(--rose)" },
+  { tilt: -1, paper: "bg-gold-bright", shadow: "var(--emerald)" },
+  { tilt: -2, paper: "bg-gold-bright", shadow: "var(--rose)" },
+  { tilt: 2, paper: "bg-cream", shadow: "var(--emerald)" },
+  { tilt: 1, paper: "bg-cream", shadow: "var(--rose)" },
+  { tilt: -1.5, paper: "bg-gold-bright", shadow: "var(--emerald)" },
+];
 
 export default function ContactPage() {
   return (
     <>
       <PageHeader
         title="contact us"
+        ground="polka"
+        artTilt={5}
+        sticker={<BarcodeTag />}
+        stickerTilt={-10}
         art={{
-          src: "/art/glass-hand.webp",
-          alt: "A ringed hand crushing a soda can",
-          width: 636,
-          height: 985,
+          src: "/art/soda-can.webp",
+          alt: "Two hands stacked with bangles, holding up a soda can",
+          width: 613,
+          height: 899,
         }}
       />
 
-      <div className="mx-auto grid grid-cols-1 max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.5fr_1fr] lg:py-24">
-        <RevealOnScroll>
-          <h2 className="font-title neon text-5xl lowercase">organising team</h2>
-          <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {contacts.map((person) => (
-              <li key={person.phone}>
-                <a
-                  href={telHref(person.phone)}
-                  className="group flex items-center justify-between rounded-xl border border-cream/10 bg-maroon px-5 py-4 transition-colors hover:border-gold/60"
-                >
-                  <span>
-                    <span className="font-title block text-2xl text-cream">
-                      {person.name}
-                    </span>
-                    <span className="font-body block text-sm text-cream/80 tabular-nums">
-                      {person.phone}
-                    </span>
-                  </span>
-                  <span className="grid size-10 place-items-center rounded-full bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-maroon-deepest">
-                    <Phone className="size-4" />
-                    <span className="sr-only">Call {person.name}</span>
-                  </span>
-                </a>
-              </li>
-            ))}
+      <SectionGround ground="grain">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-4 pt-28 pb-20 sm:px-6 lg:grid-cols-[1.35fr_1fr] lg:gap-14 lg:pb-28">
+          <ul className="grid grid-cols-1 gap-x-8 gap-y-9 md:grid-cols-2 md:[&>li:nth-child(even)]:translate-y-8">
+            {contacts.map((person, i) => {
+              const stub = STUBS[i % STUBS.length];
+              return (
+                <li key={person.name}>
+                  <div
+                    className="drop-shadow-[5px_6px_0_var(--stub-shadow)]"
+                    style={{ rotate: `${stub.tilt}deg`, "--stub-shadow": stub.shadow } as React.CSSProperties}
+                  >
+                    <a
+                      href={telHref(person.phone)}
+                      className={cn(
+                        "stub-notches group flex min-h-24 items-stretch text-maroon-deepest transition-transform hover:-translate-y-0.5",
+                        stub.paper,
+                      )}
+                    >
+                      <span className="flex min-w-0 flex-1 flex-col justify-center px-5 py-4">
+                        <span className="font-title text-2xl leading-tight lowercase">
+                          {person.name}
+                        </span>
+                        <span className="font-display mt-1 text-2xl tracking-wide tabular-nums">
+                          {person.phone}
+                        </span>
+                      </span>
+                      <span className="flex w-[4.75rem] shrink-0 items-center justify-center border-l-2 border-dashed border-maroon-deepest/45">
+                        <span className="flex size-11 items-center justify-center rounded-full bg-maroon-deepest text-gold transition-transform group-hover:rotate-12">
+                          <Phone className="size-5" />
+                          <span className="sr-only">Call {person.name}</span>
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
-        </RevealOnScroll>
 
-        <RevealOnScroll delay={0.1} className="flex flex-col gap-4">
-          <a
-            href={socials.instagram}
-            target="_blank"
-            rel="noreferrer"
-            className="group rounded-2xl bg-rose p-7 text-white"
-          >
-            <InstagramIcon className="size-7" />
-            <p className="font-title mt-3 text-4xl lowercase">
-              @{socials.instagramHandle}
-            </p>
-            <p className="font-body mt-2 text-sm text-white/85">
-              Registration links, schedule drops and announcements land here
-              first.
-            </p>
-          </a>
-          <a
-            href={venue.mapsUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-2xl border border-gold/30 bg-maroon p-7 hover:border-gold"
-          >
-            <MapPin className="size-6 text-gold" />
-            <p className="font-body mt-3 font-semibold text-cream">
-              {venue.name}
-            </p>
-            <p className="font-body text-sm text-cream/80">{venue.address}</p>
-            <p className="font-body mt-3 text-sm font-semibold text-gold">
-              Open in Google Maps →
-            </p>
-          </a>
-        </RevealOnScroll>
-      </div>
+          <div className="flex flex-col gap-14 lg:pt-6">
+            <a
+              href={socials.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative -rotate-2 self-start border-2 border-dashed border-gold bg-dupatta px-6 py-4 text-gold shadow-[6px_7px_0_var(--gold)] transition-transform hover:-translate-y-0.5 hover:rotate-0"
+            >
+              <span className="flex min-h-11 items-center gap-3">
+                <InstagramIcon className="size-8 shrink-0" />
+                <span className="font-display text-3xl tracking-wide">
+                  @{socials.instagramHandle}
+                </span>
+              </span>
+            </a>
+
+            <div className="relative rotate-1">
+              <div className="drop-shadow-[6px_7px_0_var(--rose)]">
+                <div
+                  className="torn-ends relative bg-bandage px-7 pt-12 pb-9 text-maroon-deepest"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(rgb(28 4 7 / 0.07) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(28 4 7 / 0.07) 1.5px, transparent 1.5px)",
+                    backgroundSize: "34px 34px",
+                  }}
+                >
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 200 120"
+                    className="pointer-events-none absolute inset-0 size-full text-rose/60"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M-5 100 C 40 90, 60 40, 110 50 S 170 20, 210 10"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeDasharray="6 5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <h2 className="font-title relative text-4xl lowercase">{venue.name}</h2>
+                  <p className="font-body relative mt-3 font-semibold">{venue.address}</p>
+                  <p className="font-body relative text-sm">{venue.region}</p>
+                  <a
+                    href={venue.mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-body relative mt-6 inline-flex min-h-11 items-center bg-maroon-deepest px-5 text-sm font-bold text-gold shadow-[3px_3px_0_var(--rose)] transition-transform hover:-translate-y-0.5 hover:bg-maroon"
+                  >
+                    Open in Google Maps
+                  </a>
+                </div>
+              </div>
+              <Tape tilt={-4} tone="gold" className="absolute -top-3 left-8 px-9 py-2" />
+              <Sticker tilt={14} className="absolute -top-6 right-5 size-14">
+                <span className="flex size-full items-center justify-center rounded-full bg-rose text-maroon-deepest">
+                  <MapPin className="size-7" />
+                </span>
+              </Sticker>
+            </div>
+          </div>
+        </div>
+      </SectionGround>
     </>
   );
 }

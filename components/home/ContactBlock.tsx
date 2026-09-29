@@ -3,58 +3,77 @@ import { Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/shared/InstagramIcon";
 import { NeonTitle } from "@/components/shared/NeonTitle";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { SectionGround } from "@/components/shared/SectionGround";
+import { Burst } from "@/components/shared/Stickers";
+import { TicketCard } from "@/components/shared/TicketCard";
 import { contacts, socials, telHref } from "@/data/contacts";
+
+const TILTS = [-2, 1.5, 2.5, -1.5, 1, -2.5];
 
 export function ContactBlock() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="mx-auto grid grid-cols-1 max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:py-28">
-        <RevealOnScroll>
-          <NeonTitle>contact us</NeonTitle>
-          <ul className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {contacts.map((person) => (
+    <SectionGround ground="halftone">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:py-28">
+        <div>
+          <RevealOnScroll variant="stamp">
+            <NeonTitle>contact us</NeonTitle>
+          </RevealOnScroll>
+          <ul className="mt-12 grid grid-cols-1 gap-x-6 gap-y-7 sm:grid-cols-2">
+            {contacts.map((person, i) => (
               <li key={person.phone}>
                 <a
                   href={telHref(person.phone)}
-                  className="group flex items-center justify-between rounded-xl border border-cream/10 bg-maroon px-5 py-4 transition-colors hover:border-gold/60"
+                  className="group block transition-transform hover:-translate-y-1"
                 >
-                  <span>
-                    <span className="font-body block font-semibold text-cream">
-                      {person.name}
+                  <TicketCard tilt={TILTS[i % TILTS.length]} notchY={i % 2 ? "38%" : "62%"}>
+                    <span className="flex items-center justify-between gap-3 px-6 py-4">
+                      <span>
+                        <span className="font-title block text-xl leading-tight">
+                          {person.name}
+                        </span>
+                        <span className="font-display block text-2xl tracking-wide tabular-nums">
+                          {person.phone}
+                        </span>
+                      </span>
+                      <Phone className="size-5 shrink-0 text-rose" />
                     </span>
-                    <span className="font-body block text-sm text-cream/80 tabular-nums">
-                      {person.phone}
-                    </span>
-                  </span>
-                  <Phone className="size-4 text-gold/60 group-hover:text-gold" />
+                  </TicketCard>
                 </a>
               </li>
             ))}
           </ul>
+
           <a
             href={socials.instagram}
             target="_blank"
             rel="noreferrer"
-            className="font-body mt-6 inline-flex items-center gap-2 rounded-full bg-rose px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+            className="group relative mt-12 inline-flex min-h-12 items-center"
           >
-            <InstagramIcon className="size-4" />@{socials.instagramHandle}
+            <span
+              className="sticker-edge -rotate-3 rounded-[3px] bg-rose transition-transform group-hover:rotate-2 group-hover:scale-105"
+            >
+              <span className="font-display flex items-center gap-3 px-6 py-3 text-2xl text-maroon-deepest">
+                <InstagramIcon className="size-6" />@{socials.instagramHandle}
+              </span>
+            </span>
           </a>
-        </RevealOnScroll>
+        </div>
 
-        <RevealOnScroll
-          delay={0.1}
-          className="relative mx-auto w-full max-w-xs"
-        >
-          <Image quality={90}
+        <div className="relative mx-auto w-full max-w-xs">
+          <Image
+            quality={90}
             src="/art/glass-hand.webp"
             alt="A ringed hand crushing a soda can"
             width={636}
             height={985}
             sizes="(min-width: 1024px) 380px, 70vw"
-            className="h-auto w-full drop-shadow-[0_24px_40px_rgba(0,0,0,0.55)]"
+            className="sticker-edge h-auto w-full rotate-2"
           />
-        </RevealOnScroll>
+          <span className="pointer-events-none absolute -top-6 -left-6 block size-24 rotate-[-12deg] text-gold">
+            <Burst />
+          </span>
+        </div>
       </div>
-    </section>
+    </SectionGround>
   );
 }

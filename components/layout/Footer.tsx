@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { MascotFaceLogomark } from "@/components/mascot/MascotFaceLogomark";
 import { InstagramIcon } from "@/components/shared/InstagramIcon";
+import { Sticker } from "@/components/shared/Sticker";
+import { BarcodeTag, Smiley } from "@/components/shared/Stickers";
+import { TrimDivider } from "@/components/shared/TrimDivider";
 import { categoryList } from "@/data/categories";
 import { socials, venue } from "@/data/contacts";
 import { fest } from "@/data/content";
@@ -16,11 +19,12 @@ const infoLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-gold/15 bg-maroon-deepest">
+    <footer className="relative overflow-hidden bg-maroon-deepest">
+      <TrimDivider />
       <div className="mx-auto grid grid-cols-1 max-w-6xl gap-10 px-4 pt-14 pb-8 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <MascotFaceLogomark size={56} className="rounded-full bg-cream" />
+            <MascotFaceLogomark size={56} className="rounded-full bg-cream ring-2 ring-gold/60" />
             <div>
               <p className="font-wordmark text-4xl leading-none text-gold">
                 {fest.name}
@@ -41,10 +45,18 @@ export function Footer() {
           >
             <InstagramIcon className="size-4" />@{socials.instagramHandle}
           </a>
+          <div className="mt-6 flex items-end gap-4">
+            <Sticker tilt={-8} className="size-16">
+              <Smiley />
+            </Sticker>
+            <Sticker tilt={5} className="h-16 w-28" live={false}>
+              <BarcodeTag />
+            </Sticker>
+          </div>
         </div>
 
         <FooterList
-          title="Events"
+          title="events"
           links={[
             { label: "All events", href: "/events" },
             ...categoryList.map((c) => ({
@@ -53,7 +65,7 @@ export function Footer() {
             })),
           ]}
         />
-        <FooterList title="Info" links={infoLinks} />
+        <FooterList title="info" links={infoLinks} />
       </div>
 
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 border-t border-cream/10 px-4 py-6 sm:flex-row sm:items-center sm:px-6">
@@ -71,7 +83,7 @@ export function Footer() {
 
       <p
         aria-hidden
-        className="font-wordmark pointer-events-none -mb-[0.28em] text-center text-[26vw] leading-none text-gold/[0.06] select-none"
+        className="font-wordmark pointer-events-none -mb-[0.28em] text-center text-[26vw] leading-none text-transparent select-none [-webkit-text-stroke:2px_rgb(232_199_126/0.4)]"
       >
         {fest.name}
       </p>
@@ -88,15 +100,13 @@ function FooterList({
 }) {
   return (
     <div>
-      <p className="font-body text-xs font-semibold tracking-[0.2em] text-gold/70 uppercase">
-        {title}
-      </p>
+      <p className="font-script text-3xl text-gold">{title}</p>
       <ul className="mt-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="font-body inline-block py-2.5 text-sm text-cream/75 hover:text-gold sm:py-1.5"
+              className="font-body inline-block py-3 text-sm text-cream/75 hover:text-gold sm:py-1.5"
             >
               {link.label}
             </Link>

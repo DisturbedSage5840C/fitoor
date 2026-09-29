@@ -40,18 +40,18 @@ export function Navbar() {
         <Link
           href="/"
           className="group flex min-h-11 items-center gap-2.5"
-          aria-label="Fitoor home"
         >
           <MascotFaceLogomark
             size={36}
-            className="shrink-0 rounded-full bg-cream transition-transform group-hover:-rotate-12"
+            className="shrink-0 rounded-full bg-cream ring-2 ring-gold/60 transition-transform group-hover:-rotate-12 group-hover:scale-110"
           />
           <span className="font-wordmark text-2xl leading-none text-gold">
             {fest.name}
           </span>
-          <span className="font-body hidden rounded-full border border-gold/30 px-2 py-0.5 text-[10px] font-semibold tracking-widest text-gold/80 sm:inline">
+          <span className="font-display hidden -rotate-6 rounded-[3px] bg-rose px-1.5 pt-0.5 text-sm leading-none text-maroon-deepest sm:inline">
             &apos;{String(fest.year).slice(2)}
           </span>
+          <span className="sr-only">home</span>
         </Link>
 
         <nav className="hidden items-center gap-0.5 md:flex" aria-label="Main">
@@ -61,10 +61,10 @@ export function Navbar() {
               href={link.href}
               aria-current={isActive(pathname, link.href) ? "page" : undefined}
               className={cn(
-                "font-body rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                "font-body px-4 py-2 text-sm font-semibold transition-colors",
                 isActive(pathname, link.href)
-                  ? "bg-gold text-maroon-deepest"
-                  : "text-cream/75 hover:bg-cream/5 hover:text-cream",
+                  ? "torn-ends -rotate-2 bg-bandage text-maroon-deepest shadow-[0_2px_0_var(--rose)]"
+                  : "rounded-full text-cream/75 hover:text-gold",
               )}
             >
               {link.label}
@@ -120,8 +120,8 @@ export function Navbar() {
                   >
                     <span
                       className={cn(
-                        "font-title block rounded-lg px-3 py-2 text-2xl lowercase",
-                        active ? "bg-gold/15 text-gold" : "text-cream/85",
+                        "font-title block px-3 py-2 text-2xl lowercase",
+                        active ? "torn-ends -rotate-1 bg-bandage text-maroon-deepest" : "text-cream/85",
                       )}
                     >
                       {link.label}
@@ -141,6 +141,12 @@ export function Navbar() {
           </SheetContent>
         </Sheet>
       </div>
+      {/* Lace hem: the nav reads as the edge of a dupatta */}
+      <div
+        aria-hidden
+        className="trim-lace pointer-events-none absolute inset-x-0 top-full text-gold/50"
+        style={{ height: 10 }}
+      />
     </header>
   );
 }

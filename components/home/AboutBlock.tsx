@@ -2,15 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { NeonTitle } from "@/components/shared/NeonTitle";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { about, stats } from "@/data/content";
+import { SectionGround } from "@/components/shared/SectionGround";
+import { Smiley } from "@/components/shared/Stickers";
+import { Sticker } from "@/components/shared/Sticker";
+import { StatTapes } from "@/components/shared/StatTapes";
+import { about } from "@/data/content";
 
 export function AboutBlock() {
   return (
-    <section className="relative overflow-hidden bg-maroon">
-      <div className="mx-auto grid grid-cols-1 max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-28">
-        <RevealOnScroll>
-          <NeonTitle>about us</NeonTitle>
-          <p className="font-body mt-8 max-w-xl text-lg leading-relaxed text-cream/85">
+    <SectionGround ground="grain">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:py-28">
+        <div>
+          <RevealOnScroll>
+            <NeonTitle>about us</NeonTitle>
+          </RevealOnScroll>
+          <p className="font-body mt-8 max-w-xl text-lg leading-relaxed text-cream/90">
             {about.theme}
           </p>
           <p className="font-body mt-4 max-w-xl leading-relaxed text-cream/80">
@@ -18,39 +24,29 @@ export function AboutBlock() {
           </p>
           <Link
             href="/about"
-            className="font-body mt-3 inline-block border-b border-gold/50 py-3 text-sm font-semibold text-gold hover:border-gold"
+            className="font-script mt-4 inline-block py-2 text-2xl text-gold underline decoration-rose decoration-2 underline-offset-4 hover:text-gold-bright"
           >
-            Read more about Fitoor and Plaksha
+            more about Fitoor and Plaksha
           </Link>
 
-          <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-gold/20 bg-gold/20 sm:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="bg-maroon px-4 py-5">
-                <dt className="font-body text-[11px] font-semibold tracking-[0.2em] text-cream/75 uppercase">
-                  {stat.label}
-                </dt>
-                <dd className="font-display mt-1 text-5xl leading-none text-gold">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </RevealOnScroll>
+          <StatTapes className="mt-12" />
+        </div>
 
-        <RevealOnScroll
-          delay={0.1}
-          className="relative mx-auto w-full max-w-md lg:max-w-none"
-        >
-          <Image quality={90}
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none lg:translate-x-12">
+          <Image
+            quality={90}
             src="/art/auto-rickshaw.webp"
             alt="A yellow-and-green auto rickshaw"
             width={973}
             height={604}
-            sizes="(min-width: 1024px) 520px, 90vw"
+            sizes="(min-width: 1024px) 560px, 90vw"
             className="relative z-10 h-auto w-full -rotate-3 drop-shadow-[0_24px_40px_rgba(0,0,0,0.55)]"
           />
-        </RevealOnScroll>
+          <Sticker tilt={12} className="absolute -top-4 right-2 z-20 size-16 sm:size-20">
+            <Smiley />
+          </Sticker>
+        </div>
       </div>
-    </section>
+    </SectionGround>
   );
 }
