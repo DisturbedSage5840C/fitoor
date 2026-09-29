@@ -10,6 +10,10 @@ export const contacts: ContactPerson[] = [
   { name: "Jigisha Krishnan", phone: "+91 89297 50700" },
 ];
 
+/** Where participants sign up: the Fitoor listing on Unstop. */
+export const registerUrl =
+  "https://unstop.com/college-fests/fitoor-plaksha-university-punjab-519261";
+
 export const socials = {
   instagramHandle: "fitoor.plaksha",
   instagram: "https://www.instagram.com/fitoor.plaksha/",

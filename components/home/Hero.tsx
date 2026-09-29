@@ -15,9 +15,8 @@ import {
 } from "motion/react";
 import { Countdown } from "@/components/home/Countdown";
 import { RideCurtain } from "@/components/home/RideCurtain";
-import { InstagramIcon } from "@/components/shared/InstagramIcon";
 import { MascotSequence, MascotStill } from "@/components/mascot/MascotSequence";
-import { socials } from "@/data/contacts";
+import { registerUrl } from "@/data/contacts";
 import { fest } from "@/data/content";
 import { events } from "@/data/events";
 
@@ -97,21 +96,21 @@ function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean 
           centered ? "items-center" : "items-start"
         }`}
       >
+        <a
+          href={registerUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="font-body inline-flex min-h-12 items-center rounded-sm bg-gold px-6 font-bold text-maroon-deepest shadow-[4px_4px_0_var(--rose)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[6px_6px_0_var(--rose)]"
+        >
+          Register now
+          <span className="sr-only"> (opens Unstop in a new tab)</span>
+        </a>
         <Link
           href="/events"
-          className="font-body inline-flex min-h-12 items-center rounded-sm bg-gold px-6 font-bold text-maroon-deepest shadow-[4px_4px_0_var(--rose)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[6px_6px_0_var(--rose)]"
+          className="font-body inline-flex min-h-12 items-center font-semibold text-cream underline decoration-gold/60 underline-offset-4 hover:decoration-gold"
         >
           See all {events.length} events
         </Link>
-        <a
-          href={socials.instagram}
-          target="_blank"
-          rel="noreferrer"
-          className="font-body inline-flex min-h-12 items-center gap-2 font-semibold text-cream underline decoration-gold/60 underline-offset-4 hover:decoration-gold"
-        >
-          <InstagramIcon className="size-4" />
-          Register via @{socials.instagramHandle}
-        </a>
       </div>
 
       <div className="mt-10">

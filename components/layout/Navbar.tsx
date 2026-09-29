@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import { MascotFaceLogomark } from "@/components/mascot/MascotFaceLogomark";
 import { InstagramIcon } from "@/components/shared/InstagramIcon";
-import { socials } from "@/data/contacts";
+import { registerUrl, socials } from "@/data/contacts";
 import { fest } from "@/data/content";
 
 const navLinks = [
@@ -79,6 +79,15 @@ export function Navbar() {
             <InstagramIcon className="size-4" />
             <span className="sr-only">Fitoor on Instagram</span>
           </a>
+          <a
+            href={registerUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="font-body ml-3 inline-flex min-h-10 items-center rounded-sm bg-gold px-4 text-sm font-bold text-maroon-deepest shadow-[3px_3px_0_var(--rose)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-gold-bright"
+          >
+            Register
+            <span className="sr-only"> (opens Unstop in a new tab)</span>
+          </a>
         </nav>
 
         <Sheet>
@@ -130,10 +139,19 @@ export function Navbar() {
                 );
               })}
               <a
+                href={registerUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-body mx-3 mt-4 inline-flex min-h-12 items-center justify-center rounded-sm bg-gold px-6 font-bold text-maroon-deepest shadow-[4px_4px_0_var(--rose)]"
+              >
+                Register now
+                <span className="sr-only"> (opens Unstop in a new tab)</span>
+              </a>
+              <a
                 href={socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="font-body mt-4 flex items-center gap-2 px-3 text-sm text-gold"
+                className="font-body mt-2 flex min-h-11 items-center gap-2 px-3 text-sm text-gold"
               >
                 <InstagramIcon className="size-4" />@{socials.instagramHandle}
               </a>
