@@ -58,3 +58,8 @@ export interface ContactPerson {
   name: string;
   phone: string;
 }
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}

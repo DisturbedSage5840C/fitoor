@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import type { Category, EventItem } from "@/data/types";
+import { cn } from "@/lib/utils";
 
 export function CategoryHero({
   category,
@@ -10,44 +12,59 @@ export function CategoryHero({
   events: EventItem[];
 }) {
   return (
-    <section className="bg-category-bg">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 pt-10 pb-14 sm:px-6 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:pt-14 md:pb-20">
+    <section className="relative isolate overflow-hidden bg-category-bg">
+      <div className="halftone absolute inset-0 -z-10 opacity-60" aria-hidden />
+      <div className="mx-auto grid grid-cols-1 max-w-6xl items-center gap-8 px-4 pt-10 pb-14 sm:px-6 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:pt-14 md:pb-20">
         <div>
           <Link
             href="/events"
-            className="font-body inline-flex min-h-12 items-center font-semibold text-category-light underline underline-offset-4"
+            className="font-body inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold tracking-[0.2em] text-category-light/80 uppercase hover:text-category-light"
           >
-            All events
+            <ArrowLeft className="size-3.5" /> All events
           </Link>
 
-          <div className="mt-4 flex flex-wrap items-baseline gap-x-5">
-            <h1 className="font-display text-[clamp(3rem,13vw,7rem)] text-category-light">
+          <div className="mt-6 flex flex-wrap items-baseline gap-x-4">
+            <h1
+              className={cn(
+                "font-title neon leading-none lowercase",
+                // Longer names ("Art & Expression", "Wit & Whim") need a smaller cap to stay on one line.
+                category.name.length > 8
+                  ? "text-[clamp(2.5rem,12vw,5.5rem)]"
+                  : "text-7xl sm:text-8xl lg:text-9xl",
+              )}
+            >
               {category.name}
             </h1>
-            <span className="font-serif-dev text-2xl text-cream/80">
+            <span className="font-serif-dev text-2xl text-category-light/80">
               {category.hindiName}
             </span>
-            <span className="font-nastaliq text-2xl text-cream/80" dir="rtl">
+            <span
+              className="font-nastaliq text-2xl text-category-light/80"
+              dir="rtl"
+            >
               {category.urduName}
             </span>
           </div>
-          <p className="font-body prose-copy mt-6 text-lg text-cream/90">
+          <p className="font-script mt-2 text-2xl text-cream/85 sm:text-3xl">
+            competitions and informations
+          </p>
+          <p className="font-body mt-6 max-w-xl text-base leading-relaxed text-cream/80 sm:text-lg">
             {category.description}
           </p>
 
-          <nav aria-label={`${category.name} events`} className="mt-6">
-            <ul className="flex flex-wrap gap-x-6">
-              {events.map((event) => (
-                <li key={event.id}>
-                  <a
-                    href={`#${event.id}`}
-                    className="font-body inline-flex min-h-12 items-center font-semibold text-cream underline decoration-category-light/60 underline-offset-4 hover:decoration-category-light"
-                  >
-                    {event.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <nav
+            aria-label={`${category.name} events`}
+            className="mt-8 flex flex-wrap gap-2"
+          >
+            {events.map((event) => (
+              <a
+                key={event.id}
+                href={`#${event.id}`}
+                className="font-body rounded-full border border-category-light/30 px-4 py-2.5 text-sm font-semibold text-category-light transition-colors hover:bg-category hover:text-white"
+              >
+                {event.title}
+              </a>
+            ))}
           </nav>
         </div>
 
@@ -58,7 +75,7 @@ export function CategoryHero({
             fill
             preload
             sizes="(min-width: 768px) 380px, 75vw"
-            className="object-contain"
+            className="object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.5)]"
           />
         </div>
       </div>

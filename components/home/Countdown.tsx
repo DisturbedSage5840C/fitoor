@@ -50,7 +50,7 @@ export function Countdown() {
     >
       {UNITS.map(({ key, label }) => (
         <p key={key} className="flex items-baseline gap-2">
-          <span className="font-display text-4xl text-gold tabular-nums sm:text-5xl">
+          <span className="font-display text-4xl text-gold tabular-nums [text-shadow:0_0_16px_rgba(232,199,126,0.5)] sm:text-5xl">
             {timeLeft ? String(timeLeft[key]).padStart(2, "0") : "00"}
           </span>
           <span className="font-body text-sm text-cream/75">{label}</span>

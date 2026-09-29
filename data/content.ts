@@ -1,3 +1,5 @@
+import type { FaqItem } from "./types";
+
 export const fest = {
   name: "fitoor",
   // Kasra under the fe disambiguates the vowel so it reads "fitoor", not "fatoor"/"futoor".
@@ -7,6 +9,7 @@ export const fest = {
   edition: "3rd",
   theme: "Young, Dumb & Desi",
   dates: "14th and 15th November, 2026",
+  datesLong: "14th & 15th November, 2026",
   startDateISO: "2026-11-14T09:00:00+05:30",
   university: "Plaksha University",
   region: "Tricity Chandigarh",
@@ -119,5 +122,62 @@ export const festDays: FestDay[] = [
       { time: "2 PM to 5 PM", title: "Reverb", id: "reverb" },
       { time: "2 PM to 5 PM", title: "Revolution", id: "revolution" },
     ],
+  },
+];
+
+export const stats = [
+  { value: "3rd", label: "edition" },
+  { value: "2", label: "days" },
+  { value: "21", label: "events" },
+  { value: "800+", label: "students" },
+];
+
+/** The one-liners people need before they turn up, from the general rules. */
+export const quickRules = [
+  {
+    title: "Under 25, UG/PG",
+    body: "Bring a physical Aadhaar card and your college ID.",
+  },
+  {
+    title: "One entry, two days",
+    body: "Register for any event and you're in on both days.",
+  },
+  {
+    title: "Stack events",
+    body: "Enter as many as you like, as long as they don't clash.",
+  },
+  { title: "Curfew", body: "Day 1 wraps at 10 PM, Day 2 at 8 PM." },
+];
+
+export const generalFaqs: FaqItem[] = [
+  {
+    question: "How do I register?",
+    answer:
+      "Registration links are on our Instagram (@fitoor.plaksha). Each college also nominates a Point of Contact per event.",
+  },
+  {
+    question: "How much are fees and prizes?",
+    answer:
+      "Every event lists its own fee and prize pool. Fees are not refundable, and prizes over ₹10,000 per person carry a 30% tax deduction.",
+  },
+  {
+    question: "Who can participate?",
+    answer:
+      "Any UG or PG student under 25 from any college, with a physical Aadhaar card and a college ID.",
+  },
+  {
+    question: "Can I take part in more than one event?",
+    answer:
+      "Yes, as many as you want, provided the slots don't clash. One registration gets you entry on both days.",
+  },
+  {
+    question: "Is accommodation provided?",
+    answer:
+      "No, but we've listed hotels close to campus (Anande, Kenview, Tamarind) and there are homestays nearby. Bookings and transport are on you.",
+  },
+  {
+    question: "Where is the schedule?",
+    answer:
+      "On the schedule page. Timings and prize pools are subject to change, so keep an eye on Instagram for updates.",
   },
 ];

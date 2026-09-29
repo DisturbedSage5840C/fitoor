@@ -49,7 +49,7 @@ function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean 
         />
       </h1>
 
-      <p className="font-script mt-2 text-3xl text-gold sm:text-4xl">
+      <p className="font-script mt-2 text-3xl text-gold [text-shadow:0_0_14px_rgba(232,199,126,0.55),0_0_34px_rgba(255,99,80,0.35)] sm:text-4xl">
         {fest.theme.toLowerCase()}
       </p>
 

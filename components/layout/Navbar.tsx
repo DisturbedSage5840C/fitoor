@@ -35,33 +35,36 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-cream/15 bg-maroon-deepest">
+    <header className="sticky top-0 z-40 border-b border-gold/15 bg-maroon-deepest/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
-          className="flex min-h-11 items-center gap-2.5"
+          className="group flex min-h-11 items-center gap-2.5"
           aria-label="Fitoor home"
         >
           <MascotFaceLogomark
             size={36}
-            className="shrink-0 rounded-full bg-cream"
+            className="shrink-0 rounded-full bg-cream transition-transform group-hover:-rotate-12"
           />
           <span className="font-wordmark text-2xl leading-none text-gold">
             {fest.name}
           </span>
+          <span className="font-body hidden rounded-full border border-gold/30 px-2 py-0.5 text-[10px] font-semibold tracking-widest text-gold/80 sm:inline">
+            &apos;{String(fest.year).slice(2)}
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-0.5 md:flex" aria-label="Main">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               aria-current={isActive(pathname, link.href) ? "page" : undefined}
               className={cn(
-                "font-body border-b-2 py-2 text-sm font-medium transition-colors",
+                "font-body rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
                 isActive(pathname, link.href)
-                  ? "border-gold text-gold"
-                  : "border-transparent text-cream/80 hover:text-cream",
+                  ? "bg-gold text-maroon-deepest"
+                  : "text-cream/75 hover:bg-cream/5 hover:text-cream",
               )}
             >
               {link.label}
@@ -71,7 +74,7 @@ export function Navbar() {
             href={socials.instagram}
             target="_blank"
             rel="noreferrer"
-            className="grid size-11 place-items-center text-gold hover:text-gold-bright"
+            className="ml-2 grid size-9 place-items-center rounded-full border border-gold/30 text-gold transition-colors hover:bg-gold hover:text-maroon-deepest"
           >
             <InstagramIcon className="size-4" />
             <span className="sr-only">Fitoor on Instagram</span>
@@ -117,8 +120,8 @@ export function Navbar() {
                   >
                     <span
                       className={cn(
-                        "font-display block px-3 py-3 text-3xl",
-                        active ? "text-gold" : "text-cream/85",
+                        "font-title block rounded-lg px-3 py-2 text-2xl lowercase",
+                        active ? "bg-gold/15 text-gold" : "text-cream/85",
                       )}
                     >
                       {link.label}
@@ -130,7 +133,7 @@ export function Navbar() {
                 href={socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="font-body mt-4 flex min-h-12 items-center gap-2 px-3 text-gold"
+                className="font-body mt-4 flex items-center gap-2 px-3 text-sm text-gold"
               >
                 <InstagramIcon className="size-4" />@{socials.instagramHandle}
               </a>
