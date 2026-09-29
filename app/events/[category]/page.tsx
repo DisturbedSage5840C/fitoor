@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { CategoryHero } from "@/components/events/CategoryHero";
 import { EventCard } from "@/components/events/EventCard";
 import Link from "next/link";
-import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { categories, categoryList } from "@/data/categories";
 import { getEventsByCategory } from "@/data/events";
 import type { CategorySlug } from "@/data/types";
@@ -39,24 +38,20 @@ export default async function CategoryPage({
     <div data-category={category.slug}>
       <CategoryHero category={category} events={events} />
 
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 py-14 sm:px-6">
+      <div className="mx-auto w-full max-w-5xl px-4 pb-8 sm:px-6">
         {events.map((event) => (
-          <RevealOnScroll key={event.id}>
-            <EventCard event={event} />
-          </RevealOnScroll>
+          <EventCard key={event.id} event={event} />
         ))}
       </div>
 
-      <div data-category={next.slug} className="border-t border-cream/10">
+      <div data-category={next.slug} className="border-t border-cream/20">
         <Link
           href={`/events/${next.slug}`}
-          className="group mx-auto flex max-w-5xl items-baseline justify-between gap-4 px-4 py-12 sm:px-6"
+          className="mx-auto flex min-h-16 max-w-5xl items-baseline justify-between gap-4 px-4 py-10 sm:px-6"
         >
-          <span className="font-body text-xs font-semibold tracking-[0.25em] text-cream/50 uppercase">
-            Next up
-          </span>
-          <span className="font-title neon-soft text-5xl lowercase transition-transform group-hover:-translate-x-1 sm:text-6xl">
-            {next.name} →
+          <span className="font-body text-cream/85">Next category</span>
+          <span className="font-display text-4xl text-category-light hover:underline sm:text-5xl">
+            {next.name}
           </span>
         </Link>
       </div>

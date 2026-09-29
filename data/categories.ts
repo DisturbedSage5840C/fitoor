@@ -7,7 +7,7 @@ export const categories: Record<CategorySlug, Category> = {
     hindiName: "संगीत",
     urduName: "موسیقی",
     description:
-      "Battles that bring solo singers, bands and instrumentalists to the stage — Western and Classical — filling the air with melodies and harmonies.",
+      "Battles will bring solo singers, bands, and instrumentalists across Western and Classical styles to the stage, filling the air with melodies and harmonies.",
     art: "/art/mic-hand.webp",
     artAlt: "A ringed hand gripping a vintage microphone",
   },
@@ -17,7 +17,7 @@ export const categories: Record<CategorySlug, Category> = {
     hindiName: "नृत्य",
     urduName: "رقص",
     description:
-      "Competitions from classical to western — solo, group and battle formats — for anyone who wants to show off their rhythm and moves.",
+      "Competitions span classical to western styles, with solo, group and battle formats, allowing dance enthusiasts to showcase their rhythm and moves.",
     art: "/art/sneaker-jutti.webp",
     artAlt:
       "A worn high-top sneaker next to an embroidered jutti with ghungroo",
@@ -28,7 +28,7 @@ export const categories: Record<CategorySlug, Category> = {
     hindiName: "कला",
     urduName: "فن",
     description:
-      "A celebration of creativity across art, photography, theatre and fashion — traditional forms and bold, innovative expressions sharing one stage.",
+      "A celebration of creativity across art, photography, theatre, and fashion, bringing traditional forms and bold, innovative expressions together on one stage.",
     art: "/art/painting.jpg",
     artAlt: "A bangled hand painting a miniature-style portrait",
   },
@@ -38,7 +38,7 @@ export const categories: Record<CategorySlug, Category> = {
     hindiName: "चतुराई",
     urduName: "ذہانت",
     description:
-      "From quizzing and clever challenges to literary treasure hunts and murder mysteries — events that put your wit, curiosity and problem-solving skills to the test.",
+      "From quizzing and clever challenges to literary treasure hunts and murder mysteries, these events put your wit, curiosity, and problem-solving skills to the test.",
     art: "/art/puppets.webp",
     artAlt: "A row of string puppets",
   },
@@ -48,7 +48,7 @@ export const categories: Record<CategorySlug, Category> = {
     hindiName: "व्यवसाय",
     urduName: "کاروبار",
     description:
-      "Case competitions, M&A simulations and more — sharp strategy, quick thinking and business acumen, on stage.",
+      "Case competitions, M&A simulations, and more will bring sharp strategy, quick thinking, and business acumen to the stage, showcasing corporate intellect.",
     art: "/art/business-collage.webp",
     artAlt: "Collage of gold jewellery, a vintage car and a colonial facade",
   },

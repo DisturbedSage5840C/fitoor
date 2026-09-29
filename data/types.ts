@@ -27,7 +27,7 @@ export type ClubId =
 export interface Club {
   id: ClubId;
   name: string;
-  /** e.g. "the Plaksha Music Club" — as printed on the brochure. */
+  /** e.g. "the Plaksha Music Club": as printed on the brochure. */
   description: string;
   logo: string;
 }
@@ -50,16 +50,11 @@ export interface EventItem {
   fee: string;
   /** As printed on the brochure, e.g. "₹8,000". */
   prizePool: string;
-  /** As printed on the brochure, e.g. "14 Nov · 3 – 4:30 PM". */
+  /** As printed on the brochure, e.g. "14 Nov, 3 PM to 4:30 PM". */
   dateTime: string;
 }
 
 export interface ContactPerson {
   name: string;
   phone: string;
-}
-
-export interface FaqItem {
-  question: string;
-  answer: string;
 }

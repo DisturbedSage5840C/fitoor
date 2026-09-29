@@ -8,7 +8,7 @@ interface MascotFaceLogomarkProps {
   label?: string;
 }
 
-/** Fitoor's mascot — the goggle-wearing girl from the brand guide (retro colourway). */
+/** Fitoor's mascot, the goggle-wearing girl from the brand guide (retro colourway). */
 export function MascotFaceLogomark({
   size = 40,
   className,

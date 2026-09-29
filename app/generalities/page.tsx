@@ -1,96 +1,48 @@
 import type { Metadata } from "next";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
-import { generalFaqs, generalRules, security } from "@/data/content";
+import { generalRules, security } from "@/data/content";
 
 export const metadata: Metadata = {
-  title: "Rules & FAQ",
+  title: "General rules",
   description:
-    "General rules, security guidelines and FAQs for Fitoor 2026 participants.",
+    "General rules, information and security guidelines for Fitoor 2026 participants.",
 };
 
 export default function GeneralitiesPage() {
   return (
     <>
-      <PageHeader
-        title="generalities"
-        script="rules, security & the usual questions"
-        intro="These apply to every participant, across every event. Event-specific rules live on each event's page."
-        art={{
-          src: "/art/puppets.webp",
-          alt: "Two Rajasthani kathputli puppets, one wearing sunglasses",
-          width: 768,
-          height: 1024,
-        }}
-      />
+      <PageHeader title="general rules" />
 
-      <div className="mx-auto grid grid-cols-1 max-w-6xl gap-16 px-4 py-16 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:py-24">
-        <RevealOnScroll>
-          <h2 className="font-title neon text-5xl lowercase">general rules</h2>
-          <ol className="mt-8 space-y-5">
-            {generalRules.map((rule, i) => (
-              <li key={rule} className="flex gap-5">
-                <span className="font-display w-10 shrink-0 text-3xl leading-none text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="font-body leading-relaxed text-cream/80">
-                  {rule}
-                </p>
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-4 pb-24 sm:px-6 lg:grid-cols-[1.3fr_1fr]">
+        <section aria-labelledby="rules">
+          <h2 id="rules" className="sr-only">
+            General rules and information
+          </h2>
+          <ol className="font-body list-decimal space-y-5 pl-6 text-cream/90 marker:text-gold">
+            {generalRules.map((rule) => (
+              <li key={rule} className="prose-copy pl-2">
+                {rule}
               </li>
             ))}
           </ol>
-        </RevealOnScroll>
+        </section>
 
-        <RevealOnScroll delay={0.1}>
-          <div className="rounded-2xl border border-rose/40 bg-maroon p-7">
-            <h2 className="font-title text-4xl text-cream lowercase">
-              security
-            </h2>
-            <ul className="mt-6 space-y-4">
-              {security.map((point) => (
-                <li
-                  key={point}
-                  className="font-body flex gap-3 text-sm leading-relaxed text-cream/75"
-                >
-                  <span
-                    className="mt-2 size-1.5 shrink-0 rounded-full bg-rose"
-                    aria-hidden
-                  />
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </RevealOnScroll>
-      </div>
-
-      <section className="border-t border-gold/15 bg-maroon">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
-          <h2 className="font-title neon text-5xl lowercase">faq</h2>
-          <Accordion className="mt-8">
-            {generalFaqs.map((faq) => (
-              <AccordionItem
-                key={faq.question}
-                value={faq.question}
-                className="border-cream/10"
-              >
-                <AccordionTrigger className="font-body py-4 text-base font-semibold text-cream hover:text-gold hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="font-body pb-4 text-cream/70">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
+        <section aria-labelledby="security">
+          <h2
+            id="security"
+            className="font-display text-4xl text-gold sm:text-5xl"
+          >
+            security
+          </h2>
+          <ul className="font-body mt-6 list-disc space-y-4 pl-5 text-cream/85 marker:text-gold">
+            {security.map((point) => (
+              <li key={point} className="prose-copy pl-1">
+                {point}
+              </li>
             ))}
-          </Accordion>
-        </div>
-      </section>
+          </ul>
+        </section>
+      </div>
     </>
   );
 }

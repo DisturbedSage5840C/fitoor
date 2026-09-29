@@ -8,7 +8,7 @@ import {
 import localFont from "next/font/local";
 
 /**
- * Yatra One — the Devanagari-flavoured Latin display face that matches the
+ * Yatra One: the Devanagari-flavoured Latin display face that matches the
  * brochure's neon section titles ("music", "dance", "general"…).
  */
 export const yatra = Yatra_One({
@@ -18,7 +18,7 @@ export const yatra = Yatra_One({
   display: "swap",
 });
 
-/** Rozha One — high-contrast serif for the "fitoor" wordmark, after the brochure cover. */
+/** Rozha One: high-contrast serif for the "fitoor" wordmark, after the brochure cover. */
 export const rozha = Rozha_One({
   variable: "--font-rozha",
   subsets: ["latin", "devanagari"],
@@ -26,7 +26,7 @@ export const rozha = Rozha_One({
   display: "swap",
 });
 
-/** Montserrat — the brochure's body copy. */
+/** Montserrat: the brochure's body copy. */
 export const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -49,7 +49,7 @@ export const notoSerifDevanagari = Noto_Serif_Devanagari({
 });
 
 /**
- * Amithen — the italic script used for the brochure's subtitles
+ * Amithen: the italic script used for the brochure's subtitles
  * ("competitions and informations", "classical vocal performance").
  * Not on Google Fonts, so it's loaded from assets/fonts.
  */
@@ -59,7 +59,7 @@ export const amithen = localFont({
   display: "swap",
 });
 
-/** Druk — condensed display face for big numerals (countdown, stats). */
+/** Druk: condensed display face for big numerals (countdown, stats). */
 export const druk = localFont({
   src: "../assets/fonts/Druk-Bold.otf",
   variable: "--font-druk",

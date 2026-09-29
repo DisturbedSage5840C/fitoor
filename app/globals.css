@@ -5,10 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Fitoor 2026 — tokens pulled from the official brochure.
+  Fitoor 2026 tokens, taken from the brochure and the Figma brand guide.
 
-  One fixed dark maroon & gold theme. Each event category gets its own
-  page colour (violet music, teal dance, olive art, burnt-orange wit &
+  One fixed dark maroon and gold theme. Each event category gets its own
+  page colour (violet music, teal dance, olive art, burnt orange wit and
   whim, plum business) exactly like the brochure spreads, swapped in
   through [data-category] so a single component can wear any category.
 
@@ -44,7 +44,7 @@
   --color-gold: var(--gold);
   --color-gold-bright: var(--gold-bright);
   --color-cream: var(--cream);
-  --color-rose: var(--rose);
+  --color-sunset: var(--sunset);
 
   /* Per-category, context-aware (set by [data-category]) */
   --color-category: var(--category);
@@ -75,37 +75,6 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-
-  --animate-marquee: marquee 38s linear infinite;
-  --animate-spin-slow: spin 22s linear infinite;
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes grain-shift {
-    0%,
-    100% {
-      transform: translate(0, 0);
-    }
-    20% {
-      transform: translate(-3%, 2%);
-    }
-    40% {
-      transform: translate(-2%, 3%);
-    }
-    60% {
-      transform: translate(-3%, -2%);
-    }
-    80% {
-      transform: translate(-1%, -1%);
-    }
-  }
 }
 
 :root {
@@ -115,10 +84,10 @@
   --gold: #e8c77e;
   --gold-bright: #f4d896;
   --cream: #f7ecd9;
-  /* The hot pink-red the brochure uses for its neon halos */
-  --rose: #ff4f6d;
+  /* Figma "Sunset Orange", the colour of the intro auto */
+  --sunset: #ff6350;
 
-  /* Category: fill/accent · light text tint · page background */
+  /* Category: fill/accent, light text tint, page background */
   --music: #8b5cf6;
   --music-light: #cdb6ff;
   --music-bg: #1f0a38;
@@ -135,11 +104,10 @@
   --business-light: #f8b3d5;
   --business-bg: #3e1125;
 
-  /* Default context = the fest's own maroon + rose neon */
-  --category: var(--rose);
+  /* Default context: the fest's own maroon and gold */
+  --category: var(--gold);
   --category-light: var(--gold);
   --category-bg: var(--maroon);
-  --glow: var(--rose);
 
   --background: var(--maroon-deepest);
   --foreground: var(--cream);
@@ -152,45 +120,40 @@
   --secondary: var(--maroon-light);
   --secondary-foreground: var(--cream);
   --muted: var(--maroon-light);
-  --muted-foreground: color-mix(in oklab, var(--cream) 65%, transparent);
+  --muted-foreground: color-mix(in oklab, var(--cream) 72%, transparent);
   --accent: var(--gold);
   --accent-foreground: var(--maroon-deepest);
   --destructive: #e35b4f;
-  --border: color-mix(in oklab, var(--cream) 14%, transparent);
+  --border: color-mix(in oklab, var(--cream) 18%, transparent);
   --input: color-mix(in oklab, var(--cream) 16%, transparent);
   --ring: var(--gold);
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 }
 
 [data-category="music"] {
   --category: var(--music);
   --category-light: var(--music-light);
   --category-bg: var(--music-bg);
-  --glow: var(--music);
 }
 [data-category="dance"] {
   --category: var(--dance);
   --category-light: var(--dance-light);
   --category-bg: var(--dance-bg);
-  --glow: #4fe0d2;
 }
 [data-category="art"] {
   --category: var(--art);
   --category-light: var(--art-light);
   --category-bg: var(--art-bg);
-  --glow: #f0b94a;
 }
 [data-category="wit-whim"] {
   --category: var(--wit-whim);
   --category-light: var(--wit-whim-light);
   --category-bg: var(--wit-whim-bg);
-  --glow: #ff6a2b;
 }
 [data-category="business"] {
   --category: var(--business);
   --category-light: var(--business-light);
   --category-bg: var(--business-bg);
-  --glow: #ff3d9a;
 }
 
 @layer base {
@@ -212,11 +175,17 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.6;
   }
 
   ::selection {
-    background: var(--rose);
-    color: var(--cream);
+    background: var(--gold);
+    color: var(--maroon-deepest);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
   }
 }
 
@@ -235,6 +204,9 @@
 }
 .font-display {
   font-family: var(--font-druk), Impact, "Arial Black", sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
 }
 .font-nastaliq {
   font-family: var(--font-nastaliq), serif;
@@ -243,62 +215,16 @@
   font-family: var(--font-noto-serif-devanagari), serif;
 }
 
-/* The brochure's neon title: cream core, coloured halo. --glow follows
-   the category context, so the same heading glows violet on /events/music. */
-@utility neon {
-  color: #fff6ee;
-  text-shadow:
-    0 0 2px color-mix(in oklab, var(--glow) 60%, white),
-    0 0 12px var(--glow),
-    0 0 32px color-mix(in oklab, var(--glow) 70%, transparent),
-    0 0 64px color-mix(in oklab, var(--glow) 40%, transparent);
-}
-
-/* Hero wordmark only: hot-pink glyphs (not cream) inside a white-hot halo,
-   closer to the brochure's neon-sign treatment of the "fitoor" logotype. */
-@utility neon-pink {
-  color: var(--rose);
-  text-shadow:
-    0 0 2px color-mix(in oklab, white 70%, transparent),
-    0 0 16px color-mix(in oklab, white 50%, transparent),
-    0 0 36px var(--rose),
-    0 0 72px color-mix(in oklab, var(--rose) 60%, transparent);
-}
-
-@utility neon-soft {
-  color: #fff6ee;
-  text-shadow:
-    0 0 10px color-mix(in oklab, var(--glow) 70%, transparent),
-    0 0 28px color-mix(in oklab, var(--glow) 35%, transparent);
-}
-
-/* Print-style halftone dots, like the brochure's screened backgrounds */
-@utility halftone {
-  background-image: radial-gradient(
-    color-mix(in oklab, black 45%, transparent) 1.1px,
-    transparent 1.4px
-  );
-  background-size: 7px 7px;
-}
-
-@utility halftone-light {
-  background-image: radial-gradient(
-    color-mix(in oklab, white 10%, transparent) 1px,
-    transparent 1.3px
-  );
-  background-size: 6px 6px;
-}
-
-@utility grain-texture {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  animation: grain-shift 1.2s steps(5) infinite;
+/* Long-form reading text: comfortable measure, no tracking tricks. */
+.prose-copy {
+  max-width: 62ch;
+  line-height: 1.75;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee,
-  .animate-spin-slow,
-  .grain-texture {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
   }
 }

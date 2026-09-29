@@ -14,25 +14,11 @@ export default async function Image() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "#1c0407",
-        backgroundImage:
-          "radial-gradient(circle at 50% 25%, #5c1119 0%, #1c0407 65%)",
+        background: "#2c0a0d",
         color: "#f5e9d3",
         fontFamily: "sans-serif",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          fontSize: 24,
-          letterSpacing: 8,
-          textTransform: "uppercase",
-          color: "#e8c77e",
-          marginBottom: 24,
-        }}
-      >
-        {fest.university}
-      </div>
       <div
         style={{
           display: "flex",
@@ -58,8 +44,7 @@ export default async function Image() {
           display: "flex",
           fontSize: 26,
           marginTop: 28,
-          color: "#c9a6f0",
-          letterSpacing: 2,
+          color: "#e8c77e",
         }}
       >
         {fest.dates}

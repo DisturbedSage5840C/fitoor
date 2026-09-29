@@ -30,7 +30,7 @@ export const events: EventItem[] = [
     club: "crescendo",
     fee: "₹100 per head",
     prizePool: "₹8,000",
-    dateTime: "14 Nov · 3 – 4:30 PM",
+    dateTime: "14 Nov, 3 PM to 4:30 PM",
   },
   {
     id: "euphony",
@@ -38,12 +38,12 @@ export const events: EventItem[] = [
     title: "Euphony",
     subtitle: "western vocal performance",
     description:
-      "Euphony is where Western vocal styles come alive — powerful rock anthems, pop hits, soulful melodies, jazz, blues and more. Perform solo or as a duet, take the audience on a musical journey, and show us what your voice can do.",
+      "Euphony is where Western vocal styles come alive: powerful rock anthems, pop hits, soulful melodies, jazz, blues and more. Perform solo or as a duet, take the audience on a musical journey, and show us what your voice can do.",
     format: "Solo / Duet",
     facts: ["Max 5 min", "One song, many, or a medley"],
     rules: [
       "Open to solo and duet performances.",
-      'Any Western vocal style — pop, rock, jazz, blues and related genres. Any song that isn\'t "Classical Music" is permitted.',
+      'Any Western vocal style, including pop, rock, jazz, blues and related genres. Any song that isn\'t "Classical Music" is permitted.',
       "Each performance must not exceed 5 minutes, including any introduction.",
       "You may perform one song, multiple songs, or a medley.",
       "Only backing tracks without vocals are allowed. No live instrumental accompaniment.",
@@ -56,7 +56,7 @@ export const events: EventItem[] = [
     club: "crescendo",
     fee: "₹100 per head",
     prizePool: "₹8,000",
-    dateTime: "14 Nov · 4:30 – 6 PM",
+    dateTime: "14 Nov, 4:30 PM to 6 PM",
   },
   {
     id: "battle-of-bands",
@@ -65,13 +65,13 @@ export const events: EventItem[] = [
     subtitle: "band performance",
     description:
       "Get ready for a night of unforgettable performances as bands take the stage and battle it out through their music.",
-    format: "Group (3–8)",
+    format: "Group (3 to 8)",
     facts: ["20 min slot", "Live only"],
     rules: [
       "Cross-institutional bands are not allowed.",
       "Each band gets 20 minutes in total: up to 5 minutes for setup and sound check, and up to 15 minutes of performance. Exceeding the slot is penalised.",
-      "Songs may be in any language or genre. Preference may be given to creativity — original compositions or improvisation.",
-      "Backing tracks and pre-recorded music are strictly prohibited — everything is played live by the band.",
+      "Songs may be in any language or genre. Preference may be given to creativity: original compositions or improvisation.",
+      "Backing tracks and pre-recorded music are strictly prohibited; everything is played live by the band.",
       "A standard drum set, stage monitors and microphones are provided. Bring every other instrument plus your own cables, pedals, adapters and accessories.",
       "All members must be backstage 15 minutes before the scheduled slot.",
       "Judged on musical skill, vocal performance, arrangement, creativity, stage presence, coordination and overall performance.",
@@ -80,7 +80,7 @@ export const events: EventItem[] = [
     club: "crescendo",
     fee: "₹100 per head",
     prizePool: "₹25,000",
-    dateTime: "14 Nov · 6 – 9:30 PM",
+    dateTime: "14 Nov, 6 PM to 10 PM",
   },
 
   // ─── Dance ────────────────────────────────────────────────
@@ -92,7 +92,7 @@ export const events: EventItem[] = [
     description:
       "A solo celebration of Indian classical and folk dance, where tradition meets individual expression.",
     format: "Solo Classical or Solo Folk",
-    facts: ["3–7 min", "+2 min setup"],
+    facts: ["3 to 7 min", "+2 min setup"],
     rules: [
       "Single round.",
       "Classical: Bharatanatyam, Kathak, Odissi, Kuchipudi, Mohiniyattam, Manipuri, Kathakali, Sattriya.",
@@ -109,7 +109,7 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "15 Nov · 10 – 11 AM",
+    dateTime: "15 Nov, 10 AM to 12 PM",
   },
   {
     id: "riwayat",
@@ -118,8 +118,8 @@ export const events: EventItem[] = [
     subtitle: "classical / folk duet & group dance",
     description:
       "A duet and group showcase of Indian classical and folk dance, bringing collective energy and tradition to the stage.",
-    format: "Duet or Group (2–15)",
-    facts: ["5–10 min", "+2 min setup"],
+    format: "Duet or Group (2 to 15)",
+    facts: ["5 to 10 min", "+2 min setup"],
     rules: [
       "Single round.",
       "Classical: Bharatanatyam, Kathak, Odissi, Kuchipudi, Mohiniyattam, Manipuri, Kathakali, Sattriya.",
@@ -136,7 +136,7 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹100 per head",
     prizePool: "₹15,000",
-    dateTime: "15 Nov · 11 AM – 12 PM",
+    dateTime: "15 Nov, 10 AM to 12 PM",
   },
   {
     id: "rivals-riot",
@@ -144,23 +144,23 @@ export const events: EventItem[] = [
     title: "Rivals Riot",
     subtitle: "dance battle",
     description:
-      "A one-on-one freestyle dance battle where dancers face off — Top 8, head to head, until one is left.",
+      "A one-on-one freestyle dance battle where dancers face off: Top 8, head to head, until one is left.",
     format: "Solo Freestyle",
     facts: ["QF 45s", "SF 2×45s", "Final 60s"],
     rules: [
-      "Independent of all other dance events. Western solo and duet participants may enter, plus up to 5 members from each team competing in Revolution — each with a separate registration from the college.",
+      "Independent of all other dance events. Western solo and duet participants may enter, plus up to 5 members from each team competing in Revolution, each with a separate registration from the college.",
       "All Western and street styles are welcome.",
-      "A preliminary round may pick the Top 8 — each dancer freestyles 45 seconds to an undisclosed, organiser-selected track.",
+      "A preliminary round may pick the Top 8; each dancer freestyles 45 seconds to an undisclosed, organiser-selected track.",
       "Knockout bracket: Quarterfinals (1 × 45s per dancer) → Semifinals (2 × 45s per dancer) → Final (1 × 60s per dancer). Judges decide each battle.",
       "In case of a tie, a 30-second sudden-death round may be held.",
-      "No pre-choreographed routines — freestyle and real-time musical interpretation only. No props.",
+      "No pre-choreographed routines; freestyle and real-time musical interpretation only. No props.",
       "Judged on musicality, creativity & originality, freestyle & adaptability, technique and stage presence.",
       "The organising committee has final discretion over music (genre, tempo and mood may vary), format, progression and anything not covered above.",
     ],
     club: "one-o-one",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "15 Nov · 12 – 1 PM",
+    dateTime: "15 Nov, 12 PM to 1 PM",
   },
   {
     id: "rogue",
@@ -170,7 +170,7 @@ export const events: EventItem[] = [
     description:
       "A solo Western dance showcase where dancers take the spotlight with their unique style, creativity and musicality.",
     format: "Solo",
-    facts: ["1.5–5 min", "Single round"],
+    facts: ["1.5 to 5 min", "Single round"],
     rules: [
       "Single round. All Western dance styles are welcome.",
       "Performances must be 1.5 to 5 minutes long; penalties apply for going over or under. No live music.",
@@ -184,7 +184,7 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "15 Nov · 2 – 3 PM",
+    dateTime: "15 Nov, 2 PM to 5 PM",
   },
   {
     id: "reverb",
@@ -194,7 +194,7 @@ export const events: EventItem[] = [
     description:
       "A Western duet where two dancers sync their energy, musicality and movement to create one powerful performance.",
     format: "Duet",
-    facts: ["1.5–5 min", "Single round"],
+    facts: ["1.5 to 5 min", "Single round"],
     rules: [
       "Single round. All Western dance styles are welcome.",
       "Performances must be 1.5 to 5 minutes long; penalties apply for going over or under. No live music.",
@@ -208,7 +208,7 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹200",
     prizePool: "₹15,000",
-    dateTime: "15 Nov · 3 – 4 PM",
+    dateTime: "15 Nov, 2 PM to 5 PM",
   },
   {
     id: "revolution",
@@ -217,11 +217,11 @@ export const events: EventItem[] = [
     subtitle: "western group dance",
     description:
       "A Western group dance competition where bold choreography, formations, synchronisation and teamwork take centre stage.",
-    format: "Group (8–20)",
-    facts: ["5–10 min", "Min 4 on stage"],
+    format: "Group (8 to 20)",
+    facts: ["5 to 10 min", "Min 4 on stage"],
     rules: [
       "Single round. All Western dance styles are welcome.",
-      "Teams must have 8–20 members, with at least 4 dancers on stage at all times.",
+      "Teams must have 8 to 20 members, with at least 4 dancers on stage at all times.",
       "Performances must be 5 to 10 minutes long; penalties apply for going over or under. No live music.",
       "Props are allowed with prior approval and must not hinder stage setup.",
       "Judged on originality & creativity, coordination & sync, choreography & formations, musicality, energy & expression, presentation, technique and overall impact & flow.",
@@ -233,7 +233,7 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹1,200 per group",
     prizePool: "₹25,000",
-    dateTime: "15 Nov · 4 – 5 PM",
+    dateTime: "15 Nov, 2 PM to 5 PM",
   },
 
   // ─── Art & Expression ─────────────────────────────────────
@@ -243,18 +243,18 @@ export const events: EventItem[] = [
     title: "Canvas",
     subtitle: "art competition",
     description:
-      "The theme drops 3 days before the showdown, challenging artists to think on their feet and bring spontaneity and originality to their canvas. All mediums are welcome — colour or black and white — so steal the spotlight with just your artistic energy.",
+      "The theme drops 3 days before the showdown, challenging artists to think on their feet and bring spontaneity and originality to their canvas. All mediums are welcome, colour or black and white, so steal the spotlight with just your artistic energy.",
     format: "Solo",
-    facts: ["3–4 hr live round", "No AI tools"],
+    facts: ["3 to 4 hr live round", "No AI tools"],
     rules: [
-      "Painting round: an in-person round where you get 3–4 hours to finish your piece. Basic supplies are available at the venue, but bring your own.",
+      "Painting round: an in-person round where you get 3 to 4 hours to finish your piece. Basic supplies are available at the venue, but bring your own.",
       "Judging round: one internal and one external judge review the final submissions and declare first, second and third place.",
-      "AI usage: AI tools are strictly prohibited at every stage — inspiration, brainstorming, reference generation, or creating and modifying artwork. Every idea and every piece must be entirely your own.",
+      "AI usage: AI tools are strictly prohibited at every stage: inspiration, brainstorming, reference generation, or creating and modifying artwork. Every idea and every piece must be entirely your own.",
     ],
     club: "rangrez",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "14 Nov · 10 AM – 2 PM",
+    dateTime: "14 Nov, 10 AM to 2 PM",
   },
   {
     id: "rangeen-jeevan",
@@ -262,12 +262,12 @@ export const events: EventItem[] = [
     title: "Rangeen Jeevan",
     subtitle: "photography",
     description:
-      "The theme is the energetic, active persona of today's youngsters blended with the Indian aesthetic of vibrant tradition — in a single still. You'll have time to explore the campus, drop into events, shoot within campus and submit within the designated time.",
+      "The theme is the energetic, active persona of today's youngsters blended with the Indian aesthetic of vibrant tradition, in a single still. You'll have time to explore the campus, drop into events, shoot within campus and submit within the designated time.",
     format: "Solo",
     facts: ["6 hours", "2 photos max"],
     rules: [
       "Only phones are allowed.",
-      "You get a lanyard at on-site registration. Hand it back to the organisers at the designated venue after submitting your photos — if it isn't returned within the 6 hours, your submission is rejected.",
+      "You get a lanyard at on-site registration. Hand it back to the organisers at the designated venue after submitting your photos; if it isn't returned within the 6 hours, your submission is rejected.",
       "Submit at most 2 photos. Editing is allowed, but disclose the software you used.",
       "The submission window lasts 3 hours; late entries don't count.",
       "Name files FIRSTNAME_INSTITUTE_PHOTONUMBER (e.g. DEV_PLAKSHA_01.jpg), in .jpg, .jpeg or .heic.",
@@ -276,7 +276,7 @@ export const events: EventItem[] = [
     club: "lamhe",
     fee: "₹100",
     prizePool: "₹15,000",
-    dateTime: "15 Nov · 10 AM – 6 PM",
+    dateTime: "15 Nov, 10 AM to 6 PM",
   },
   {
     id: "climax",
@@ -285,13 +285,13 @@ export const events: EventItem[] = [
     subtitle: "filmmaking",
     description:
       "The theme is youthful energy blended with vibrant Indian tradition, presented in a well-flowing video sequence. Shoot on day one, edit, and submit on day two.",
-    format: "Group (1–5)",
-    facts: ["Spans both days", "4–5 min film"],
+    format: "Group (1 to 5)",
+    facts: ["Spans both days", "4 to 5 min film"],
     rules: [
       "Only phones are allowed.",
       "Teams must be on campus both days: record your clips on Day 1, then edit and submit on Day 2.",
-      "After recording and selecting clips, submit a drive folder of them to the organisers — recorded clips and stock clips both.",
-      "Each team member gets a coloured lanyard at on-site registration. Return it to the organisers at the designated venue after submitting your folder on Day 1 — any Day 2 video submitted without the lanyards returned won't count.",
+      "After recording and selecting clips, submit a drive folder of them to the organisers: recorded clips and stock clips both.",
+      "Each team member gets a coloured lanyard at on-site registration. Return it to the organisers at the designated venue after submitting your folder on Day 1; any Day 2 video submitted without the lanyards returned won't count.",
       "The submission window opens on Day 2 and lasts 4 hours; late entries are not allowed.",
       "Name the file TEAMNAME_INSTITUTE (e.g. BROCODE_PLAKSHA.mp4), in .mp4 or .mov.",
       "The video must be 4 to 5 minutes long.",
@@ -300,7 +300,7 @@ export const events: EventItem[] = [
     club: "lamhe",
     fee: "₹300 per group",
     prizePool: "₹15,000",
-    dateTime: "14 Nov 10 AM – 9 PM & 15 Nov 10 AM – 6 PM",
+    dateTime: "14 Nov, 10 AM to 9 PM and 15 Nov, 10 AM to 6 PM",
   },
   {
     id: "baal-ki-khaal",
@@ -308,13 +308,13 @@ export const events: EventItem[] = [
     title: "Baal ki Khaal",
     subtitle: "open style theatrics",
     description:
-      '"Har kahaani ke peeche ek aur kahaani hoti hai." Look closer, question the obvious and obsess over the details others overlook. Take a simple idea and push it to its dramatic extreme — unravel a hidden social reality, or find chaos in the mundane. Stage play, nukkad natak, experimental theatre or a brand new form — the canvas is yours.',
-    format: "Group (5–10)",
-    facts: ["7–12 min", "Hindi or English"],
+      '"Har kahaani ke peeche ek aur kahaani hoti hai." Look closer, question the obvious and obsess over the details others overlook. Take a simple idea and push it to its dramatic extreme: unravel a hidden social reality, or find chaos in the mundane. Stage play, nukkad natak, experimental theatre or a brand new form; the canvas is yours.',
+    format: "Group (5 to 10)",
+    facts: ["7 to 12 min", "Hindi or English"],
     rules: [
-      "Format: open style — stage play, nukkad natak, experimental theatre, etc.",
-      "Duration: 7–12 minutes.",
-      "Language: Hindi or English, appropriate for a general audience — no profanity or offensive language.",
+      "Format: open style, such as stage play, nukkad natak or experimental theatre.",
+      "Duration: 7 to 12 minutes.",
+      "Language: Hindi or English, appropriate for a general audience; no profanity or offensive language.",
       "No controversial topics, statements or themes may be presented in the performance.",
       "Teams bring their own props.",
       "Stage furniture requests must be communicated beforehand and are subject to availability.",
@@ -325,7 +325,7 @@ export const events: EventItem[] = [
     club: "spotlight",
     fee: "₹500 per group",
     prizePool: "₹15,000",
-    dateTime: "14 Nov · 10 AM – 12 PM",
+    dateTime: "14 Nov, 10 AM to 12 PM",
   },
   {
     id: "pandoras-box",
@@ -333,14 +333,14 @@ export const events: EventItem[] = [
     title: "Pandora's Box",
     subtitle: "improv act",
     description:
-      "No script. No certainty. No second chances. Thirty minutes before you go on, you get a mystery prop — and that one object becomes the catalyst for an entirely improvised story. Build characters, create conflict, find the comedy, embrace the absurd — because when the box opens, anything can happen.",
-    format: "Group (5–10)",
-    facts: ["30 min prep", "7–10 min act"],
+      "No script. No certainty. No second chances. Thirty minutes before you go on, you get a mystery prop, and that one object becomes the catalyst for an entirely improvised story. Build characters, create conflict, find the comedy, embrace the absurd, because when the box opens, anything can happen.",
+    format: "Group (5 to 10)",
+    facts: ["30 min prep", "7 to 10 min act"],
     rules: [
       "Format: prop-based improvisation.",
       "Preparation time: 30 minutes from the moment the mystery prop is revealed.",
-      "Duration: 7–10 minutes.",
-      "Language: Hindi or English, appropriate for a general audience — no profanity or offensive language.",
+      "Duration: 7 to 10 minutes.",
+      "Language: Hindi or English, appropriate for a general audience; no profanity or offensive language.",
       "No controversial topics, statements or themes may be presented in the performance.",
       "Teams bring their own props.",
       "Report 30 minutes before the event. Up to 2 accompanists are allowed for stage, sound or costume management.",
@@ -349,7 +349,7 @@ export const events: EventItem[] = [
     club: "spotlight",
     fee: "₹500 per group",
     prizePool: "₹10,000",
-    dateTime: "14 Nov · 12 – 3 PM",
+    dateTime: "14 Nov, 12 PM to 3 PM",
   },
   {
     id: "jugaad-couture",
@@ -357,8 +357,8 @@ export const events: EventItem[] = [
     title: "Jugaad Couture",
     subtitle: "fashion show",
     description:
-      "Calling all fashion visionaries to own the runway! From the historic galiyan of old bazaars to the grand gaddiyan of royal courts, Indian style has always been driven by raw hustle and rich heritage. Reimagine royal brocades, vintage sarees and antique silhouettes through an upcycled street lens — blend regal elegance with urban grit and show us how high fashion meets raw jugaad.",
-    format: "Group (5–10)",
+      "Calling all fashion visionaries to own the runway! From the historic galiyan of old bazaars to the grand gaddiyan of royal courts, Indian style has always been driven by raw hustle and rich heritage. Reimagine royal brocades, vintage sarees and antique silhouettes through an upcycled street lens. Blend regal elegance with urban grit and show us how high fashion meets raw jugaad.",
+    format: "Group (5 to 10)",
     facts: ["8 min on the ramp", "Upcycled / sustainable"],
     rules: [
       "Theme & storytelling: outfits must convey a clear narrative blending historic/royal elements with street style, while using upcycled, vintage or sustainable fashion choices.",
@@ -370,7 +370,7 @@ export const events: EventItem[] = [
     ],
     fee: "₹500 per group",
     prizePool: "₹25,000",
-    dateTime: "15 Nov · 11 AM – 2 PM",
+    dateTime: "15 Nov, 11 AM to 2 PM",
   },
 
   // ─── Wit & Whim ───────────────────────────────────────────
@@ -381,17 +381,17 @@ export const events: EventItem[] = [
     subtitle: "murder mystery treasure hunt",
     description:
       "Solve a murder mystery through clues hidden in songs, poetry, crime scenes and campus locations. Investigate evidence, analyse testimonies, uncover motives and piece together the true narrative. The team that best solves the case is crowned the Murder Balladeers.",
-    format: "Group (3–5)",
+    format: "Group (3 to 5)",
     facts: ["3 rounds", "Campus-wide"],
     rules: [
-      "Round 1 — Discovery of the Crime: report to the 'Headquarters' for a briefing on investigative ethics, procedure and the code of conduct for handling crime scenes. You'll receive the case file, witness-testimony videos and a general brief of the crime.",
-      "Round 2 — The Investigation: examine dedicated crime scenes across campus for the next few hours. Each team gets access to a location for a fixed time only, and may need to visit locations in a specific sequence.",
-      "Round 3 — The Final Verdict: return to HQ and compose your song of murder — a report or theory of the crime as a poem or a song, judged on artistic creativity and how close you come to the truth.",
+      "Round 1 (Discovery of the Crime): report to the 'Headquarters' for a briefing on investigative ethics, procedure and the code of conduct for handling crime scenes. You'll receive the case file, witness-testimony videos and a general brief of the crime.",
+      "Round 2 (The Investigation): examine dedicated crime scenes across campus for the next few hours. Each team gets access to a location for a fixed time only, and may need to visit locations in a specific sequence.",
+      "Round 3 (The Final Verdict): return to HQ and compose your song of murder: a report or theory of the crime as a poem or a song, judged on artistic creativity and how close you come to the truth.",
     ],
     club: "spine",
     fee: "₹300 per group",
     prizePool: "₹25,000",
-    dateTime: "15 Nov · 10 AM – 6 PM",
+    dateTime: "15 Nov, 10 AM to 6 PM",
   },
   {
     id: "20-20-vision",
@@ -400,10 +400,10 @@ export const events: EventItem[] = [
     subtitle: "all about the 2020s",
     description:
       "A general quiz covering politics, pop culture, science & tech, geography and the key moments that shaped the decade. Wars. Pandemics. Reconnection. Climate. Records. Tariff. Bears. Drama. Insurrection. Absurdity. Hope. Protests. TRUMP. Think you can cut through the noise and remember the moments that defined the decade?",
-    format: "Group (1–3)",
-    facts: ["Written prelims", "Top 6–10 to finals"],
+    format: "Group (1 to 3)",
+    facts: ["Written prelims", "Top 6 to 10 go through"],
     rules: [
-      "Preliminary round: a written quiz based on the theme. The top 6–10 teams with the highest scores qualify for the finals.",
+      "Preliminary round: a written quiz based on the theme. The top 6 to 10 teams with the highest scores qualify for the finals.",
       "Finals: a multi-round quiz for the qualifying teams, on the same theme, with creative rounds and innovative twists.",
       "Questions may reference earlier eras if they connect to the 2020s.",
       "Final question formulations are at the quizmaster's discretion.",
@@ -411,7 +411,7 @@ export const events: EventItem[] = [
     club: "pqc",
     fee: "₹100 per group",
     prizePool: "₹10,000",
-    dateTime: "14 Nov · 10 AM – 12:30 PM",
+    dateTime: "14 Nov, 10 AM to 12:30 PM",
   },
   {
     id: "slumdog-questionnaire",
@@ -419,18 +419,18 @@ export const events: EventItem[] = [
     title: "Slumdog Questionnaire",
     subtitle: "mela: music-entertainment-literature, arts",
     description:
-      "A MELA (Music-Entertainment-Literature-Arts) quiz with a desi flair. Beginners welcome — you only need to be in sync with the pop culture of our time! If Rang De Basanti is in your Letterboxd Top 4 and you start your mornings with The Local Train, this one's for you.",
-    format: "Group (1–3)",
-    facts: ["Written prelims", "Top 6–10 to finals"],
+      "A MELA (Music-Entertainment-Literature-Arts) quiz with a desi flair. Beginners welcome. You only need to be in sync with the pop culture of our time! If Rang De Basanti is in your Letterboxd Top 4 and you start your mornings with The Local Train, this one's for you.",
+    format: "Group (1 to 3)",
+    facts: ["Written prelims", "Top 6 to 10 go through"],
     rules: [
-      "Preliminary round: a written quiz based on the theme. The top 6–10 teams with the highest scores qualify for the finals. Any additional rules will be announced during the event.",
+      "Preliminary round: a written quiz based on the theme. The top 6 to 10 teams with the highest scores qualify for the finals. Any additional rules will be announced during the event.",
       "Finals: a multi-round quiz for qualifying teams, with creative rounds and innovative twists. Any additional rules will be announced during the event.",
       "Final question formulations are at the quizmaster's discretion.",
     ],
     club: "pqc",
     fee: "₹100 per group",
     prizePool: "₹10,000",
-    dateTime: "14 Nov · 12:30 – 3 PM",
+    dateTime: "14 Nov, 12:30 PM to 3 PM",
   },
 
   // ─── Business ─────────────────────────────────────────────
@@ -441,7 +441,7 @@ export const events: EventItem[] = [
     subtitle: "bring back the dead",
     description:
       "Teams are given a real or fictional bankrupt/failed company and have to bring it back to life. They analyse what went wrong, redesign the business model, develop a new strategy, and pitch their revival plan to investors.",
-    format: "Group (3–4)",
+    format: "Group (3 to 4)",
     facts: ["Live curveballs", "Pitch to judges"],
     rules: [
       "Each team receives a failed company along with its financials, problems and market position.",
@@ -454,7 +454,7 @@ export const events: EventItem[] = [
     club: "ecell",
     fee: "₹200 per group",
     prizePool: "₹20,000",
-    dateTime: "14 Nov · 4 – 6 PM",
+    dateTime: "14 Nov, 4 PM to 6 PM",
   },
   {
     id: "wolf-of-dalal-street",
@@ -463,7 +463,7 @@ export const events: EventItem[] = [
     subtitle: "live market simulation",
     description:
       "An immersive, multi-round live market simulation. Each team starts with virtual capital and trades across multiple assets in real time, responding to breaking news, market events and price fluctuations. Financial acumen, decision-making under pressure, risk management and trading strategy decide the ultimate market champion.",
-    format: "Group (2–3)",
+    format: "Group (2 to 3)",
     facts: ["Multi-round", "Buy · sell · short"],
     rules: [
       "All teams receive equal starting virtual capital.",
@@ -476,7 +476,7 @@ export const events: EventItem[] = [
     club: "pfc",
     fee: "₹200 per group",
     prizePool: "₹20,000",
-    dateTime: "14 Nov · 10 AM – 3 PM",
+    dateTime: "14 Nov, 10 AM to 3 PM",
   },
   {
     id: "cut-to-the-case",
@@ -484,22 +484,22 @@ export const events: EventItem[] = [
     title: "Cut to the Case",
     subtitle: "where cinema meets strategy",
     description:
-      "Lights, camera, strategy! As part of Young Dumb Desi, the Plaksha Consulting Club brings you a high-stakes case competition that puts your business acumen to the test through the lens of the Indian entertainment industry — from films, music and streaming to celebrity branding and the economics of showbiz. Think sharp, think desi, and take your shot at the spotlight.",
-    format: "Group (3–4)",
+      "Lights, camera, strategy! As part of Young Dumb Desi, the Plaksha Consulting Club brings you a high-stakes case competition that puts your business acumen to the test through the lens of the Indian entertainment industry, from films, music and streaming to celebrity branding and the economics of showbiz. Think sharp, think desi, and take your shot at the spotlight.",
+    format: "Group (3 to 4)",
     facts: ["2 rounds", "Final pitch to judges"],
     rules: [
-      "Round 1 — The Eliminatory Round: put your knowledge, instincts and problem-solving skills to the test to compete for a spot in the finals.",
-      "Round 2 — The Final Presentation: shortlisted teams present their strategic solutions to a panel of judges.",
+      "Round 1 (The Eliminatory Round): put your knowledge, instincts and problem-solving skills to the test to compete for a spot in the finals.",
+      "Round 2 (The Final Presentation): shortlisted teams present their strategic solutions to a panel of judges.",
       "Each participant can be part of only one team.",
       "Follow the AI-usage guidelines specified for each round.",
       "Evaluated on problem understanding, quality of analysis, creativity, feasibility, strategic thinking and presentation.",
-      "Stick to the time limits for each round — exceeding them may be penalised.",
+      "Stick to the time limits for each round; exceeding them may be penalised.",
       "The organisers reserve the right to disqualify teams for rule violations, misconduct or unfair means.",
     ],
     club: "pcc",
     fee: "₹200 per group",
     prizePool: "₹20,000",
-    dateTime: "15 Nov · 11 AM – 2 PM",
+    dateTime: "15 Nov, 11 AM to 2 PM",
   },
 ];
 
