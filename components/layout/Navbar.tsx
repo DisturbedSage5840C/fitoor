@@ -39,7 +39,7 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
-          className="group flex items-center gap-2.5"
+          className="group flex min-h-11 items-center gap-2.5"
           aria-label="Fitoor home"
         >
           <MascotFaceLogomark
@@ -87,7 +87,7 @@ export function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-cream md:hidden"
+                className="size-11 text-cream md:hidden [&_svg:not([class*=size-])]:size-6"
               />
             }
           >

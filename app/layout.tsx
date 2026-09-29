@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { fontVariables } from "@/lib/fonts";
 import { siteUrl } from "@/lib/site";
 import { Grain } from "@/components/shared/Grain";
+import { AutoIntro } from "@/components/intro/AutoIntro";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${fontVariables} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <AutoIntro />
         <Grain />
         <MotionConfig reducedMotion="user">
           <Navbar />

@@ -32,7 +32,7 @@ export default function EventsPage() {
               key={c.slug}
               href={`#${c.slug}`}
               data-category={c.slug}
-              className="font-body rounded-full bg-category-bg px-4 py-1.5 text-sm font-semibold text-category-light ring-1 ring-category/40 hover:ring-category"
+              className="font-body rounded-full bg-category-bg px-4 py-2.5 text-sm font-semibold text-category-light ring-1 ring-category/40 hover:ring-category"
             >
               {c.name}
             </a>
@@ -72,7 +72,7 @@ export default function EventsPage() {
                 </p>
                 <Link
                   href={`/events/${category.slug}`}
-                  className="font-body mt-5 inline-flex items-center gap-1.5 rounded-full bg-category px-5 py-2 text-sm font-bold text-white hover:opacity-90"
+                  className="font-body mt-5 inline-flex min-h-11 items-center gap-1.5 rounded-full bg-category px-5 py-2 text-sm font-bold text-white hover:opacity-90"
                 >
                   Rules &amp; details <ArrowUpRight className="size-4" />
                 </Link>

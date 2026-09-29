@@ -37,7 +37,7 @@ export function Footer() {
             href={socials.instagram}
             target="_blank"
             rel="noreferrer"
-            className="font-body mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-bright"
+            className="font-body mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold hover:text-gold-bright"
           >
             <InstagramIcon className="size-4" />@{socials.instagramHandle}
           </a>
@@ -92,12 +92,12 @@ function FooterList({
       <p className="font-body text-xs font-semibold tracking-[0.2em] text-gold/70 uppercase">
         {title}
       </p>
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="font-body text-sm text-cream/75 hover:text-gold"
+              className="font-body inline-block py-2.5 text-sm text-cream/75 hover:text-gold sm:py-1.5"
             >
               {link.label}
             </Link>

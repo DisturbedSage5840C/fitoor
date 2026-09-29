@@ -17,7 +17,7 @@ export function Lineup() {
         </NeonTitle>
         <Link
           href="/events"
-          className="font-body text-sm font-semibold text-gold hover:text-gold-bright"
+          className="font-body inline-block py-3 text-sm font-semibold text-gold hover:text-gold-bright"
         >
           See every event →
         </Link>

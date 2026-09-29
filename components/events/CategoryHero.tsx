@@ -18,7 +18,7 @@ export function CategoryHero({
         <div>
           <Link
             href="/events"
-            className="font-body inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.2em] text-category-light/80 uppercase hover:text-category-light"
+            className="font-body inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold tracking-[0.2em] text-category-light/80 uppercase hover:text-category-light"
           >
             <ArrowLeft className="size-3.5" /> All events
           </Link>
@@ -60,7 +60,7 @@ export function CategoryHero({
               <a
                 key={event.id}
                 href={`#${event.id}`}
-                className="font-body rounded-full border border-category-light/30 px-4 py-1.5 text-sm font-semibold text-category-light transition-colors hover:bg-category hover:text-white"
+                className="font-body rounded-full border border-category-light/30 px-4 py-2.5 text-sm font-semibold text-category-light transition-colors hover:bg-category hover:text-white"
               >
                 {event.title}
               </a>

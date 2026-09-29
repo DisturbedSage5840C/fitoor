@@ -20,7 +20,7 @@ export function AboutBlock() {
           </p>
           <Link
             href="/about"
-            className="font-body mt-6 inline-block border-b border-gold/50 pb-0.5 text-sm font-semibold text-gold hover:border-gold"
+            className="font-body mt-3 inline-block border-b border-gold/50 py-3 text-sm font-semibold text-gold hover:border-gold"
           >
             More about Fitoor &amp; Plaksha →
           </Link>

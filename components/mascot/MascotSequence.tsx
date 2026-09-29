@@ -6,7 +6,7 @@ import { useMotionValueEvent, type MotionValue } from "motion/react";
 export const FRAME_COUNT = 61;
 export const FRAME_W = 560;
 export const FRAME_H = 598;
-const frameSrc = (i: number) =>
+export const frameSrc = (i: number) =>
   `/mascot-sequence/frame-${String(i + 1).padStart(3, "0")}.webp`;
 
 interface MascotSequenceProps {

@@ -48,7 +48,7 @@ export function BeforeYouCome() {
             </RevealOnScroll>
             <Link
               href="/generalities"
-              className="font-body mt-6 inline-block text-sm font-semibold text-gold hover:text-gold-bright"
+              className="font-body mt-3 inline-block py-3 text-sm font-semibold text-gold hover:text-gold-bright"
             >
               Full rules, security &amp; FAQ →
             </Link>
@@ -80,7 +80,7 @@ export function BeforeYouCome() {
               </ul>
               <Link
                 href="/accommodation"
-                className="font-body mt-4 inline-block text-sm font-semibold text-gold hover:text-gold-bright"
+                className="font-body mt-2 inline-block py-3 text-sm font-semibold text-gold hover:text-gold-bright"
               >
                 Stay &amp; getting here →
               </Link>
