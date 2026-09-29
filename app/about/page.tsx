@@ -77,7 +77,7 @@ export default function AboutPage() {
                 {p}
               </p>
             ))}
-            <Image
+            <Image quality={90}
               src="/brand/plaksha.png"
               alt="Plaksha University"
               width={600}

@@ -30,6 +30,38 @@ const MOBILE_RIDE_VH = 300;
 
 const SPRING = { stiffness: 90, damping: 26, mass: 0.6 };
 
+/** Poster backdrop behind the hero copy and mascot: plum glow, polka dots and
+ *  slow-turning mandala rings, so the settled hero carries the auto's palette. */
+function HeroStage({ mobile }: { mobile?: boolean }) {
+  // The outer dotted ring is drawn at 1.2x, so size the base circle to leave
+  // room for that scale-up. On desktop the fixed nav covers the top 4rem, so
+  // the ring is fitted to the space below it and centred there.
+  const ringBox = mobile
+    ? "left-1/2 top-[30%] size-[68vw] max-w-[340px]"
+    : "left-[72%] top-[calc(50%+2rem)]";
+  const ringSize = mobile
+    ? undefined
+    : { width: "min(calc((100vh - 7rem) / 1.2), 38vw)", height: "min(calc((100vh - 7rem) / 1.2), 38vw)" };
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="polka-purple absolute inset-0 opacity-60" />
+      <div
+        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,#4a1a6b_0%,#2a0d45_58%,transparent_72%)] ${ringBox}`}
+        style={ringSize}
+      />
+      <div
+        className={`animate-spin-slow absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-dashed border-gold/60 ${ringBox}`}
+        style={{ ...ringSize, scale: 1.08 }}
+      />
+      <div
+        className={`animate-spin-slow absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-dotted border-rose/60 [animation-direction:reverse] ${ringBox}`}
+        style={{ ...ringSize, scale: 1.2 }}
+      />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-maroon-deepest to-transparent" />
+    </div>
+  );
+}
+
 function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean }) {
   return (
     <div
@@ -39,7 +71,7 @@ function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean 
       className={centered ? "flex flex-col items-center text-center" : ""}
     >
       <h1>
-        <Image
+        <Image quality={90}
           src="/brand/fitoor-wordmark.png"
           alt="Fitoor, फ़ितूर, فتور"
           width={1359}
@@ -67,7 +99,7 @@ function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean 
       >
         <Link
           href="/events"
-          className="font-body inline-flex min-h-12 items-center rounded-sm bg-gold px-6 font-bold text-maroon-deepest transition-colors hover:bg-gold-bright"
+          className="font-body inline-flex min-h-12 items-center rounded-sm bg-gold px-6 font-bold text-maroon-deepest shadow-[4px_4px_0_var(--rose)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[6px_6px_0_var(--rose)]"
         >
           See all {events.length} events
         </Link>
@@ -154,7 +186,8 @@ function ScrollHero() {
       style={{ height: `${RIDE_VH + MASCOT_VH}vh` }}
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_1.15fr] items-center gap-6 px-6">
+        <HeroStage />
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-[1fr_1.15fr] items-center gap-6 px-6">
           <HeroCopy covered={covered} />
           <div className="relative mx-auto w-[min(100%,660px,74vh)]">
             <motion.div style={{ x, y, rotate, scaleY, transformOrigin: "50% 100%" }}>
@@ -180,7 +213,8 @@ function MobileHero() {
       style={{ height: `${MOBILE_RIDE_VH + 100}svh` }}
     >
       <div className="sticky top-0 flex h-svh items-center overflow-hidden pt-16">
-        <div className="mx-auto flex w-full max-w-md flex-col items-center gap-2 px-4">
+        <HeroStage mobile />
+        <div className="relative z-10 mx-auto flex w-full max-w-md flex-col items-center gap-2 px-4">
           <MascotStill className="h-[min(24svh,220px)] w-auto" />
           <HeroCopy covered={covered} centered />
         </div>

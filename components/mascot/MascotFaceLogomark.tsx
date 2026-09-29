@@ -15,7 +15,7 @@ export function MascotFaceLogomark({
   label,
 }: MascotFaceLogomarkProps) {
   return (
-    <Image
+    <Image quality={90}
       src="/brand/mascot-logomark-retro.png"
       alt={label ?? ""}
       width={size}

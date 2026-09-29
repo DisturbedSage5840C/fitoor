@@ -289,6 +289,15 @@
   background-size: 6px 6px;
 }
 
+/* Polka dots on dupatta purple, lifted from the moodboard's blouse and scarf */
+@utility polka-purple {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(244, 216, 150, 0.16) 0 5px, transparent 5.5px),
+    radial-gradient(circle at 50% 50%, rgba(255, 79, 109, 0.14) 0 3px, transparent 3.5px);
+  background-size: 44px 44px, 44px 44px;
+  background-position: 0 0, 22px 22px;
+}
+
 @utility grain-texture {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;

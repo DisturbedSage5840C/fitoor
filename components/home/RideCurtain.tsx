@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import { useMotionValueEvent, type MotionValue } from "motion/react";
 
 export const RIDE_FRAMES = 91;
-const FRAME_W = 960;
-const FRAME_H = 425;
+const FRAME_W = 1264;
+const FRAME_H = 560;
 const rideSrc = (i: number) => `/intro/ride/f-${String(i).padStart(3, "0")}.webp`;
 
 /** Rightmost opaque column of the banner in each frame, as a fraction of the
@@ -96,14 +96,25 @@ export function RideCurtain({ progress }: { progress: MotionValue<number> }) {
     <div
       ref={coverRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-20 flex items-center overflow-hidden bg-[#ff6350]"
+      className="pointer-events-none absolute inset-0 z-20 flex items-center overflow-hidden bg-[#2a0d45]"
     >
-      <canvas
-        ref={canvasRef}
-        width={FRAME_W}
-        height={FRAME_H}
-        className="h-auto w-full"
-      />
+      {/* Polka-dot dupatta purple, from the moodboard's palette */}
+      <div className="polka-purple absolute inset-0" />
+      {/* Low sun behind the auto: gold disc, halftone-screened at its rim */}
+      <div className="absolute top-1/2 left-[62%] aspect-square w-[min(70vh,44vw)] -translate-x-1/2 -translate-y-[66%] rounded-full bg-[radial-gradient(circle,#f4d896_0%,#e8c77e_46%,#e0813f_100%)] shadow-[0_0_120px_30px_rgba(240,138,75,0.35)]" />
+      <div className="halftone absolute top-1/2 left-[62%] aspect-square w-[min(70vh,44vw)] -translate-x-1/2 -translate-y-[66%] rounded-full opacity-40" />
+      <div className="relative w-full">
+        <canvas
+          ref={canvasRef}
+          width={FRAME_W}
+          height={FRAME_H}
+          className="relative z-10 h-auto w-full drop-shadow-[0_18px_0_rgba(28,4,7,0.35)]"
+        />
+        {/* Road under the wheels (wheel bottoms sit at ~94% of the frame) */}
+        <div className="absolute top-[93.5%] left-0 h-[max(2.2rem,4.5vw)] w-full bg-maroon-deepest">
+          <div className="absolute top-1/2 h-1 w-full -translate-y-1/2 bg-[repeating-linear-gradient(90deg,#e8c77e_0_36px,transparent_36px_72px)] opacity-70" />
+        </div>
+      </div>
     </div>
   );
 }

@@ -53,7 +53,7 @@ export function Lineup() {
                   )}
                   aria-hidden
                 >
-                  <Image
+                  <Image quality={90}
                     src={category.art}
                     alt=""
                     fill

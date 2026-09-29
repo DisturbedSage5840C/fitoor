@@ -45,7 +45,7 @@ export function ContactBlock() {
           delay={0.1}
           className="relative mx-auto w-full max-w-xs"
         >
-          <Image
+          <Image quality={90}
             src="/art/glass-hand.webp"
             alt="A ringed hand crushing a soda can"
             width={636}

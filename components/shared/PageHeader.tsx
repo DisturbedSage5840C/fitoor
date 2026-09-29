@@ -29,7 +29,7 @@ export function PageHeader({ title, script, intro, art }: PageHeaderProps) {
           ) : null}
         </div>
         {art ? (
-          <Image
+          <Image quality={90}
             src={art.src}
             alt={art.alt}
             width={art.width}

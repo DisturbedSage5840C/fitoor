@@ -14,7 +14,7 @@ export function ClubsStrip() {
               key={club.id}
               className="flex w-20 flex-col items-center gap-2 text-center"
             >
-              <Image
+              <Image quality={90}
                 src={club.logo}
                 alt=""
                 width={64}

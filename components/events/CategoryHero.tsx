@@ -69,7 +69,7 @@ export function CategoryHero({
         </div>
 
         <div className="relative mx-auto aspect-square w-3/4 max-w-sm md:w-full">
-          <Image
+          <Image quality={90}
             src={category.art}
             alt={category.artAlt}
             fill

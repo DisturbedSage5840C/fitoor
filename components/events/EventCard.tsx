@@ -104,7 +104,7 @@ export function EventCard({
 
         {club ? (
           <div className="flex items-center gap-3 border-t border-cream/10 pt-4">
-            <Image
+            <Image quality={90}
               src={club.logo}
               alt=""
               width={40}

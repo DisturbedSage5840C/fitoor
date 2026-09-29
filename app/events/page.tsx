@@ -52,7 +52,7 @@ export default function EventsPage() {
             <div className="mx-auto grid grid-cols-1 max-w-6xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_1.5fr] md:py-20">
               <RevealOnScroll>
                 <div className="relative mb-4 aspect-square w-40 sm:w-52">
-                  <Image
+                  <Image quality={90}
                     src={category.art}
                     alt={category.artAlt}
                     fill

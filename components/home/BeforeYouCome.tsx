@@ -11,7 +11,7 @@ export function BeforeYouCome() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.3fr]">
           <RevealOnScroll className="relative">
             <NeonTitle>general rules</NeonTitle>
-            <Image
+            <Image quality={90}
               src="/art/puppets.webp"
               alt="Two Rajasthani kathputli puppets, one wearing sunglasses"
               width={768}

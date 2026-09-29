@@ -60,7 +60,7 @@ export function Footer() {
         <p className="font-body text-xs text-cream/70">
 © {fest.year} {fest.university}
         </p>
-        <Image
+        <Image quality={90}
           src="/brand/plaksha.png"
           alt="Plaksha University"
           width={120}

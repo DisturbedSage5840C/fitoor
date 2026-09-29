@@ -41,7 +41,7 @@ export function AboutBlock() {
           delay={0.1}
           className="relative mx-auto w-full max-w-md lg:max-w-none"
         >
-          <Image
+          <Image quality={90}
             src="/art/auto-rickshaw.webp"
             alt="A yellow-and-green auto rickshaw"
             width={973}
