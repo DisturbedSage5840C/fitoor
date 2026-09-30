@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Events",
+  alternates: { canonical: "/events" },
   description:
     "All 21 Fitoor 2026 competitions across Music, Dance, Art & Expression, Wit & Whim and Business.",
 };

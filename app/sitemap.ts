@@ -10,13 +10,16 @@ const staticRoutes = [
   "/generalities",
   "/accommodation",
   "/contact",
+  "/privacy",
+  "/terms",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${siteUrl}${route}`,
+    lastModified: new Date(),
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.7,
+    priority: route === "" ? 1 : route === "/privacy" || route === "/terms" ? 0.2 : 0.7,
   }));
 
   const categoryEntries: MetadataRoute.Sitemap = categoryList.map(

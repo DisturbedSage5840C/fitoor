@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Stay",
+  alternates: { canonical: "/accommodation" },
   description:
     "Hotels near Plaksha University for Fitoor 2026 participants, and how to get there.",
 };

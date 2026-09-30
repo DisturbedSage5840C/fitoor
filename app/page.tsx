@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { AboutBlock } from "@/components/home/AboutBlock";
 import { Lineup } from "@/components/home/Lineup";
@@ -8,6 +9,11 @@ import { Marquee } from "@/components/shared/Marquee";
 import { Smiley } from "@/components/shared/Stickers";
 import { events } from "@/data/events";
 import { fest } from "@/data/content";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
 
 export default function HomePage() {
   return (

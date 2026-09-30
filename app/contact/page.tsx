@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Contact",
+  alternates: { canonical: "/contact" },
   description: "Phone numbers and Instagram for the Fitoor 2026 organising team.",
 };
 

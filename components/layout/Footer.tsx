@@ -6,7 +6,7 @@ import { Sticker } from "@/components/shared/Sticker";
 import { BarcodeTag, Smiley } from "@/components/shared/Stickers";
 import { TrimDivider } from "@/components/shared/TrimDivider";
 import { categoryList } from "@/data/categories";
-import { socials, venue } from "@/data/contacts";
+import { socials } from "@/data/contacts";
 import { fest } from "@/data/content";
 
 const infoLinks = [
@@ -15,6 +15,8 @@ const infoLinks = [
   { label: "General rules", href: "/generalities" },
   { label: "Stay", href: "/accommodation" },
   { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ];
 
 export function Footer() {
@@ -35,7 +37,7 @@ export function Footer() {
             </div>
           </div>
           <p className="font-body mt-5 max-w-xs text-sm leading-relaxed text-cream/75">
-            {fest.dates}, {venue.name}, {venue.address}
+            {fest.dates}, {fest.university}, {fest.address}
           </p>
           <a
             href={socials.instagram}

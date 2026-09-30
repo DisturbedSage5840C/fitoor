@@ -10,6 +10,7 @@ import { about, fest } from "@/data/content";
 
 export const metadata: Metadata = {
   title: "About",
+  alternates: { canonical: "/about" },
   description: about.fitoor[0],
 };
 

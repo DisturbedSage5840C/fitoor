@@ -8,3 +8,6 @@ function resolveBaseUrl(): string {
 }
 
 export const siteUrl = resolveBaseUrl();
+
+/** Paste the token from Google Search Console (HTML tag method) into this env var. */
+export const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;

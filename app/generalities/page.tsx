@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "General rules",
+  alternates: { canonical: "/generalities" },
   description: "General rules and security guidelines for Fitoor 2026 participants.",
 };
 

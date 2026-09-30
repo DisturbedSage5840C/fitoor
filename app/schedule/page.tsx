@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Schedule",
+  alternates: { canonical: "/schedule" },
   description: `Fitoor 2026 runs over two days, ${fest.datesLong}. See the full event-by-event timetable.`,
 };
 
