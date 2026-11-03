@@ -117,6 +117,18 @@
     }
   }
 
+  /* The struck teeli's flame on the landing-page loader. */
+  @keyframes flame-flicker {
+    from {
+      transform: scale(1, 1) skewX(-2deg);
+      opacity: 0.92;
+    }
+    to {
+      transform: scale(0.9, 1.08) skewX(3deg);
+      opacity: 1;
+    }
+  }
+
   @keyframes grain-shift {
     0%,
     100% {

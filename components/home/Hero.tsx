@@ -1,31 +1,25 @@
 "use client";
 
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { preload } from "react-dom";
 import {
   motion,
-  type MotionValue,
-  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from "motion/react";
 import { Countdown } from "@/components/home/Countdown";
-import { RideCurtain } from "@/components/home/RideCurtain";
+import { MatchIntro } from "@/components/intro/MatchIntro";
+import { hasIntroStarted } from "@/components/intro/useMatchIntro";
 import { MascotSequence, MascotStill } from "@/components/mascot/MascotSequence";
 import { registerUrl } from "@/data/contacts";
 import { fest } from "@/data/content";
 import { events } from "@/data/events";
 
-/** Scroll lengths, in viewport heights. The ride and the mascot share one
- *  spring-smoothed timeline, so the auto's last frame hands straight over to
- *  the mascot's first step with no pause or jump between them. */
-const RIDE_VH = 400;
+/** Scroll length of the desktop mascot sequence, in viewport heights. */
 const MASCOT_VH = 900;
-const MOBILE_RIDE_VH = 300;
 
 const SPRING = { stiffness: 90, damping: 26, mass: 0.6 };
 
@@ -64,8 +58,8 @@ function HeroStage({ mobile }: { mobile?: boolean }) {
 function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean }) {
   return (
     <div
-      // The curtain sits on top of this until the auto has cleared; keep the
-      // links out of the tab order and the accessibility tree meanwhile.
+      // The matchbox loader sits on top of this until the invite has burned
+      // away; keep the links out of the tab order and the accessibility tree.
       inert={covered}
       className={centered ? "flex flex-col items-center text-center" : ""}
     >
@@ -120,47 +114,21 @@ function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean 
   );
 }
 
-/** Shared by both layouts: drives the ride from scroll and reports when the
- *  auto has cleared the page, so the copy underneath can be reached. */
-function useRide(
-  target: React.RefObject<HTMLDivElement | null>,
-  rideShare: number,
-) {
+/** Spring-smoothed scroll progress through the desktop hero. */
+function useMascotScroll(target: React.RefObject<HTMLDivElement | null>) {
   const { scrollYProgress } = useScroll({
     target,
     offset: ["start start", "end end"],
   });
-  // Smooth wheel and trackpad jumps so the auto never snaps.
-  const smooth = useSpring(scrollYProgress, SPRING);
-  const rideP = useTransform(smooth, [0, rideShare], [0, 1], { clamp: true });
-  const [covered, setCovered] = useState(true);
-  useMotionValueEvent(rideP, "change", (v) => setCovered(v < 0.85));
-  return { smooth, rideP, covered };
+  // Smooth wheel and trackpad jumps so the mascot never snaps.
+  return useSpring(scrollYProgress, SPRING);
 }
 
-function ScrollHint({ progress }: { progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, [0, 0.04], [1, 0], { clamp: true });
-  return (
-    <motion.p
-      aria-hidden
-      style={{ opacity }}
-      className="font-body pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-2 text-sm font-medium text-maroon-deepest"
-    >
-      scroll
-      <span className="block h-10 w-px bg-maroon-deepest/70" />
-    </motion.p>
-  );
-}
-
-function ScrollHero() {
+function ScrollHero({ covered }: { covered: boolean }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const rideShare = RIDE_VH / (RIDE_VH + MASCOT_VH);
-  const { smooth, rideP, covered } = useRide(wrapperRef, rideShare);
-
-  // Mascot beats, on their own 0 to 1 clock that starts as the auto clears:
+  // Mascot beats on a 0 to 1 scroll clock:
   // 0 to 0.4 walk in from the left, 0.4 to 0.5 sit down, 0.5 to 1 play.
-  const mascotStart = rideShare * 0.94;
-  const m = useTransform(smooth, [mascotStart, 1], [0, 1], { clamp: true });
+  const m = useMascotScroll(wrapperRef);
   const frameProgress = useTransform(m, [0.5, 1], [0, 1], { clamp: true });
   const x = useTransform(m, [0, 0.4], ["-230%", "0%"], { clamp: true });
   // Footstep bob while walking, then a drop onto the floor when sitting.
@@ -182,7 +150,7 @@ function ScrollHero() {
     <div
       ref={wrapperRef}
       className="relative hidden lg:block"
-      style={{ height: `${RIDE_VH + MASCOT_VH}vh` }}
+      style={{ height: `${MASCOT_VH}vh` }}
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <HeroStage />
@@ -194,31 +162,20 @@ function ScrollHero() {
             </motion.div>
           </div>
         </div>
-        <RideCurtain progress={rideP} />
-        <ScrollHint progress={rideP} />
       </div>
     </div>
   );
 }
 
-function MobileHero() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const { rideP, covered } = useRide(wrapperRef, 1);
-
+function MobileHero({ covered }: { covered: boolean }) {
   return (
-    <div
-      ref={wrapperRef}
-      className="relative lg:hidden"
-      style={{ height: `${MOBILE_RIDE_VH + 100}svh` }}
-    >
-      <div className="sticky top-0 flex h-svh items-center overflow-hidden pt-16">
+    <div className="relative lg:hidden">
+      <div className="relative flex min-h-svh items-center overflow-hidden pt-16">
         <HeroStage mobile />
         <div className="relative z-10 mx-auto flex w-full max-w-md flex-col items-center gap-2 px-4">
           <MascotStill className="h-[min(24svh,220px)] w-auto" />
           <HeroCopy covered={covered} centered />
         </div>
-        <RideCurtain progress={rideP} />
-        <ScrollHint progress={rideP} />
       </div>
     </div>
   );
@@ -244,7 +201,10 @@ export function Hero() {
     () => false,
   );
 
-  preload("/intro/ride/f-000.webp", { as: "image" });
+  // The loader plays once per page load; a client-side return skips it.
+  // SSR and the first client render agree on `true`, so hydration matches.
+  const [introActive, setIntroActive] = useState(() => !hasIntroStarted());
+  const endIntro = useCallback(() => setIntroActive(false), []);
 
   if (mounted && prefersReducedMotion) {
     return (
@@ -254,10 +214,14 @@ export function Hero() {
     );
   }
 
+  // `inert` is applied only after mount so no-JS visitors can still reach the links.
+  const covered = mounted && introActive;
+
   return (
     <section>
-      <ScrollHero />
-      <MobileHero />
+      {introActive && <MatchIntro onDone={endIntro} />}
+      <ScrollHero covered={covered} />
+      <MobileHero covered={covered} />
     </section>
   );
 }
