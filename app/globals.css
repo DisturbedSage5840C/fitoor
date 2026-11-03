@@ -128,6 +128,16 @@
       opacity: 1;
     }
   }
+  @keyframes strike-spark {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--spark-dx), var(--spark-dy)) scale(0.2);
+      opacity: 0;
+    }
+  }
 
   @keyframes grain-shift {
     0%,

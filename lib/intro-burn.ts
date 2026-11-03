@@ -12,8 +12,8 @@ export interface IntroStep {
 
 export const INTRO_STEPS: readonly IntroStep[] = [
   { id: "open", label: "open", prompt: "tap the matchbox" },
-  { id: "strike", label: "strike", prompt: "swipe or tap to strike the teeli" },
-  { id: "light", label: "light", prompt: "lighting your invite…" },
+  { id: "strike", label: "strike", prompt: "drag the teeli across the striker" },
+  { id: "light", label: "light", prompt: "touch the flame to the glowing phool" },
 ];
 
 const ORDER: readonly IntroStage[] = ["open", "strike", "light", "burning"];
@@ -24,7 +24,7 @@ export function nextStep(stage: IntroStage): IntroStage {
 }
 
 /** How long the burn takes to eat the whole screen. */
-export const BURN_DURATION_MS = 2200;
+export const BURN_DURATION_MS = 3200;
 
 /** The ragged edge strays at most this far, as a fraction of the radius. */
 export const EDGE_WOBBLE = 0.22;
