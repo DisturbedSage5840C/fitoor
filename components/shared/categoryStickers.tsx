@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import { BarcodeTag, Burst, Marigold, Smiley, SwordsGlyph } from "@/components/shared/Stickers";
+import { BarcodeTag, Burst, Cassette, Marigold, SwordsGlyph } from "@/components/shared/Stickers";
 import type { CategorySlug } from "@/data/types";
 
 /** One sticker glyph per category, drawn to sit inside a `Sticker` wrapper. */
 export const categoryStickers: Record<CategorySlug, ReactNode> = {
-  music: <Smiley />,
+  music: <Cassette />,
   dance: <Marigold />,
   art: (
     <span className="block size-full text-gold">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
+import { FingerGun } from "@/components/art/FingerGun";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { Burst } from "@/components/shared/Stickers";
 import { Tape } from "@/components/shared/Tape";
@@ -53,12 +54,7 @@ export default function SchedulePage() {
           </span>
         }
         stickerTilt={-14}
-        art={{
-          src: "/art/finger-gun.webp",
-          alt: "A ringed hand making a finger-gun",
-          width: 993,
-          height: 722,
-        }}
+        artElement={<FingerGun />}
       />
 
       <section className="bg-maroon-deepest">

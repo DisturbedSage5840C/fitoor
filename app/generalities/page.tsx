@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LilyBloom } from "@/components/art/LilyBloom";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { SectionGround } from "@/components/shared/SectionGround";
 import { SwordsGlyph } from "@/components/shared/Stickers";
@@ -35,12 +36,7 @@ export default function GeneralitiesPage() {
           </span>
         }
         stickerTilt={-12}
-        art={{
-          src: "/art/cover-hands.jpg",
-          alt: "A hand heavy with rings and chains holding a red lily",
-          width: 907,
-          height: 1024,
-        }}
+        artElement={<LilyBloom />}
       />
 
       <SectionGround ground="polka">

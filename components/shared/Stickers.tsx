@@ -1,27 +1,48 @@
 import { cn } from "@/lib/utils";
 
-/** Hand-cut sticker art from the moodboard: the smiley, the QR tattoo, the
+/** Hand-cut sticker art from the moodboard: the kulhad, the cassette, the
  *  coded coral label, the crossed swords in gold thread. Plain SVG, decorative
  *  by default, so each is hidden from assistive tech. */
 interface GlyphProps {
   className?: string;
 }
 
-export function Smiley({ className }: GlyphProps) {
+/** Clay chai kulhad with a curl of steam: the tapri stop between sets. */
+export function Kulhad({ className }: GlyphProps) {
   return (
     <svg viewBox="0 0 100 100" aria-hidden className={cn("size-full", className)}>
-      <circle cx="50" cy="50" r="46" fill="#f4d896" stroke="#1c0407" strokeWidth="5" />
-      <ellipse cx="34" cy="40" rx="6" ry="9" fill="#1c0407" />
-      <ellipse cx="66" cy="40" rx="6" ry="9" fill="#1c0407" />
+      <g fill="none" stroke="#efe4cf" strokeWidth="4" strokeLinecap="round" opacity=".9">
+        <path d="M40 30c-6-6 6-10 0-17" />
+        <path d="M56 30c-6-6 6-10 0-17" />
+      </g>
       <path
-        d="M24 60c8 19 44 19 52 0"
-        fill="none"
+        d="M20 38h60l-8 50a6 6 0 0 1-6 5H34a6 6 0 0 1-6-5z"
+        fill="#c4622d"
         stroke="#1c0407"
-        strokeWidth="6"
-        strokeLinecap="round"
+        strokeWidth="4"
+        strokeLinejoin="round"
       />
-      <circle cx="22" cy="58" r="5" fill="#ff4f6d" opacity=".7" />
-      <circle cx="78" cy="58" r="5" fill="#ff4f6d" opacity=".7" />
+      <ellipse cx="50" cy="38" rx="31" ry="7" fill="#8a3b10" stroke="#1c0407" strokeWidth="4" />
+      <ellipse cx="50" cy="38.5" rx="24" ry="4" fill="#d9a066" />
+      <path d="M27 54h46" stroke="#e8a33d" strokeWidth="4" strokeDasharray="2 5" strokeLinecap="round" />
+      <path d="M31 46l4 36" stroke="#efe4cf" strokeWidth="3" strokeLinecap="round" opacity=".35" />
+    </svg>
+  );
+}
+
+/** A mixtape cassette: two reels, a label strip, a handwritten track. */
+export function Cassette({ className }: GlyphProps) {
+  return (
+    <svg viewBox="0 0 100 100" aria-hidden className={cn("size-full", className)}>
+      <rect x="5" y="20" width="90" height="60" rx="6" fill="#c8203f" stroke="#1c0407" strokeWidth="4" />
+      <rect x="14" y="28" width="72" height="30" rx="3" fill="#efe4cf" stroke="#1c0407" strokeWidth="3" />
+      <rect x="26" y="37" width="48" height="13" rx="6.5" fill="#1c0407" />
+      <circle cx="35" cy="43.5" r="4.5" fill="#efe4cf" />
+      <circle cx="65" cy="43.5" r="4.5" fill="#efe4cf" />
+      <path d="M18 33h30" stroke="#c8203f" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M26 80l6-13h36l6 13" fill="#a3172f" stroke="#1c0407" strokeWidth="3" strokeLinejoin="round" />
+      <circle cx="40" cy="74" r="2.5" fill="#1c0407" />
+      <circle cx="60" cy="74" r="2.5" fill="#1c0407" />
     </svg>
   );
 }

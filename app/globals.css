@@ -441,3 +441,309 @@
     animation: none;
   }
 }
+
+/*
+  Stop-motion. Every keyframe is held, then jumps (steps(1) per segment),
+  so these read as hand-drawn frames swapped on a cel, not as smooth tweens.
+  They animate `transform`, which composes with Tailwind's separate
+  rotate / scale / translate properties instead of overriding them.
+*/
+@keyframes boil {
+  0% { transform: rotate(-1.5deg) translate(0, 0) scale(1.04); }
+  25% { transform: rotate(1.5deg) translate(2px, -3px) scale(1.06); }
+  50% { transform: rotate(-2.5deg) translate(-2px, -1px) scale(1.05); }
+  75% { transform: rotate(0.5deg) translate(1px, -4px) scale(1.07); }
+  100% { transform: rotate(-1.5deg) translate(0, 0) scale(1.04); }
+}
+@keyframes jolt {
+  0% { transform: translate(0, 0) rotate(0); }
+  20% { transform: translate(-6px, -4px) rotate(-1.5deg); }
+  40% { transform: translate(-12px, 0) rotate(0.5deg); }
+  60% { transform: translate(-16px, -5px) rotate(-1deg); }
+  80% { transform: translate(-20px, -1px) rotate(1deg); }
+  100% { transform: translate(-22px, 0) rotate(0); }
+}
+@keyframes puff {
+  0% { opacity: 0.9; transform: translate(0, 0) scale(0.4); }
+  25% { opacity: 0.8; transform: translate(14px, -6px) scale(0.75); }
+  50% { opacity: 0.6; transform: translate(30px, -14px) scale(1.05); }
+  75% { opacity: 0.3; transform: translate(46px, -24px) scale(1.35); }
+  100% { opacity: 0; transform: translate(58px, -34px) scale(1.6); }
+}
+@keyframes recoil {
+  0% { transform: rotate(0) translate(0, 0); }
+  8% { transform: rotate(-16deg) translate(-5%, 1%); }
+  20% { transform: rotate(-11deg) translate(-3%, 0); }
+  35% { transform: rotate(-6deg) translate(-1.5%, 0); }
+  55% { transform: rotate(-2deg) translate(0, 0); }
+  75% { transform: rotate(0.8deg) translate(0, 0); }
+  100% { transform: rotate(0) translate(0, 0); }
+}
+@keyframes flash {
+  0% { opacity: 0; transform: scale(0.4) rotate(0); }
+  6% { opacity: 1; transform: scale(1.15) rotate(10deg); }
+  14% { opacity: 1; transform: scale(0.85) rotate(-8deg); }
+  24% { opacity: 0; transform: scale(0.6) rotate(0); }
+  100% { opacity: 0; transform: scale(0.6) rotate(0); }
+}
+@keyframes smoke {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  15% { opacity: 0.85; transform: translate(4px, -4px) scale(0.6); }
+  35% { opacity: 0.7; transform: translate(12px, -14px) scale(0.9); }
+  55% { opacity: 0.5; transform: translate(18px, -28px) scale(1.2); }
+  75% { opacity: 0.25; transform: translate(22px, -44px) scale(1.5); }
+  100% { opacity: 0; transform: translate(24px, -60px) scale(1.8); }
+}
+@keyframes rattle {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(-3px, 1px) rotate(-1.2deg); }
+  50% { transform: translate(2px, -2px) rotate(0.8deg); }
+  75% { transform: translate(-1px, 2px) rotate(-0.5deg); }
+}
+
+/* Theme cards. Music: the singer's hand pulses on a still mic. Kept to a
+   degree or so: the shaft rides with the hand and must stay under the
+   static head and tail. */
+@keyframes vibe {
+  0% { transform: rotate(0) translate(0, 0); }
+  25% { transform: rotate(-1deg) translate(-1px, 1px); }
+  50% { transform: rotate(0.7deg) translate(1px, -1px); }
+  75% { transform: rotate(-0.5deg) translate(0, 2px); }
+  100% { transform: rotate(0) translate(0, 0); }
+}
+@keyframes note-rise {
+  0% { opacity: 0; transform: translate(0, 10px) rotate(0); }
+  20% { opacity: 1; transform: translate(-4px, 0) rotate(-10deg); }
+  45% { opacity: 1; transform: translate(4px, -16px) rotate(8deg); }
+  70% { opacity: 0.7; transform: translate(-3px, -32px) rotate(-6deg); }
+  100% { opacity: 0; transform: translate(2px, -46px) rotate(4deg); }
+}
+/* Dance: one bar of footwork. Left lifts and taps, right lifts and taps,
+   then each swivels on its heel in turn. */
+@keyframes step-left {
+  0%, 25%, 50%, 75%, 100% { transform: none; }
+  10% { transform: translate(0, -9%) rotate(-7deg); }
+  60% { transform: translate(-3%, -3%) rotate(6deg); }
+}
+@keyframes step-right {
+  0%, 25%, 50%, 75%, 100% { transform: none; }
+  35% { transform: translate(0, -9%) rotate(7deg); }
+  85% { transform: translate(3%, -3%) rotate(-6deg); }
+}
+/* Art: the forearm swings about the elbow while the stroke grows under the
+   brush tip, frame for frame, then the arm lifts back for the next stroke. */
+@keyframes paint {
+  0% { transform: rotate(6deg); }
+  10% { transform: rotate(3.6deg); }
+  20% { transform: rotate(1.2deg); }
+  30% { transform: rotate(-1.2deg); }
+  40% { transform: rotate(-3.6deg); }
+  50% { transform: rotate(-6deg); }
+  65% { transform: rotate(-2deg); }
+  80% { transform: rotate(2deg); }
+  100% { transform: rotate(6deg); }
+}
+@keyframes stroke-on {
+  0% { stroke-dashoffset: 100; }
+  10% { stroke-dashoffset: 80; }
+  20% { stroke-dashoffset: 60; }
+  30% { stroke-dashoffset: 40; }
+  40% { stroke-dashoffset: 20; }
+  50%, 100% { stroke-dashoffset: 0; }
+}
+/* Business: notes and coins rain down over the collage. */
+@keyframes cash-fall {
+  0% { opacity: 1; transform: translate(0px, 0px) rotate(0deg); }
+  12.5% { opacity: 1; transform: translate(9px, 60px) rotate(18deg); }
+  25% { opacity: 1; transform: translate(-6px, 120px) rotate(-12deg); }
+  37.5% { opacity: 1; transform: translate(8px, 180px) rotate(16deg); }
+  50% { opacity: 1; transform: translate(-9px, 240px) rotate(-14deg); }
+  62.5% { opacity: 1; transform: translate(5px, 300px) rotate(10deg); }
+  75% { opacity: 1; transform: translate(-4px, 360px) rotate(-16deg); }
+  87.5% { opacity: 1; transform: translate(7px, 420px) rotate(12deg); }
+  100% { opacity: 1; transform: translate(0px, 480px) rotate(-6deg); }
+}
+
+/* Contact: the fist stays put, the can folds into it from both ends. */
+@keyframes can-top-crush {
+  0% { transform: none; }
+  20% { transform: scale(1.02, 0.94) rotate(1.5deg); }
+  40% { transform: scale(1.05, 0.88) rotate(-2deg); }
+  60% { transform: scale(1.07, 0.83) rotate(2deg); }
+  80% { transform: scale(1.08, 0.79) rotate(-1deg); }
+  100% { transform: scale(1.08, 0.78) rotate(0.5deg); }
+}
+@keyframes can-bottom-crush {
+  0% { transform: none; }
+  20% { transform: scale(1.02, 0.95) rotate(-1.5deg); }
+  40% { transform: scale(1.04, 0.9) rotate(2deg); }
+  60% { transform: scale(1.06, 0.86) rotate(-2deg); }
+  80% { transform: scale(1.07, 0.83) rotate(1deg); }
+  100% { transform: scale(1.07, 0.82) rotate(-0.5deg); }
+}
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0.3) rotate(0); }
+  15% { opacity: 1; transform: scale(1.25) rotate(10deg); }
+  35% { transform: scale(0.9) rotate(-6deg); }
+  60% { transform: scale(1.06) rotate(3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+/* Contact page: a waterfall of cola. The highlight bands step down the
+   column (one band period per cycle), so the stream visibly runs. */
+@keyframes pour {
+  0% { background-position: 0 0; }
+  25% { background-position: 0 18px; }
+  50% { background-position: 0 36px; }
+  75% { background-position: 0 54px; }
+  100% { background-position: 0 72px; }
+}
+@keyframes wobble {
+  0%, 100% { transform: scaleX(1); }
+  33% { transform: scaleX(1.12); }
+  66% { transform: scaleX(0.9); }
+}
+
+/* Rules: a closed bud sways and swells, then the lily opens out of it. */
+@keyframes bud {
+  0% { opacity: 1; transform: scale(0.6) rotate(-8deg); }
+  9% { transform: scale(0.68) rotate(6deg); }
+  18% { transform: scale(0.78) rotate(-5deg); }
+  27% { transform: scale(0.9) rotate(4deg); }
+  35% { opacity: 1; transform: scale(1.04, 1.1) rotate(-2deg); }
+  45% { opacity: 0.85; transform: scale(1.12, 1.04) rotate(0); }
+  55% { opacity: 0.4; transform: scale(1.18, 0.96) rotate(0); }
+  65%, 100% { opacity: 0; transform: scale(1.2, 0.9) rotate(0); }
+}
+@keyframes bloom {
+  0%, 35% { opacity: 0; clip-path: circle(0% at 64% 40%); transform: scale(0.5) rotate(-18deg); }
+  42% { opacity: 1; clip-path: circle(12% at 64% 40%); transform: scale(0.56) rotate(-14deg); }
+  50% { clip-path: circle(24% at 64% 40%); transform: scale(0.65) rotate(-9deg); }
+  58% { clip-path: circle(36% at 64% 40%); transform: scale(0.75) rotate(-5deg); }
+  66% { clip-path: circle(48% at 64% 40%); transform: scale(0.86) rotate(-1deg); }
+  74% { clip-path: circle(60% at 64% 40%); transform: scale(0.96) rotate(3deg); }
+  83% { clip-path: circle(75% at 64% 40%); transform: scale(1.04) rotate(2deg); }
+  92% { clip-path: circle(100% at 64% 40%); transform: scale(0.98) rotate(-1deg); }
+  100% { opacity: 1; clip-path: circle(150% at 64% 40%); transform: scale(1) rotate(0); }
+}
+
+.boil-on-hover { transform-origin: 50% 80%; }
+.group:hover .boil-on-hover,
+.group:focus-visible .boil-on-hover {
+  animation: boil 0.48s steps(1, end) infinite;
+}
+
+.jolt-on-hover { transform-origin: 50% 100%; }
+.group:hover .jolt-on-hover {
+  animation: jolt 0.9s steps(1, end) infinite alternate;
+}
+.exhaust-puff { opacity: 0; }
+.group:hover .exhaust-puff {
+  animation: puff 0.8s steps(1, end) infinite;
+}
+
+.lily-bud { opacity: 0; animation: bud 2.6s steps(1, end) 0.2s both; }
+.lily-bloom { animation: bloom 2.6s steps(1, end) 0.2s both; }
+.gun-recoil { animation: recoil 0.75s steps(1, end) both; }
+.muzzle-flash { animation: flash 0.75s steps(1, end) both; }
+.gun-smoke { animation: smoke 1.4s steps(1, end) both; }
+.truck-rattle { animation: rattle 0.16s steps(1, end) 5; }
+
+/* Theme-card moves: resting until hovered or focused... */
+.art-note,
+.art-cash { opacity: 0; }
+.art-stroke { stroke-dasharray: 100; stroke-dashoffset: 100; }
+.group:hover .art-vibe,
+.group:focus-visible .art-vibe { animation: vibe 0.6s steps(1, end) infinite; }
+.group:hover .art-note,
+.group:focus-visible .art-note { animation: note-rise 1.05s steps(1, end) infinite; }
+.group:hover .art-step-left,
+.group:focus-visible .art-step-left { animation: step-left 1s steps(1, end) infinite; }
+.group:hover .art-step-right,
+.group:focus-visible .art-step-right { animation: step-right 1s steps(1, end) infinite; }
+.group:hover .art-paint,
+.group:focus-visible .art-paint { animation: paint 1.6s steps(1, end) infinite; }
+.group:hover .art-stroke,
+.group:focus-visible .art-stroke { animation: stroke-on 1.6s steps(1, end) infinite; }
+.group:hover .art-cash,
+.group:focus-visible .art-cash { animation: cash-fall 1.6s steps(1, end) infinite; }
+
+/* ...and always playing where there is no hover to wait for. */
+@media (hover: none) {
+  .art-vibe { animation: vibe 0.6s steps(1, end) infinite; }
+  .art-note { animation: note-rise 1.05s steps(1, end) infinite; }
+  .art-step-left { animation: step-left 1s steps(1, end) infinite; }
+  .art-step-right { animation: step-right 1s steps(1, end) infinite; }
+  .art-paint { animation: paint 1.6s steps(1, end) infinite; }
+  .art-stroke { animation: stroke-on 1.6s steps(1, end) infinite; }
+  .art-cash { animation: cash-fall 1.6s steps(1, end) infinite; }
+}
+
+.can-top-crush { animation: can-top-crush 0.45s steps(1, end) forwards; }
+.can-bottom-crush { animation: can-bottom-crush 0.45s steps(1, end) forwards; }
+.crush-pop { animation: pop 0.5s steps(1, end) both; }
+
+.cola-stream {
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 40px,
+    rgb(239 228 207 / 0.38) 40px 46px,
+    transparent 46px 58px,
+    rgb(239 228 207 / 0.2) 58px 61px,
+    transparent 61px 72px
+  );
+  animation: pour 0.32s steps(1, end) infinite;
+}
+.cola-lip { animation: wobble 0.36s steps(1, end) infinite; transform-origin: 50% 0; }
+.cola-splash { animation: wobble 0.42s steps(1, end) infinite; transform-origin: 50% 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .boil-on-hover,
+  .group:focus-visible .boil-on-hover,
+  .group:hover .jolt-on-hover,
+  .group:hover .exhaust-puff,
+  .gun-smoke,
+  .truck-rattle,
+  .art-vibe,
+  .art-note,
+  .art-step-left,
+  .art-step-right,
+  .art-paint,
+  .art-stroke,
+  .art-cash,
+  .group:hover .art-vibe,
+  .group:hover .art-note,
+  .group:hover .art-step-left,
+  .group:hover .art-step-right,
+  .group:hover .art-paint,
+  .group:hover .art-stroke,
+  .group:hover .art-cash,
+  .group:focus-visible .art-vibe,
+  .group:focus-visible .art-note,
+  .group:focus-visible .art-step-left,
+  .group:focus-visible .art-step-right,
+  .group:focus-visible .art-paint,
+  .group:focus-visible .art-stroke,
+  .group:focus-visible .art-cash,
+  .can-top-crush,
+  .can-bottom-crush,
+  .crush-pop,
+  .cola-stream,
+  .cola-lip,
+  .cola-splash {
+    animation: none;
+  }
+  .gun-smoke,
+  .muzzle-flash,
+  .art-note,
+  .art-cash,
+  .lily-bud {
+    opacity: 0;
+  }
+  .lily-bud,
+  .lily-bloom,
+  .gun-recoil,
+  .muzzle-flash {
+    animation: none;
+  }
+}

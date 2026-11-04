@@ -1,61 +1,73 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useMotionValueEvent, type MotionValue } from "motion/react";
+import { frameAt } from "@/lib/frame-clock";
 
 export const FRAME_COUNT = 61;
 export const FRAME_W = 560;
 export const FRAME_H = 598;
+/** Playback rate of the sitar clip; ping-pong keeps the strum seamless. */
+const SITAR_FPS = 18;
 export const frameSrc = (i: number) =>
   `/mascot-sequence/frame-${String(i + 1).padStart(3, "0")}.webp`;
 
-interface MascotSequenceProps {
-  /** 0 → 1 scrubs through every frame of the transparent sitar clip. */
-  progress: MotionValue<number>;
+/** Where the musician's body sits inside a frame, as fractions of its box.
+ *  Used to centre him on the hero's disc rather than centring the canvas. */
+export const SUBJECT_CENTRE = { x: 0.48, y: 0.465 };
+
+interface MascotLoopProps {
+  /** While false the musician holds the first frame (e.g. still walking in). */
+  playing: boolean;
   className?: string;
 }
 
-/** Scroll-scrubbed frame player: preloads the alpha-WebP frames and blits
- *  the one matching `progress` to a canvas (no <video>, so seeking is exact
- *  and transparency works in every browser). */
-export function MascotSequence({ progress, className }: MascotSequenceProps) {
+/** Endless sitar loop: preloads the alpha-WebP frames and blits them to a
+ *  canvas on a fixed clock, independent of scroll position. */
+export function MascotLoop({ playing, className }: MascotLoopProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const frames = useRef<(HTMLImageElement | null)[]>([]);
-  const current = useRef(-1);
+  const framesRef = useRef<HTMLImageElement[]>([]);
+  const shownRef = useRef(-1);
 
-  const draw = (p: number) => {
+  const draw = (target: number) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const target = Math.min(FRAME_COUNT - 1, Math.max(0, Math.round(p * (FRAME_COUNT - 1))));
-    // Fall back to the nearest already-loaded frame while others stream in.
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    // While frames stream in, hold the nearest earlier frame that has loaded.
     let idx = target;
-    for (let d = 0; d < FRAME_COUNT && !frames.current[idx]?.complete; d++) {
-      idx = target - d >= 0 && frames.current[target - d]?.complete ? target - d : target + d;
-    }
-    const img = frames.current[idx];
-    if (!img?.complete || idx === current.current) return;
-    current.current = idx;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    while (idx > 0 && !framesRef.current[idx]?.complete) idx--;
+    const img = framesRef.current[idx];
+    if (!img?.complete || img.naturalWidth === 0 || idx === shownRef.current) return;
+    shownRef.current = idx;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   };
 
   useEffect(() => {
-    frames.current = Array.from({ length: FRAME_COUNT }, (_, i) => {
+    framesRef.current = Array.from({ length: FRAME_COUNT }, (_, i) => {
       const img = new Image();
       img.decoding = "async";
       img.src = frameSrc(i);
-      img.onload = () => {
-        current.current = -1;
-        draw(progress.get());
-      };
+      if (i === 0) img.onload = () => draw(0);
       return img;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useMotionValueEvent(progress, "change", draw);
+  useEffect(() => {
+    if (!playing) {
+      draw(0);
+      return;
+    }
+    let raf = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      draw(frameAt(now - start, SITAR_FPS, FRAME_COUNT, "pingpong"));
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing]);
 
   return (
     <canvas
@@ -69,7 +81,7 @@ export function MascotSequence({ progress, className }: MascotSequenceProps) {
   );
 }
 
-/** Still pose for mobile and reduced-motion. */
+/** Still pose for reduced-motion. */
 export function MascotStill({ className }: { className?: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element

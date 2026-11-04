@@ -1,10 +1,9 @@
-import Image from "next/image";
+import { CanCrush } from "@/components/art/CanCrush";
 import { Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/shared/InstagramIcon";
 import { NeonTitle } from "@/components/shared/NeonTitle";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionGround } from "@/components/shared/SectionGround";
-import { Burst } from "@/components/shared/Stickers";
 import { TicketCard } from "@/components/shared/TicketCard";
 import { contacts, socials, telHref } from "@/data/contacts";
 
@@ -59,20 +58,7 @@ export function ContactBlock() {
           </a>
         </div>
 
-        <div className="relative mx-auto w-full max-w-xs">
-          <Image
-            quality={90}
-            src="/art/glass-hand.webp"
-            alt="A ringed hand crushing a soda can"
-            width={636}
-            height={985}
-            sizes="(min-width: 1024px) 380px, 70vw"
-            className="sticker-edge h-auto w-full rotate-2"
-          />
-          <span className="pointer-events-none absolute -top-6 -left-6 block size-24 rotate-[-12deg] text-gold">
-            <Burst />
-          </span>
-        </div>
+        <CanCrush />
       </div>
     </SectionGround>
   );

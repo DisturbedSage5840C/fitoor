@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MapPin, Phone } from "lucide-react";
 import { InstagramIcon } from "@/components/shared/InstagramIcon";
+import { SodaPour } from "@/components/art/SodaPour";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { SectionGround } from "@/components/shared/SectionGround";
 import { BarcodeTag } from "@/components/shared/Stickers";
@@ -25,25 +26,23 @@ const STUBS = [
   { tilt: -1.5, paper: "bg-gold-bright", shadow: "var(--emerald)" },
 ];
 
+/** The can's tilt in the header; the cola stream turns back by the same. */
+const CAN_TILT = 5;
+
 export default function ContactPage() {
   return (
     <>
       <PageHeader
         title="contact us"
         ground="polka"
-        artTilt={5}
+        artTilt={CAN_TILT}
         sticker={<BarcodeTag />}
         stickerTilt={-10}
-        art={{
-          src: "/art/soda-can.webp",
-          alt: "Two hands stacked with bangles, holding up a soda can",
-          width: 613,
-          height: 899,
-        }}
+        artElement={<SodaPour tilt={CAN_TILT} />}
       />
 
       <SectionGround ground="grain">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-4 pt-28 pb-20 sm:px-6 lg:grid-cols-[1.35fr_1fr] lg:gap-14 lg:pb-28">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-4 pt-44 pb-20 sm:pt-56 sm:px-6 lg:grid-cols-[1.35fr_1fr] lg:gap-14 lg:pb-28">
           <ul className="grid grid-cols-1 gap-x-8 gap-y-9 md:grid-cols-2 md:[&>li:nth-child(even)]:translate-y-8">
             {contacts.map((person, i) => {
               const stub = STUBS[i % STUBS.length];
@@ -106,21 +105,6 @@ export default function ContactPage() {
                     backgroundSize: "34px 34px",
                   }}
                 >
-                  <svg
-                    aria-hidden
-                    viewBox="0 0 200 120"
-                    className="pointer-events-none absolute inset-0 size-full text-rose/60"
-                    preserveAspectRatio="none"
-                  >
-                    <path
-                      d="M-5 100 C 40 90, 60 40, 110 50 S 170 20, 210 10"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeDasharray="6 5"
-                      strokeLinecap="round"
-                    />
-                  </svg>
                   <h2 className="font-title relative text-4xl lowercase">{venue.name}</h2>
                   <p className="font-body relative mt-3 font-semibold">{venue.address}</p>
                   <p className="font-body relative text-sm">{venue.region}</p>

@@ -4,52 +4,72 @@ import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  animate,
   motion,
+  useMotionValue,
+  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from "motion/react";
+import type { MotionValue } from "motion/react";
 import { Countdown } from "@/components/home/Countdown";
 import { MatchIntro } from "@/components/intro/MatchIntro";
 import { hasIntroStarted } from "@/components/intro/useMatchIntro";
-import { MascotSequence, MascotStill } from "@/components/mascot/MascotSequence";
+import { MascotLoop, MascotStill, SUBJECT_CENTRE } from "@/components/mascot/MascotSequence";
 import { registerUrl } from "@/data/contacts";
 import { fest } from "@/data/content";
 import { events } from "@/data/events";
 
-/** Scroll length of the desktop mascot sequence, in viewport heights. */
-const MASCOT_VH = 900;
+/** Scroll length of the desktop walk-in, in viewport heights. The pin only
+ *  outlasts the screen by 60vh, so one flick seats the musician and the page
+ *  then scrolls normally. */
+const MASCOT_VH = 160;
 
-const SPRING = { stiffness: 90, damping: 26, mass: 0.6 };
+/** Share of the pin spent walking in; the rest is the sit-down. */
+const WALK_END = 0.8;
+/** Progress past which he counts as seated and starts playing. */
+const SEATED_AT = 0.92;
 
-/** Poster backdrop behind the hero copy and mascot: plum glow, polka dots and
- *  slow-turning mandala rings, so the settled hero carries the auto's palette. */
-function HeroStage({ mobile }: { mobile?: boolean }) {
-  // The outer dotted ring is drawn at 1.2x, so size the base circle to leave
-  // room for that scale-up. On desktop the fixed nav covers the top 4rem, so
-  // the ring is fitted to the space below it and centred there.
-  const ringBox = mobile
-    ? "left-1/2 top-[30%] size-[68vw] max-w-[340px]"
-    : "left-[72%] top-[calc(50%+2rem)]";
-  const ringSize = mobile
-    ? undefined
-    : { width: "min(calc((100vh - 7rem) / 1.2), 38vw)", height: "min(calc((100vh - 7rem) / 1.2), 38vw)" };
+const SPRING = { stiffness: 140, damping: 30, mass: 0.6 };
+/** How the latched clock eases the last of the sit-down once he is held. */
+const SETTLE = { duration: 0.35, ease: "easeOut" } as const;
+
+/** Base disc diameters. The outer dotted ring is drawn at 1.2x, so the disc
+ *  leaves room for that; on desktop it is fitted below the 5rem nav. */
+const DESKTOP_DISC = "min(calc((100vh - 8rem) / 1.2), 38vw)";
+const MOBILE_DISC = "min(64vw, 280px, 34svh)";
+/** The musician is drawn a touch wider than the disc so he fills it. */
+const MASCOT_TO_DISC = 1.08;
+
+/** Plum disc with the two slow-turning mandala rings, centred on its box. */
+function Disc({ size }: { size: string }) {
+  const box = { width: size, height: size };
+  const ring = "animate-spin-slow absolute inset-0 rounded-full";
+  return (
+    <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={box}>
+      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,#4a1a6b_0%,#2a0d45_58%,transparent_72%)]" />
+      <div className={`${ring} border-[3px] border-dashed border-gold/60`} style={{ scale: 1.08 }} />
+      <div className={`${ring} border-4 border-dotted border-rose/60 [animation-direction:reverse]`} style={{ scale: 1.2 }} />
+    </div>
+  );
+}
+
+/** Box sized from the disc whose centre is the musician's body, not the
+ *  canvas centre, so he sits squarely on the disc. */
+function mascotBox(disc: string) {
+  return {
+    width: `calc(${disc} * ${MASCOT_TO_DISC})`,
+    transform: `translate(-${SUBJECT_CENTRE.x * 100}%, -${SUBJECT_CENTRE.y * 100}%)`,
+  };
+}
+
+/** Poster backdrop behind the hero: plum glow and polka dots. */
+function HeroBackdrop() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="polka-purple absolute inset-0 opacity-60" />
-      <div
-        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,#4a1a6b_0%,#2a0d45_58%,transparent_72%)] ${ringBox}`}
-        style={ringSize}
-      />
-      <div
-        className={`animate-spin-slow absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-dashed border-gold/60 ${ringBox}`}
-        style={{ ...ringSize, scale: 1.08 }}
-      />
-      <div
-        className={`animate-spin-slow absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-dotted border-rose/60 [animation-direction:reverse] ${ringBox}`}
-        style={{ ...ringSize, scale: 1.2 }}
-      />
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-maroon-deepest to-transparent" />
     </div>
   );
@@ -65,12 +85,12 @@ function HeroCopy({ covered, centered }: { covered: boolean; centered?: boolean 
     >
       <h1>
         <Image quality={90}
-          src="/brand/fitoor-wordmark.png"
+          src="/brand/fitoor-wordmark-trim.png"
           alt="Fitoor, फ़ितूर, فتور"
-          width={1359}
-          height={759}
+          width={1216}
+          height={647}
           priority
-          className="h-auto w-[clamp(13rem,42vw,26rem)]"
+          className="h-auto w-[clamp(19rem,86vw,30rem)] lg:w-[clamp(26rem,44vw,42rem)] lg:max-w-none lg:-translate-x-[9.5%]"
         />
       </h1>
 
@@ -124,27 +144,55 @@ function useMascotScroll(target: React.RefObject<HTMLDivElement | null>) {
   return useSpring(scrollYProgress, SPRING);
 }
 
+/** Once he first sits down he stays seated: past `SEATED_AT` the clock is
+ *  cut loose from the scroll, eased onto 1 and held there, so scrolling back
+ *  up never walks him off the stage again. */
+function useSeatLatch(scroll: MotionValue<number>): MotionValue<number> {
+  const held = useMotionValue(0);
+  const settle = useMotionValue(0);
+  useMotionValueEvent(scroll, "change", (v) => {
+    if (held.get() || v < SEATED_AT) return;
+    settle.set(v);
+    held.set(1);
+    animate(settle, 1, SETTLE);
+  });
+  return useTransform([scroll, held, settle], ([v, h, s]: number[]) => (h ? s : v));
+}
+
+/** One-way flag: flips on when he sits and never back off. */
+function useSeated(clock: MotionValue<number>): boolean {
+  const [seated, setSeated] = useState(false);
+  useMotionValueEvent(clock, "change", (v) => {
+    if (v >= SEATED_AT) setSeated(true);
+  });
+  return seated;
+}
+
+const STEPS = 5;
+/** Evenly spaced keyframes across the walk, alternating two values. */
+function footsteps(a: number, b: number) {
+  const at = Array.from({ length: STEPS * 2 + 1 }, (_, i) => (i / (STEPS * 2)) * WALK_END);
+  return { at, values: at.map((_, i) => (i === STEPS * 2 ? 0 : i % 2 ? a : b)) };
+}
+const BOB = footsteps(-14, 0);
+const SWAY = footsteps(-3, 3);
+
 function ScrollHero({ covered }: { covered: boolean }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  // Mascot beats on a 0 to 1 scroll clock:
-  // 0 to 0.4 walk in from the left, 0.4 to 0.5 sit down, 0.5 to 1 play.
-  const m = useMascotScroll(wrapperRef);
-  const frameProgress = useTransform(m, [0.5, 1], [0, 1], { clamp: true });
-  const x = useTransform(m, [0, 0.4], ["-230%", "0%"], { clamp: true });
-  // Footstep bob while walking, then a drop onto the floor when sitting.
+  // Mascot beats on a 0 to 1 scroll clock: walk in, then drop onto the floor.
+  const scroll = useMascotScroll(wrapperRef);
+  const m = useSeatLatch(scroll);
+  const seated = useSeated(m);
+
+  const x = useTransform(m, [0, WALK_END], ["-110vw", "0vw"], { clamp: true });
   const y = useTransform(
     m,
-    [0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.45, 0.5],
-    [0, -14, 0, -14, 0, -14, 0, -14, 0, -14, -10, -24, 0],
+    [...BOB.at, 0.88, 1],
+    [...BOB.values, -24, 0],
     { clamp: true },
   );
-  const rotate = useTransform(
-    m,
-    [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4],
-    [0, -3, 3, -3, 3, -3, 3, -3, 0],
-    { clamp: true },
-  );
-  const scaleY = useTransform(m, [0.4, 0.45, 0.5], [1, 1.04, 0.96], { clamp: true });
+  const rotate = useTransform(m, SWAY.at, SWAY.values, { clamp: true });
+  const scaleY = useTransform(m, [WALK_END, 0.88, 1], [1, 1.04, 0.97], { clamp: true });
 
   return (
     <div
@@ -153,14 +201,17 @@ function ScrollHero({ covered }: { covered: boolean }) {
       style={{ height: `${MASCOT_VH}vh` }}
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <HeroStage />
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-[1fr_1.15fr] items-center gap-6 px-6">
-          <HeroCopy covered={covered} />
-          <div className="relative mx-auto w-[min(100%,660px,74vh)]">
+        <HeroBackdrop />
+        <div className="absolute left-[72%] top-[calc(50%+2rem)]">
+          <Disc size={DESKTOP_DISC} />
+          <div className="absolute left-0 top-0" style={mascotBox(DESKTOP_DISC)}>
             <motion.div style={{ x, y, rotate, scaleY, transformOrigin: "50% 100%" }}>
-              <MascotSequence progress={frameProgress} className="h-auto w-full" />
+              <MascotLoop playing={seated && !covered} className="h-auto w-full" />
             </motion.div>
           </div>
+        </div>
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-[1fr_1.15fr] items-center gap-6 px-6">
+          <HeroCopy covered={covered} />
         </div>
       </div>
     </div>
@@ -168,12 +219,18 @@ function ScrollHero({ covered }: { covered: boolean }) {
 }
 
 function MobileHero({ covered }: { covered: boolean }) {
+  const discBox = { width: MOBILE_DISC, height: `calc(${MOBILE_DISC} * 1.2)` };
   return (
     <div className="relative lg:hidden">
-      <div className="relative flex min-h-svh items-center overflow-hidden pt-16">
-        <HeroStage mobile />
-        <div className="relative z-10 mx-auto flex w-full max-w-md flex-col items-center gap-2 px-4">
-          <MascotStill className="h-[min(24svh,220px)] w-auto" />
+      <div className="relative flex min-h-svh items-center overflow-hidden pb-10 pt-20">
+        <HeroBackdrop />
+        <div className="relative z-10 mx-auto flex w-full max-w-md flex-col items-center gap-4 px-4">
+          <div className="relative" style={discBox}>
+            <Disc size={MOBILE_DISC} />
+            <div className="absolute left-1/2 top-1/2" style={mascotBox(MOBILE_DISC)}>
+              <MascotLoop playing={!covered} className="h-auto w-full" />
+            </div>
+          </div>
           <HeroCopy covered={covered} centered />
         </div>
       </div>

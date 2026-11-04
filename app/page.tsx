@@ -6,7 +6,7 @@ import { BeforeYouCome } from "@/components/home/BeforeYouCome";
 import { ContactBlock } from "@/components/home/ContactBlock";
 import { ClubsStrip } from "@/components/home/ClubsStrip";
 import { Marquee } from "@/components/shared/Marquee";
-import { Smiley } from "@/components/shared/Stickers";
+import { Kulhad } from "@/components/shared/Stickers";
 import { events } from "@/data/events";
 import { fest } from "@/data/content";
 
@@ -30,7 +30,7 @@ export default function HomePage() {
         <Marquee
           reverse
           items={[fest.theme.toLowerCase(), fest.dates, `${fest.university}, ${fest.region}`]}
-          separator={<span className="inline-block size-[1.6em]"><Smiley /></span>}
+          separator={<span className="inline-block size-[1.6em]"><Kulhad /></span>}
           className="font-script -mx-4 rotate-[0.8deg] border-y-2 border-gold/60 bg-dupatta py-2 text-3xl text-gold sm:text-4xl"
         />
       </div>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { TruckFront } from "@/components/home/TruckFront";
 import Link from "next/link";
 import { NeonTitle } from "@/components/shared/NeonTitle";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
@@ -23,15 +23,7 @@ export function BeforeYouCome() {
             <RevealOnScroll variant="slide">
               <NeonTitle>general rules</NeonTitle>
             </RevealOnScroll>
-            <Image
-              quality={90}
-              src="/art/puppets.webp"
-              alt="Two Rajasthani kathputli puppets, one wearing sunglasses"
-              width={768}
-              height={1024}
-              sizes="(min-width: 1024px) 320px, 60vw"
-              className="sticker-edge mt-10 h-auto w-3/4 max-w-xs -rotate-2 lg:w-full"
-            />
+            <TruckFront className="mt-10 w-3/4 max-w-xs -rotate-2 lg:w-full" />
           </div>
 
           <div>

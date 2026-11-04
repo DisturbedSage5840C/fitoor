@@ -102,7 +102,7 @@ function StrikeSpark({ x, y }: { x: number; y: number }) {
   );
 }
 
-/** Landing-page loader after a Diwali-style invite: tap the "Fitoor ki
+/** Landing-page loader styled as a sealed gig invite: tap the "Fitoor ki
  *  Teeli" matchbox, drag the match across the striker until it catches, then
  *  carry the flame to the glowing marigold. Only that spot sets the invite
  *  alight, and the cover burns away to reveal the page. */
@@ -211,7 +211,7 @@ export function MatchIntro({ onDone }: { onDone: () => void }) {
           </p>
         </div>
 
-        {/* The room dims once the match is lit, like a diya in a dark gali. */}
+        {/* The room dims once the match is lit, like a club before the set. */}
         <div
           aria-hidden
           className={`pointer-events-none absolute inset-0 bg-maroon-deepest/40 transition-opacity duration-700 ${lit ? "opacity-100" : "opacity-0"}`}

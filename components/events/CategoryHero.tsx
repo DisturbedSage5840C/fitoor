@@ -73,7 +73,7 @@ export function CategoryHero({
           </nav>
         </div>
 
-        <div className="relative mx-auto aspect-square w-3/4 max-w-sm md:w-full">
+        <div className="group relative mx-auto aspect-square w-3/4 max-w-sm md:w-full">
           <Image
             quality={90}
             src={category.art}
@@ -81,7 +81,7 @@ export function CategoryHero({
             fill
             preload
             sizes="(min-width: 768px) 380px, 75vw"
-            className="sticker-edge rotate-3 object-contain"
+            className="sticker-edge boil-on-hover rotate-3 object-contain"
           />
           <Sticker tilt={-12} className="absolute top-0 -left-2 size-16 sm:size-20">
             {categoryStickers[category.slug]}

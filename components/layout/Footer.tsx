@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MascotFaceLogomark } from "@/components/mascot/MascotFaceLogomark";
 import { InstagramIcon } from "@/components/shared/InstagramIcon";
 import { Sticker } from "@/components/shared/Sticker";
-import { BarcodeTag, Smiley } from "@/components/shared/Stickers";
+import { BarcodeTag, Kulhad } from "@/components/shared/Stickers";
 import { TrimDivider } from "@/components/shared/TrimDivider";
 import { categoryList } from "@/data/categories";
 import { socials } from "@/data/contacts";
@@ -49,7 +49,7 @@ export function Footer() {
           </a>
           <div className="mt-6 flex items-end gap-4">
             <Sticker tilt={-8} className="size-16">
-              <Smiley />
+              <Kulhad />
             </Sticker>
             <Sticker tilt={5} className="h-16 w-28" live={false}>
               <BarcodeTag />

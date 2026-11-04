@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { CategoryArt } from "@/components/home/CategoryArt";
 import { NeonTitle } from "@/components/shared/NeonTitle";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionGround } from "@/components/shared/SectionGround";
@@ -69,19 +69,12 @@ export function Lineup() {
                   />
                   <div
                     className={cn(
-                      "sticker-edge absolute -right-2 -bottom-2 -z-10 aspect-square transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-2",
+                      "sticker-edge absolute -right-2 -bottom-2 -z-10 aspect-square",
                       big ? "w-3/5" : "w-2/3",
                     )}
                     aria-hidden
                   >
-                    <Image
-                      quality={90}
-                      src={category.art}
-                      alt=""
-                      fill
-                      sizes="(min-width: 1024px) 360px, 60vw"
-                      className="object-contain object-right-bottom"
-                    />
+                    <CategoryArt slug={category.slug} art={category.art} />
                   </div>
                   {/* Keeps the type legible where it runs over the artwork. */}
                   <div

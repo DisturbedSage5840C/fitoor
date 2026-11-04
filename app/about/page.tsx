@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { SectionGround } from "@/components/shared/SectionGround";
 import { StatTapes } from "@/components/shared/StatTapes";
-import { Smiley } from "@/components/shared/Stickers";
+import { Kulhad } from "@/components/shared/Stickers";
 import { Tape } from "@/components/shared/Tape";
 import { TicketCard } from "@/components/shared/TicketCard";
 import { about, fest } from "@/data/content";
@@ -22,7 +22,7 @@ export default function AboutPage() {
         script="the fest, the theme, the campus"
         ground="halftone"
         artTilt={-5}
-        sticker={<Smiley />}
+        sticker={<Kulhad />}
         art={{
           src: "/art/boombox-hand.webp",
           alt: "A hand carrying a boombox",

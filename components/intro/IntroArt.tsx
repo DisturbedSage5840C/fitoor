@@ -11,7 +11,7 @@ function Marigold({ x, y }: { x: number; y: number }) {
   );
 }
 
-/** The invite: a haldi-yellow envelope with a wax seal and an address label. */
+/** The invite: a haldi-yellow envelope with a wax seal and a gig-ticket stub. */
 export function Envelope() {
   return (
     <svg viewBox="0 0 420 270" className="h-auto w-full drop-shadow-[0_18px_0_rgba(28,4,7,0.45)]">
@@ -28,16 +28,24 @@ export function Envelope() {
         फ़
       </text>
 
-      <rect x="95" y="186" width="230" height="58" rx="8" fill="#f7ecd9" stroke="#c8203f" strokeWidth="2.5" />
-      <text x="110" y="204" className="font-body" fontSize="10" fontWeight="700" fill="#c8203f">
-        namaste,
-      </text>
-      <text x="210" y="226" textAnchor="middle" className="font-title" fontSize="22" fill="#4a1017">
-        mehmaan
-      </text>
-      <text x="210" y="239" textAnchor="middle" className="font-body" fontSize="7.5" fontWeight="600" fill="#4a1017" fillOpacity="0.75">
-        {`${fest.university.toLowerCase()} · ${fest.region.toLowerCase()}`}
-      </text>
+      {/* Gig-ticket stub: "admit one" to Fitoor, perforated down the left */}
+      <g transform="rotate(-3 210 215)">
+        <rect x="92" y="184" width="236" height="62" rx="4" fill="#f7ecd9" stroke="#4a1017" strokeWidth="2.5" />
+        <rect x="92" y="184" width="44" height="62" rx="4" fill="#c8203f" />
+        <line x1="136" y1="188" x2="136" y2="242" stroke="#4a1017" strokeWidth="1.5" strokeDasharray="3 3" />
+        <text x="114" y="219" textAnchor="middle" className="font-display" fontSize="11" fill="#f7ecd9" transform="rotate(-90 114 215)" letterSpacing="1">
+          ADMIT 1
+        </text>
+        <text x="146" y="200" className="font-body" fontSize="8" fontWeight="800" fill="#c8203f" letterSpacing="1.2">
+          {fest.theme.toUpperCase()}
+        </text>
+        <text x="146" y="226" className="font-wordmark" fontSize="26" fill="#4a1017">
+          {`${fest.name} '${String(fest.year).slice(2)}`}
+        </text>
+        <text x="146" y="239" className="font-body" fontSize="7.5" fontWeight="600" fill="#4a1017" fillOpacity="0.75">
+          {`14–15 nov · ${fest.university.toLowerCase()}`}
+        </text>
+      </g>
 
       <Marigold x={26} y={244} />
       <Marigold x={394} y={244} />

@@ -28,8 +28,8 @@ const ROW_NOTCH = ["50%", "38%", "62%", "45%", "55%"];
 export default function EventsPage() {
   return (
     <>
-      <header className="relative mx-auto max-w-6xl px-4 pt-14 pb-12 sm:px-6 sm:pt-20">
-        <MascotStamp className="absolute top-16 right-6 hidden w-44 md:block" />
+      <header className="relative mx-auto max-w-6xl overflow-x-clip px-4 pt-14 pb-12 sm:px-6 sm:pt-20">
+        <MascotStamp className="absolute top-8 right-4 hidden w-56 md:block lg:right-6 lg:w-80" />
         <RevealOnScroll variant="stamp">
           <NeonTitle as="h1" size="xl" script="competitions and informations">
             events
@@ -58,7 +58,7 @@ export default function EventsPage() {
             key={category.slug}
             id={category.slug}
             data-category={category.slug}
-            className="relative isolate scroll-mt-16 overflow-hidden bg-category-bg"
+            className="relative isolate scroll-mt-24 overflow-hidden bg-category-bg"
           >
             <div className="halftone absolute inset-0 -z-10 opacity-60" aria-hidden />
             <div
@@ -68,14 +68,14 @@ export default function EventsPage() {
               )}
             >
               <div className={cn("self-start", flip && "md:order-2")}>
-                <div className="relative mb-6 aspect-square w-44 sm:w-56">
+                <div className="group relative mb-6 aspect-square w-44 sm:w-56">
                   <Image
                     quality={90}
                     src={category.art}
                     alt={category.artAlt}
                     fill
                     sizes="224px"
-                    className="sticker-edge object-contain"
+                    className="sticker-edge boil-on-hover object-contain"
                     style={{ rotate: flip ? "4deg" : "-4deg" }}
                   />
                   <Sticker
