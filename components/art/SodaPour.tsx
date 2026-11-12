@@ -3,9 +3,11 @@ import Image from "next/image";
 const WIDTH = 613;
 const HEIGHT = 899;
 /** The pour sprite's box on the 613x899 can art, as built by
- *  scripts/build-cola-pour.py (its BOX and SPOUT): 8 frames stacked top to bottom. */
+ *  scripts/build-cola-pour.py (its BOX): 8 frames stacked top to bottom. */
 const SPRITE_BOX = { left: 280, top: 150, right: 720, bottom: 1010 };
-const SPOUT = { x: 490, y: 200 };
+/** The middle of the can's drink hole. The sprite fills that hole, so the
+ *  tilt is undone about this point to keep the fill sitting in it. */
+const HOLE = { x: 505, y: 195 };
 const pct = (n: number, of: number) => `${(n / of) * 100}%`;
 
 interface SodaPourProps {
@@ -13,8 +15,9 @@ interface SodaPourProps {
   tilt?: number;
 }
 
-/** The bangled hands tipping a can: a thick, glossy cola stream pours out of
- *  it without end and lands in a cartoon crown splash, drawn frame by frame. */
+/** The bangled hands tipping a can: cola wells up in the can's own drink hole,
+ *  rolls over the rim and pours without end into a cartoon crown splash, drawn
+ *  frame by frame. The sprite bakes in its own keyline, faded in below the rim. */
 export function SodaPour({ tilt = 0 }: SodaPourProps) {
   return (
     <div className="relative">
@@ -33,11 +36,11 @@ export function SodaPour({ tilt = 0 }: SodaPourProps) {
         className="pointer-events-none absolute inset-0"
         style={{
           rotate: `${-tilt}deg`,
-          transformOrigin: `${pct(SPOUT.x, WIDTH)} ${pct(SPOUT.y, HEIGHT)}`,
+          transformOrigin: `${pct(HOLE.x, WIDTH)} ${pct(HOLE.y, HEIGHT)}`,
         }}
       >
         <span
-          className="cola-pour sticker-edge absolute block bg-[url(/art/cola-pour.webp)] bg-no-repeat"
+          className="cola-pour absolute block bg-[url(/art/cola-pour.webp)] bg-no-repeat"
           style={{
             left: pct(SPRITE_BOX.left, WIDTH),
             top: pct(SPRITE_BOX.top, HEIGHT),
