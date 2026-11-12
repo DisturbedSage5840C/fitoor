@@ -9,6 +9,10 @@ import { categoryList } from "@/data/categories";
 import { socials } from "@/data/contacts";
 import { fest } from "@/data/content";
 
+/** Required wording from the Plaksha University Website Hosting Policy. Keep verbatim. */
+const HOSTING_DISCLAIMER =
+  "This website is hosted under a domain recognized by Plaksha University for departmental, research, faculty, student, and event-related digital initiatives. It is affiliated with Plaksha University but does not represent the university's official position, views, or institutional stance. Plaksha University does not review, verify, or endorse the content published on this site prior to publication and accepts no liability for its accuracy, completeness, or currency. Responsibility for the content, maintenance, and compliance of this site rests entirely with its owner, in accordance with the Plaksha University Website Hosting Policy.";
+
 const infoLinks = [
   { label: "Schedule", href: "/schedule" },
   { label: "About", href: "/about" },
@@ -81,6 +85,13 @@ export function Footer() {
           height={36}
           className="h-7 w-auto opacity-70"
         />
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <p className="font-body border-t border-dashed border-gold/20 pt-5 pb-8 text-[0.7rem] leading-relaxed text-cream/50 sm:text-xs">
+          <span className="font-semibold text-gold/70">Disclaimer: </span>
+          {HOSTING_DISCLAIMER}
+        </p>
       </div>
 
       <p
