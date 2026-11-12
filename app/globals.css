@@ -621,38 +621,12 @@
   100% { opacity: 1; transform: scale(1) rotate(0); }
 }
 
-/* Contact page: a heavy, unbroken pour of cola into a heap of curling cola
-   waves. The bands step down the column one period per cycle so it runs,
-   while its outline is redrawn every frame like a boiling hand-drawn line. */
-@keyframes cola-run {
-  0% { background-position: 0 0, 0 0, 0 0; }
-  25% { background-position: 0 0, 0 15px, 0 15px; }
-  50% { background-position: 0 0, 0 30px, 0 30px; }
-  75% { background-position: 0 0, 0 45px, 0 45px; }
-  100% { background-position: 0 0, 0 60px, 0 60px; }
-}
-@keyframes cola-edge {
-  0%, 100% {
-    clip-path: polygon(24% 0, 76% 0, 75% 18%, 72% 38%, 80% 58%, 88% 78%, 100% 100%, 0 100%, 10% 78%, 19% 58%, 26% 38%, 24% 18%);
-  }
-  33% {
-    clip-path: polygon(23% 0, 77% 0, 73% 18%, 76% 38%, 78% 58%, 92% 78%, 98% 100%, 3% 100%, 8% 78%, 22% 58%, 23% 38%, 27% 18%);
-  }
-  66% {
-    clip-path: polygon(25% 0, 75% 0, 77% 18%, 74% 38%, 83% 58%, 86% 78%, 100% 100%, 0 100%, 13% 78%, 17% 58%, 28% 38%, 22% 18%);
-  }
-}
-/* The waves heave where the cola lands, in held stop-motion poses. */
-@keyframes cola-surge {
-  0%, 100% { translate: 0 0; scale: 1; }
-  25% { translate: -1% 1.5%; scale: 1.015 0.985; }
-  50% { translate: 0.5% -1%; scale: 0.99 1.02; }
-  75% { translate: 1% 0.5%; scale: 1.01 0.99; }
-}
-@keyframes wobble {
-  0%, 100% { transform: scaleX(1); }
-  33% { transform: scaleX(1.12); }
-  66% { transform: scaleX(0.9); }
+/* Contact page: the cola pour sprite (scripts/build-cola-pour.py), eight
+   hand-inked frames of a stream running into a crown splash, looped at the
+   sitar's 12 fps so it keeps pouring. */
+@keyframes cola-pour {
+  from { background-position: 0 0%; }
+  to { background-position: 0 100%; }
 }
 
 /* Rules: the lily's bloom sprite (scripts/build-lily-bloom.py) stepped one
@@ -723,32 +697,9 @@
 .crush-pop { animation: pop 0.5s steps(1, end) both; }
 
 .cola-pour {
-  filter: drop-shadow(2px 0 0 var(--cream)) drop-shadow(-2px 0 0 var(--cream))
-    drop-shadow(3px 4px 0 rgb(0 0 0 / 0.35));
+  background-size: 100% 800%;
+  animation: cola-pour 0.66s steps(8, jump-none) infinite;
 }
-.cola-stream {
-  background-color: #5a230c;
-  background-image:
-    linear-gradient(
-      90deg,
-      rgb(26 8 2 / 0.45) 0 14%,
-      transparent 14% 30%,
-      rgb(239 228 207 / 0.6) 30% 36%,
-      transparent 36% 58%,
-      rgb(217 163 106 / 0.45) 58% 62%,
-      transparent 62% 84%,
-      rgb(26 8 2 / 0.45) 84%
-    ),
-    radial-gradient(9% 11px at 33% 25%, rgb(255 246 228 / 0.75), transparent 75%),
-    radial-gradient(7% 8px at 60% 70%, rgb(230 180 120 / 0.6), transparent 75%);
-  background-size: auto, 100% 60px, 100% 60px;
-  clip-path: polygon(24% 0, 76% 0, 75% 18%, 72% 38%, 80% 58%, 88% 78%, 100% 100%, 0 100%, 10% 78%, 19% 58%, 26% 38%, 24% 18%);
-  animation:
-    cola-run 0.28s steps(1, end) infinite,
-    cola-edge 0.36s steps(1, end) infinite;
-}
-.cola-lip { animation: wobble 0.36s steps(1, end) infinite; transform-origin: 50% 100%; }
-.cola-waves { animation: cola-surge 1.2s steps(1, end) infinite; transform-origin: 70% 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   .group:hover .boil-on-hover,
@@ -782,9 +733,7 @@
   .can-top-crush,
   .can-bottom-crush,
   .crush-pop,
-  .cola-stream,
-  .cola-lip,
-  .cola-waves {
+  .cola-pour {
     animation: none;
   }
   .gun-smoke,
