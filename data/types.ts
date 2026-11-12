@@ -67,9 +67,21 @@ export interface Artist {
   /** Matches the artist's row in festDays, e.g. "6 PM to 8 PM". */
   time: string;
   venue: string;
-  /** Cut-out from the organisers' poster, under public/artists. */
+  /** The organisers' poster for the act, under public/artists. */
   image?: string;
   imageAlt?: string;
+  /** A track to preview on hover or tap. */
+  song?: ArtistSong;
+}
+
+export interface ArtistSong {
+  title: string;
+  /** Credited artists, as listed on the store. */
+  credit: string;
+  /** Apple's official 30-second preview clip. */
+  previewUrl: string;
+  /** Full track on Apple Music; previews must link back to the source. */
+  link: string;
 }
 
 export interface ContactPerson {
