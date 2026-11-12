@@ -23,3 +23,11 @@ export function frameAt(
   const phase = tick % period;
   return phase < count ? phase : period - phase;
 }
+
+/** Which frame of a `count`-frame strip a 0..1 scroll `progress` lands on.
+ *  Clamped, because a spring-smoothed scroll value can overshoot either end. */
+export function scrubFrame(progress: number, count: number): number {
+  if (count <= 1 || !Number.isFinite(progress)) return 0;
+  const p = Math.min(1, Math.max(0, progress));
+  return Math.round(p * (count - 1));
+}

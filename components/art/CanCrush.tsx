@@ -12,12 +12,12 @@ const SIZES = "(min-width: 1024px) 380px, 70vw";
 /** The can above and below the fist, each on its own layer behind the hand. */
 const CAN_PARTS = [
   { src: "/art/glass-hand-can-top.webp", motion: "can-top-crush origin-[50%_20%]" },
-  { src: "/art/glass-hand-can-bottom.webp", motion: "can-bottom-crush origin-[50%_71%]" },
+  { src: "/art/glass-hand-can-bottom.webp", motion: "can-bottom-crush origin-[35%_71%]" },
 ];
 
 /** A ringed fist round a soda can. Point at it (or tap it) and the fist
- *  holds perfectly still while the can buckles in its grip, top and bottom
- *  folding in towards the fingers, with a crunch and a crackle. */
+ *  clenches towards its wrist while the can's ends kink out of the grip,
+ *  with a crunch and a crackle. */
 export function CanCrush() {
   // Each new crush re-keys the layers so their animations start over.
   const [crushes, setCrushes] = useState(0);
@@ -48,15 +48,16 @@ export function CanCrush() {
             <Image quality={90} src={part.src} alt="" width={WIDTH} height={HEIGHT} sizes={SIZES} className="h-auto w-full" />
           </span>
         ))}
-        {/* The hand is drawn last, on top, and never moves or scales. */}
+        {/* The hand is drawn last, on top, and clenches round the wrist. */}
         <Image
+          key={`hand-${crushes}`}
           quality={90}
           src="/art/glass-hand-hand.webp"
           alt="A ringed hand crushing a soda can"
           width={WIDTH}
           height={HEIGHT}
           sizes={SIZES}
-          className="relative block h-auto w-full"
+          className={`relative block h-auto w-full origin-[85%_100%] ${crushed ? "hand-squeeze" : ""}`}
         />
       </span>
       <span

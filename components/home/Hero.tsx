@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   animate,
-  motion,
   useMotionValue,
   useMotionValueEvent,
   useReducedMotion,
@@ -17,7 +16,7 @@ import type { MotionValue } from "motion/react";
 import { Countdown } from "@/components/home/Countdown";
 import { MatchIntro } from "@/components/intro/MatchIntro";
 import { hasIntroStarted } from "@/components/intro/useMatchIntro";
-import { MascotLoop, MascotStill, SUBJECT_CENTRE } from "@/components/mascot/MascotSequence";
+import { MascotSequence, MascotStill, SUBJECT_CENTRE } from "@/components/mascot/MascotSequence";
 import { RegisterLink, RegistrationNote } from "@/components/shared/RegisterCta";
 import { fest } from "@/data/content";
 import { events } from "@/data/events";
@@ -27,12 +26,12 @@ import { events } from "@/data/events";
  *  then scrolls normally. */
 const MASCOT_VH = 160;
 
-/** Share of the pin spent walking in; the rest is the sit-down. */
-const WALK_END = 0.8;
-/** Progress past which he counts as seated and starts playing. */
+/** Progress past which the rest of the sit-down plays on its own. */
 const SEATED_AT = 0.92;
 
-const SPRING = { stiffness: 140, damping: 30, mass: 0.6 };
+/** Soft and slightly heavy so wheel notches glide through the footage
+ *  instead of stepping through it. */
+const SPRING = { stiffness: 90, damping: 24, mass: 0.5 };
 /** How the latched clock eases the last of the sit-down once he is held. */
 const SETTLE = { duration: 0.35, ease: "easeOut" } as const;
 
@@ -154,40 +153,11 @@ function useSeatLatch(scroll: MotionValue<number>): MotionValue<number> {
   return useTransform([scroll, held, settle], ([v, h, s]: number[]) => (h ? s : v));
 }
 
-/** One-way flag: flips on when he sits and never back off. */
-function useSeated(clock: MotionValue<number>): boolean {
-  const [seated, setSeated] = useState(false);
-  useMotionValueEvent(clock, "change", (v) => {
-    if (v >= SEATED_AT) setSeated(true);
-  });
-  return seated;
-}
-
-const STEPS = 5;
-/** Evenly spaced keyframes across the walk, alternating two values. */
-function footsteps(a: number, b: number) {
-  const at = Array.from({ length: STEPS * 2 + 1 }, (_, i) => (i / (STEPS * 2)) * WALK_END);
-  return { at, values: at.map((_, i) => (i === STEPS * 2 ? 0 : i % 2 ? a : b)) };
-}
-const BOB = footsteps(-14, 0);
-const SWAY = footsteps(-3, 3);
-
 function ScrollHero({ covered }: { covered: boolean }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  // Mascot beats on a 0 to 1 scroll clock: walk in, then drop onto the floor.
+  // The footage is scrubbed on a 0 to 1 scroll clock: walk in, kneel, lift the sitar.
   const scroll = useMascotScroll(wrapperRef);
-  const m = useSeatLatch(scroll);
-  const seated = useSeated(m);
-
-  const x = useTransform(m, [0, WALK_END], ["-110vw", "0vw"], { clamp: true });
-  const y = useTransform(
-    m,
-    [...BOB.at, 0.88, 1],
-    [...BOB.values, -24, 0],
-    { clamp: true },
-  );
-  const rotate = useTransform(m, SWAY.at, SWAY.values, { clamp: true });
-  const scaleY = useTransform(m, [WALK_END, 0.88, 1], [1, 1.04, 0.97], { clamp: true });
+  const clock = useSeatLatch(scroll);
 
   return (
     <div
@@ -200,9 +170,7 @@ function ScrollHero({ covered }: { covered: boolean }) {
         <div className="absolute left-[72%] top-[calc(50%+2rem)]">
           <Disc size={DESKTOP_DISC} />
           <div className="absolute left-0 top-0" style={mascotBox(DESKTOP_DISC)}>
-            <motion.div style={{ x, y, rotate, scaleY, transformOrigin: "50% 100%" }}>
-              <MascotLoop playing={seated && !covered} className="h-auto w-full" />
-            </motion.div>
+            <MascotSequence scrub={clock} playing={!covered} className="h-auto w-full" />
           </div>
         </div>
         <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-[1fr_1.15fr] items-center gap-6 px-6">
@@ -223,7 +191,7 @@ function MobileHero({ covered }: { covered: boolean }) {
           <div className="relative" style={discBox}>
             <Disc size={MOBILE_DISC} />
             <div className="absolute left-1/2 top-1/2" style={mascotBox(MOBILE_DISC)}>
-              <MascotLoop playing={!covered} className="h-auto w-full" />
+              <MascotSequence playing={!covered} className="h-auto w-full" />
             </div>
           </div>
           <HeroCopy covered={covered} centered />

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { frameAt, frameDurationMs } from "./frame-clock.ts";
+import { frameAt, frameDurationMs, scrubFrame } from "./frame-clock.ts";
 
 test("frame duration is one second split by fps", () => {
   assert.equal(frameDurationMs(10), 100);
@@ -34,4 +34,24 @@ test("degenerate inputs never return an out-of-range frame", () => {
   assert.equal(frameAt(-50, 10, 4, "loop"), 0);
   assert.equal(frameAt(Number.NaN, 10, 4, "loop"), 0);
   assert.equal(frameAt(500, 0, 4, "loop"), 0);
+});
+
+test("scrub maps 0..1 progress evenly across the strip", () => {
+  assert.equal(scrubFrame(0, 78), 0);
+  assert.equal(scrubFrame(1, 78), 77);
+  assert.equal(scrubFrame(0.5, 78), 39);
+  // Rounds to the nearest frame rather than flooring, so the last frame is
+  // reachable without scrolling to the exact end.
+  assert.equal(scrubFrame(0.996, 78), 77);
+});
+
+test("scrub clamps overshoot from a springy scroll value", () => {
+  assert.equal(scrubFrame(-0.2, 78), 0);
+  assert.equal(scrubFrame(1.3, 78), 77);
+});
+
+test("scrub is safe on degenerate input", () => {
+  assert.equal(scrubFrame(Number.NaN, 78), 0);
+  assert.equal(scrubFrame(0.5, 1), 0);
+  assert.equal(scrubFrame(0.5, 0), 0);
 });

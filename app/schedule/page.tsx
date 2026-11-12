@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
@@ -34,6 +35,30 @@ const POSTERS = [
     offset: "md:mt-20",
     tape: "gold",
     tapeTilt: 2.5,
+  },
+] as const;
+
+/** Rasterised from the organisers' Day 1 and Day 2 schedule PDFs. */
+const CHART_W = 2400;
+const CHART_H = 1356;
+const CHARTS = [
+  {
+    day: 1,
+    src: "/schedule/day-1-chart.webp",
+    alt: "Fitoor Day 1 schedule chart: every event by venue from 10 AM, ending with Nanku live on the Ground from 8:30 PM.",
+    tilt: -0.5,
+    tape: "rose",
+    tapeTilt: -3,
+    shadow: "shadow-[9px_10px_0_var(--rose)]",
+  },
+  {
+    day: 2,
+    src: "/schedule/day-2-chart.webp",
+    alt: "Fitoor Day 2 schedule chart: every event by venue from 10 AM, then RCR live on the Ground from 6 to 8 PM and the DJ from 8 to 10 PM.",
+    tilt: 0.5,
+    tape: "gold",
+    tapeTilt: 2.5,
+    shadow: "shadow-[9px_10px_0_var(--gold)]",
   },
 ] as const;
 
@@ -176,6 +201,48 @@ export default function SchedulePage() {
               </div>
             );
           })}
+        </div>
+
+        <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:pb-32">
+          <h2 className="font-title neon text-center text-5xl lowercase sm:text-6xl">
+            the full charts
+          </h2>
+          <p className="font-body mt-3 text-center text-cream/75">
+            The official day-wise charts. Tap one to open it full size.
+          </p>
+          <div className="mt-14 flex flex-col gap-20">
+            {CHARTS.map((chart) => (
+              <figure key={chart.day} className="relative" style={{ rotate: `${chart.tilt}deg` }}>
+                <Tape
+                  tilt={chart.tapeTilt}
+                  tone={chart.tape}
+                  className="absolute -top-4 left-6 z-10 px-5 py-1"
+                >
+                  <span className="font-body text-sm font-bold">Day {chart.day}</span>
+                </Tape>
+                <a
+                  href={chart.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(
+                    "block overflow-hidden rounded-[6px] border-2 border-gold/70 bg-black transition-transform hover:-translate-y-0.5",
+                    chart.shadow,
+                  )}
+                >
+                  <Image
+                    src={chart.src}
+                    alt={chart.alt}
+                    width={CHART_W}
+                    height={CHART_H}
+                    quality={90}
+                    sizes="(min-width: 1152px) 1104px, calc(100vw - 2rem)"
+                    className="h-auto w-full"
+                  />
+                  <span className="sr-only"> (opens the full-size chart in a new tab)</span>
+                </a>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
     </>
