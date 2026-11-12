@@ -1,29 +1,17 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
 
 /** Where the can's mouth tips over on the art, as a share of its box. */
-const SPOUT = { left: "80%", top: "22%" };
-/** The unbroken column of cola, then the gap it breaks up and drips through.
- *  Fixed lengths, so the pour ends inside the header instead of running on
- *  down the page. */
-const STREAM_LENGTH = "clamp(7rem, 22vh, 13rem)";
-const FALL_LENGTH = "clamp(5rem, 14vh, 8rem)";
+const SPOUT = { x: 80, y: 22 };
+/** How thick the pour is at the rim and how far it falls before it lands,
+ *  as shares of the art's width and height, so it scales with the can. */
+const STREAM_WIDTH = 30;
+const STREAM_DROP = 72;
+/** The heap of cola waves (scripts/build-cola-waves.py, 720x354). Its tallest
+ *  curl sits 85% of the way across, so that is what goes under the stream. */
+const WAVES = { w: 720, h: 354, crestX: 0.85, widthShare: 140 };
+/** How far down the waves the stream sinks in before they hide it. */
+const WAVES_SINK = 0.35;
 const COLA = "#5a230c";
-
-/** Each drop's head start through the fall, staggered so one is always
- *  leaving the stream. `at` is where it rests when motion is reduced. */
-const DROPS = [
-  { delay: "0s", at: 0.1, size: "size-2.5 sm:size-3" },
-  { delay: "0.15s", at: 0.38, size: "size-2 sm:size-2.5" },
-  { delay: "0.3s", at: 0.62, size: "size-2.5 sm:size-3" },
-  { delay: "0.45s", at: 0.86, size: "size-2 sm:size-2.5" },
-] as const;
-/** Fizz kicked back up out of the puddle, to either side. */
-const REBOUNDS = [
-  { dir: -1, delay: "0.05s" },
-  { dir: 1, delay: "0.25s" },
-  { dir: -0.5, delay: "0.45s" },
-] as const;
 
 interface SodaPourProps {
   /** The tilt the header gives the can, in degrees. The pour turns back by
@@ -31,9 +19,15 @@ interface SodaPourProps {
   tilt?: number;
 }
 
-/** Two bangled hands tipping a can of diet cola: a short stream that breaks
- *  into falling drops and lands in a frothing splash. */
+/** Two bangled hands tipping a can of diet cola: a heavy, unbroken pour
+ *  that lands in a heap of curling cola waves. */
 export function SodaPour({ tilt = 0 }: SodaPourProps) {
+  const streamBottom = SPOUT.y + STREAM_DROP;
+  // The art is 613x899; the waves' height as a share of the art's height.
+  const wavesHeight = (WAVES.widthShare / 100) * (WAVES.h / WAVES.w) * (613 / 899) * 100;
+  const wavesTop = streamBottom - wavesHeight * WAVES_SINK;
+  const wavesLeft = SPOUT.x - WAVES.crestX * WAVES.widthShare;
+
   return (
     <div className="relative">
       <Image
@@ -46,64 +40,42 @@ export function SodaPour({ tilt = 0 }: SodaPourProps) {
         sizes="240px"
         className="sticker-edge h-auto w-full"
       />
-      <span
+      {/* Level with the page, whatever tilt the header gives the can. */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute block -translate-x-1/2"
-        style={
-          {
-            ...SPOUT,
-            rotate: `${-tilt}deg`,
-            transformOrigin: "50% 0",
-            "--fall": FALL_LENGTH,
-          } as CSSProperties
-        }
+        className="pointer-events-none absolute inset-0"
+        style={{ rotate: `${-tilt}deg`, transformOrigin: `${SPOUT.x}% ${SPOUT.y}%` }}
       >
-        {/* The lip where the cola curls over the rim. */}
-        <span
-          className="cola-lip absolute top-0 left-1/2 block h-4 w-4 -translate-x-1/2 rounded-[50%_50%_45%_45%] border-2 border-cream/85 sm:h-5 sm:w-6"
-          style={{ background: COLA }}
-        />
-        <span
-          className="cola-stream relative mx-auto block w-2 rounded-b-full border-x-2 border-b-2 border-cream/80 shadow-[3px_0_0_rgb(0_0_0/0.3)] sm:w-3.5"
-          style={{ height: STREAM_LENGTH, backgroundColor: COLA }}
-        />
-        {/* Where the stream gives out, it falls as separate drops. */}
-        <span className="relative mx-auto block w-0" style={{ height: FALL_LENGTH }}>
-          {DROPS.map((drop) => (
-            <span
-              key={drop.delay}
-              className={`coke-drop absolute top-0 left-0 block border-2 border-cream/80 shadow-[2px_1px_0_rgb(0_0_0/0.3)] ${drop.size}`}
-              style={
-                {
-                  background: COLA,
-                  animationDelay: drop.delay,
-                  "--at": drop.at,
-                } as CSSProperties
-              }
-            />
-          ))}
-        </span>
-        {/* The puddle, frothing where the drops land, with fizz kicking back. */}
-        <span className="relative mx-auto block h-3 w-0">
+        <div
+          className="cola-pour absolute -translate-x-1/2"
+          style={{
+            left: `${SPOUT.x}%`,
+            top: `${SPOUT.y}%`,
+            width: `${STREAM_WIDTH}%`,
+            height: `${STREAM_DROP}%`,
+          }}
+        >
+          <div className="cola-stream size-full" />
+          {/* The lip where the cola curls over the rim. */}
           <span
-            className="cola-splash absolute top-0 left-0 block h-3 w-12 -translate-x-1/2 rounded-[50%] border-2 border-cream/80 sm:w-16"
+            className="cola-lip absolute -top-[3%] left-1/2 block h-[7%] w-[52%] -translate-x-1/2 rounded-[50%_50%_40%_40%]"
             style={{ background: COLA }}
           />
-          {REBOUNDS.map((hop) => (
-            <span
-              key={hop.delay}
-              className="cola-hop absolute top-0 left-0 block size-1.5 -translate-x-1/2 rounded-full border border-cream/80"
-              style={
-                {
-                  background: COLA,
-                  animationDelay: hop.delay,
-                  "--dir": hop.dir,
-                } as CSSProperties
-              }
-            />
-          ))}
-        </span>
-      </span>
+        </div>
+        <Image
+          src="/art/cola-waves.webp"
+          alt=""
+          width={WAVES.w}
+          height={WAVES.h}
+          sizes="(min-width: 1024px) 336px, (min-width: 640px) 247px, 135px"
+          className="cola-waves sticker-edge absolute h-auto max-w-none"
+          style={{
+            left: `${wavesLeft}%`,
+            top: `${wavesTop}%`,
+            width: `${WAVES.widthShare}%`,
+          }}
+        />
+      </div>
     </div>
   );
 }
