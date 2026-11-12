@@ -10,7 +10,7 @@ export interface Registration {
 export const registration: Registration = {
   closesAt: "2026-11-12T23:59:00+05:30",
   closesLabel: "12 Nov, 11:59 PM",
-  closed: false,
+  closed: true,
 };
 
 /** Open until Unstop's deadline, or until the closed flag is set by hand. */
