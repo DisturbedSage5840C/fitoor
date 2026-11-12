@@ -90,6 +90,12 @@ export default function SchedulePage() {
                   <ol className="font-body mt-8">
                     {day.schedule.map((slot, r) => {
                       const category = categoryOf.get(slot.id ?? "");
+                      const isArtist = slot.kind === "artist";
+                      const href = category
+                        ? `/events/${category}#${slot.id}`
+                        : isArtist
+                          ? "/#lineup"
+                          : null;
                       const last = r === day.schedule.length - 1;
                       const [start, end] = slot.time.split(" to ");
                       const row = (
@@ -107,13 +113,30 @@ export default function SchedulePage() {
                                 r === 0 ? "top-1/2 bottom-0" : last ? "top-0 bottom-1/2" : "inset-y-0",
                               )}
                             />
-                            <span className="absolute top-1/2 left-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-rose ring-2 ring-maroon-deepest" />
+                            <span
+                              className={cn(
+                                "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-maroon-deepest",
+                                isArtist
+                                  ? "size-4 bg-gold shadow-[0_0_12px_var(--rose)]"
+                                  : "size-3 bg-rose",
+                              )}
+                            />
                           </span>
                           <span className="flex items-center justify-between gap-2 text-cream">
-                            <span className="font-title text-xl leading-tight lowercase sm:text-2xl">
-                              {slot.title}
+                            <span>
+                              <span
+                                className={cn(
+                                  "font-title block text-xl leading-tight lowercase sm:text-2xl",
+                                  isArtist && "neon",
+                                )}
+                              >
+                                {slot.title}
+                              </span>
+                              <span className="block text-xs font-medium text-cream/60">
+                                {isArtist ? `live · ${slot.venue}` : slot.venue}
+                              </span>
                             </span>
-                            {category ? (
+                            {href ? (
                               <ArrowUpRight className="size-4 shrink-0 text-gold/70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             ) : null}
                           </span>
@@ -122,11 +145,15 @@ export default function SchedulePage() {
                       const grid =
                         "grid min-h-11 grid-cols-[4.75rem_1.25rem_1fr] items-center gap-x-3 py-2 sm:grid-cols-[6rem_1.5rem_1fr]";
                       return (
-                        <li key={`${slot.id}-${slot.time}`}>
-                          {category ? (
+                        <li key={`${slot.id ?? slot.title}-${slot.time}`}>
+                          {href ? (
                             <Link
-                              href={`/events/${category}#${slot.id}`}
-                              className={cn(grid, "group hover:bg-cream/5")}
+                              href={href}
+                              className={cn(
+                                grid,
+                                "group hover:bg-cream/5",
+                                isArtist && "rounded-[4px] bg-rose/10",
+                              )}
                             >
                               {row}
                             </Link>

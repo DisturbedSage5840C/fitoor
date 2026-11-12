@@ -1,4 +1,5 @@
 import { socials, venue } from "@/data/contacts";
+import { artists } from "@/data/artists";
 import { fest } from "@/data/content";
 import { siteUrl } from "@/lib/site";
 
@@ -13,7 +14,11 @@ export function festJsonLd() {
         name: "Fitoor 2026: Young, Dumb & Desi",
         description: fest.theme,
         startDate: fest.startDateISO,
-        endDate: "2026-11-15T20:00:00+05:30",
+        endDate: "2026-11-15T22:00:00+05:30",
+        performer: artists.map((artist) => ({
+          "@type": artist.role === "dj" ? "Person" : "PerformingGroup",
+          name: artist.name,
+        })),
         eventStatus: "https://schema.org/EventScheduled",
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         url: siteUrl,

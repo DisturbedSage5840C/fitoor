@@ -24,6 +24,7 @@ export function EventCard({
     { label: "Registration fee", value: event.fee },
     { label: "Prize pool", value: event.prizePool },
     { label: "Date & time", value: event.dateTime },
+    { label: "Venue", value: event.venue },
   ];
 
   return (

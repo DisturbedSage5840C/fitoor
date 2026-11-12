@@ -1,7 +1,7 @@
 import type { CategorySlug, EventItem } from "./types";
 
 /**
- * All 21 Fitoor 2026 events, transcribed from the official Fitoor '26
+ * All 20 Fitoor 2026 events, transcribed from the official Fitoor '26
  * brochure (final edition). Schedule and prize pools are marked
  * "subject to change" in the brochure itself.
  */
@@ -30,7 +30,8 @@ export const events: EventItem[] = [
     club: "crescendo",
     fee: "₹100 per head",
     prizePool: "₹8,000",
-    dateTime: "14 Nov, 3 PM to 4:30 PM",
+    dateTime: "14 Nov, 1:30 PM to 3 PM",
+    venue: "Ground",
   },
   {
     id: "euphony",
@@ -56,7 +57,8 @@ export const events: EventItem[] = [
     club: "crescendo",
     fee: "₹100 per head",
     prizePool: "₹8,000",
-    dateTime: "14 Nov, 4:30 PM to 6 PM",
+    dateTime: "14 Nov, 3 PM to 4:30 PM",
+    venue: "Ground",
   },
   {
     id: "battle-of-bands",
@@ -80,7 +82,8 @@ export const events: EventItem[] = [
     club: "crescendo",
     fee: "₹100 per head",
     prizePool: "₹25,000",
-    dateTime: "14 Nov, 6 PM to 10 PM",
+    dateTime: "14 Nov, 4:30 PM to 8 PM",
+    venue: "Ground",
   },
 
   // ─── Dance ────────────────────────────────────────────────
@@ -109,7 +112,8 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "15 Nov, 10 AM to 12 PM",
+    dateTime: "15 Nov, 10 AM to 11 AM",
+    venue: "Auditorium",
   },
   {
     id: "riwayat",
@@ -134,9 +138,10 @@ export const events: EventItem[] = [
       "Derogatory language or explicit movements are strictly prohibited.",
     ],
     club: "one-o-one",
-    fee: "₹100 per head",
+    fee: "₹200 per duet, ₹600 per group",
     prizePool: "₹15,000",
-    dateTime: "15 Nov, 10 AM to 12 PM",
+    dateTime: "15 Nov, 11 AM to 12 PM",
+    venue: "Auditorium",
   },
   {
     id: "rivals-riot",
@@ -146,12 +151,12 @@ export const events: EventItem[] = [
     description:
       "A one-on-one freestyle dance battle where dancers face off: Top 8, head to head, until one is left.",
     format: "Solo Freestyle",
-    facts: ["QF 45s", "SF 2×45s", "Final 60s"],
+    facts: ["Prelim 30s", "QF 30s", "SF 2×30s", "Final 45s"],
     rules: [
       "Independent of all other dance events. Western solo and duet participants may enter, plus up to 5 members from each team competing in Revolution, each with a separate registration from the college.",
       "All Western and street styles are welcome.",
-      "A preliminary round may pick the Top 8; each dancer freestyles 45 seconds to an undisclosed, organiser-selected track.",
-      "Knockout bracket: Quarterfinals (1 × 45s per dancer) → Semifinals (2 × 45s per dancer) → Final (1 × 60s per dancer). Judges decide each battle.",
+      "A preliminary round may pick the Top 8; each dancer freestyles 30 seconds to an undisclosed, organiser-selected track.",
+      "Knockout bracket: Quarterfinals (1 × 30s per dancer) → Semifinals (2 × 30s per dancer) → Final (1 × 45s per dancer). Judges decide each battle.",
       "In case of a tie, a 30-second sudden-death round may be held.",
       "No pre-choreographed routines; freestyle and real-time musical interpretation only. No props.",
       "Judged on musicality, creativity & originality, freestyle & adaptability, technique and stage presence.",
@@ -160,7 +165,8 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "15 Nov, 12 PM to 1 PM",
+    dateTime: "15 Nov, 5 PM to 6 PM",
+    venue: "Ground",
   },
   {
     id: "rogue",
@@ -184,7 +190,8 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "15 Nov, 2 PM to 5 PM",
+    dateTime: "15 Nov, 1 PM to 2 PM",
+    venue: "Auditorium",
   },
   {
     id: "reverb",
@@ -208,7 +215,8 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹200",
     prizePool: "₹15,000",
-    dateTime: "15 Nov, 2 PM to 5 PM",
+    dateTime: "15 Nov, 2 PM to 3 PM",
+    venue: "Auditorium",
   },
   {
     id: "revolution",
@@ -233,7 +241,8 @@ export const events: EventItem[] = [
     club: "one-o-one",
     fee: "₹1,200 per group",
     prizePool: "₹25,000",
-    dateTime: "15 Nov, 2 PM to 5 PM",
+    dateTime: "15 Nov, 3 PM to 5 PM",
+    venue: "Auditorium",
   },
 
   // ─── Art & Expression ─────────────────────────────────────
@@ -254,7 +263,8 @@ export const events: EventItem[] = [
     club: "rangrez",
     fee: "₹100",
     prizePool: "₹10,000",
-    dateTime: "14 Nov, 10 AM to 2 PM",
+    dateTime: "14 Nov, 10 AM to 1:30 PM",
+    venue: "A1-002",
   },
   {
     id: "rangeen-jeevan",
@@ -277,30 +287,7 @@ export const events: EventItem[] = [
     fee: "₹100",
     prizePool: "₹15,000",
     dateTime: "15 Nov, 10 AM to 6 PM",
-  },
-  {
-    id: "climax",
-    category: "art",
-    title: "Climax",
-    subtitle: "filmmaking",
-    description:
-      "The theme is youthful energy blended with vibrant Indian tradition, presented in a well-flowing video sequence. Shoot on day one, edit, and submit on day two.",
-    format: "Group (1 to 5)",
-    facts: ["Spans both days", "4 to 5 min film"],
-    rules: [
-      "Only phones are allowed.",
-      "Teams must be on campus both days: record your clips on Day 1, then edit and submit on Day 2.",
-      "After recording and selecting clips, submit a drive folder of them to the organisers: recorded clips and stock clips both.",
-      "Each team member gets a coloured lanyard at on-site registration. Return it to the organisers at the designated venue after submitting your folder on Day 1; any Day 2 video submitted without the lanyards returned won't count.",
-      "The submission window opens on Day 2 and lasts 4 hours; late entries are not allowed.",
-      "Name the file TEAMNAME_INSTITUTE (e.g. BROCODE_PLAKSHA.mp4), in .mp4 or .mov.",
-      "The video must be 4 to 5 minutes long.",
-      "Judged on storytelling, composition, style and relevance to the theme.",
-    ],
-    club: "lamhe",
-    fee: "₹300 per group",
-    prizePool: "₹15,000",
-    dateTime: "14 Nov, 10 AM to 9 PM and 15 Nov, 10 AM to 6 PM",
+    venue: "Ground",
   },
   {
     id: "baal-ki-khaal",
@@ -326,6 +313,7 @@ export const events: EventItem[] = [
     fee: "₹500 per group",
     prizePool: "₹15,000",
     dateTime: "14 Nov, 10 AM to 12 PM",
+    venue: "Auditorium",
   },
   {
     id: "pandoras-box",
@@ -350,12 +338,13 @@ export const events: EventItem[] = [
     fee: "₹500 per group",
     prizePool: "₹10,000",
     dateTime: "14 Nov, 12 PM to 3 PM",
+    venue: "Auditorium",
   },
   {
     id: "jugaad-couture",
     category: "art",
     title: "Jugaad Couture",
-    subtitle: "fashion show",
+    subtitle: "fashion show, by Michele Daroowala",
     description:
       "Calling all fashion visionaries to own the runway! From the historic galiyan of old bazaars to the grand gaddiyan of royal courts, Indian style has always been driven by raw hustle and rich heritage. Reimagine royal brocades, vintage sarees and antique silhouettes through an upcycled street lens. Blend regal elegance with urban grit and show us how high fashion meets raw jugaad.",
     format: "Group (5 to 10)",
@@ -371,6 +360,7 @@ export const events: EventItem[] = [
     fee: "₹500 per group",
     prizePool: "₹25,000",
     dateTime: "15 Nov, 11 AM to 2 PM",
+    venue: "Summer-Winter Court",
   },
 
   // ─── Wit & Whim ───────────────────────────────────────────
@@ -392,6 +382,7 @@ export const events: EventItem[] = [
     fee: "₹300 per group",
     prizePool: "₹25,000",
     dateTime: "15 Nov, 10 AM to 6 PM",
+    venue: "A1-001",
   },
   {
     id: "20-20-vision",
@@ -410,8 +401,9 @@ export const events: EventItem[] = [
     ],
     club: "pqc",
     fee: "₹100 per group",
-    prizePool: "₹10,000",
+    prizePool: "₹15,000",
     dateTime: "14 Nov, 10 AM to 12:30 PM",
+    venue: "A2-201",
   },
   {
     id: "slumdog-questionnaire",
@@ -429,8 +421,9 @@ export const events: EventItem[] = [
     ],
     club: "pqc",
     fee: "₹100 per group",
-    prizePool: "₹10,000",
+    prizePool: "₹15,000",
     dateTime: "14 Nov, 12:30 PM to 3 PM",
+    venue: "A2-201",
   },
 
   // ─── Business ─────────────────────────────────────────────
@@ -455,6 +448,7 @@ export const events: EventItem[] = [
     fee: "₹200 per group",
     prizePool: "₹20,000",
     dateTime: "14 Nov, 4 PM to 6 PM",
+    venue: "A2-202",
   },
   {
     id: "wolf-of-dalal-street",
@@ -477,6 +471,7 @@ export const events: EventItem[] = [
     fee: "₹200 per group",
     prizePool: "₹20,000",
     dateTime: "14 Nov, 10 AM to 3 PM",
+    venue: "A2-202",
   },
   {
     id: "cut-to-the-case",
@@ -485,7 +480,7 @@ export const events: EventItem[] = [
     subtitle: "where cinema meets strategy",
     description:
       "Lights, camera, strategy! As part of Young Dumb Desi, the Plaksha Consulting Club brings you a high-stakes case competition that puts your business acumen to the test through the lens of the Indian entertainment industry, from films, music and streaming to celebrity branding and the economics of showbiz. Think sharp, think desi, and take your shot at the spotlight.",
-    format: "Group (3 to 4)",
+    format: "Group (1 to 4)",
     facts: ["2 rounds", "Final pitch to judges"],
     rules: [
       "Round 1 (The Eliminatory Round): put your knowledge, instincts and problem-solving skills to the test to compete for a spot in the finals.",
@@ -498,8 +493,9 @@ export const events: EventItem[] = [
     ],
     club: "pcc",
     fee: "₹200 per group",
-    prizePool: "₹20,000",
-    dateTime: "15 Nov, 11 AM to 2 PM",
+    prizePool: "₹50,000",
+    dateTime: "15 Nov, 11 AM to 3 PM",
+    venue: "A2-201",
   },
 ];
 

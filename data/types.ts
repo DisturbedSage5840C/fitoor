@@ -50,8 +50,26 @@ export interface EventItem {
   fee: string;
   /** As printed on the brochure, e.g. "₹8,000". */
   prizePool: string;
-  /** As printed on the brochure, e.g. "14 Nov, 3 PM to 4:30 PM". */
+  /** As printed on the schedule poster, e.g. "14 Nov, 3 PM to 4:30 PM". */
   dateTime: string;
+  /** Room or ground from the schedule poster, e.g. "Auditorium". */
+  venue: string;
+}
+
+export type ArtistRole = "headliner" | "dj";
+
+export interface Artist {
+  id: string;
+  name: string;
+  nameHindi?: string;
+  role: ArtistRole;
+  day: 1 | 2;
+  /** Matches the artist's row in festDays, e.g. "6 PM to 8 PM". */
+  time: string;
+  venue: string;
+  /** Cut-out from the organisers' poster, under public/artists. */
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface ContactPerson {

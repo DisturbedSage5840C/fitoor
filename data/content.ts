@@ -39,7 +39,7 @@ export const generalRules: string[] = [
   "Team/Group POCs who are not participating in the event are not allowed in the fest.",
   "Group music and dance teams may bring one or two additional non-performing members to help with sound cues, light cues, and other technical support. These participants will also need to pay the event fee and will count as a member of the team.",
   "Participants can register for as many events as they would like provided there are no scheduling conflicts. Registering for one event allows entry on both the days of the fest.",
-  "Day 1 concludes at 10 PM, and Day 2 concludes at 8 PM; all participants must leave by these times.",
+  "Day 1 concludes at 10 PM, and Day 2 concludes at 10 PM; all participants must leave by these times.",
   "All event participants will be given an e-certificate of participation. Those who win events will be given a certificate of merit in addition.",
   "No refund will be provided for the registration fee.",
   "A 30% tax deduction applies to individual prize amounts exceeding ₹10,000.",
@@ -69,19 +69,23 @@ export const accommodationNote =
 export interface ScheduleEntry {
   time: string;
   title: string;
+  /** Room or stage, as printed on the organisers' schedule poster. */
+  venue: string;
   /** Event id in data/events.ts, when the row is a competition. */
   id?: string;
+  /** "artist" rows are the evening performances, not competitions. */
+  kind?: "event" | "artist";
 }
 
 export interface FestDay {
-  day: number;
+  day: 1 | 2;
   weekday: string;
   date: string;
   concludes: string;
   schedule: ScheduleEntry[];
 }
 
-/** Day by day, in the order the brochure's schedule pages read. */
+/** Day by day, as the organisers' final schedule posters read. */
 export const festDays: FestDay[] = [
   {
     day: 1,
@@ -89,36 +93,37 @@ export const festDays: FestDay[] = [
     date: "14 November",
     concludes: "10 PM",
     schedule: [
-      { time: "10 AM to 2 PM", title: "Canvas", id: "canvas" },
-      { time: "10 AM to 12 PM", title: "Baal ki Khaal", id: "baal-ki-khaal" },
-      { time: "10 AM to 12:30 PM", title: "20/20 Vision", id: "20-20-vision" },
-      { time: "10 AM to 3 PM", title: "The Wolf of Dalal Street", id: "wolf-of-dalal-street" },
-      { time: "10 AM to 9 PM", title: "Climax", id: "climax" },
-      { time: "12 PM to 3 PM", title: "Pandora's Box", id: "pandoras-box" },
-      { time: "12:30 PM to 3 PM", title: "Slumdog Questionnaire", id: "slumdog-questionnaire" },
-      { time: "3 PM to 4:30 PM", title: "Sargam", id: "sargam" },
-      { time: "4 PM to 6 PM", title: "Revival", id: "revival" },
-      { time: "4:30 PM to 6 PM", title: "Euphony", id: "euphony" },
-      { time: "6 PM to 10 PM", title: "Battle of Bands", id: "battle-of-bands" },
+      { time: "10 AM to 1:30 PM", title: "Canvas", venue: "A1-002", id: "canvas" },
+      { time: "10 AM to 12 PM", title: "Baal ki Khaal", venue: "Auditorium", id: "baal-ki-khaal" },
+      { time: "10 AM to 12:30 PM", title: "20/20 Vision", venue: "A2-201", id: "20-20-vision" },
+      { time: "10 AM to 3 PM", title: "The Wolf of Dalal Street", venue: "A2-202", id: "wolf-of-dalal-street" },
+      { time: "12 PM to 3 PM", title: "Pandora's Box", venue: "Auditorium", id: "pandoras-box" },
+      { time: "12:30 PM to 3 PM", title: "Slumdog Questionnaire", venue: "A2-201", id: "slumdog-questionnaire" },
+      { time: "1:30 PM to 3 PM", title: "Sargam", venue: "Ground", id: "sargam" },
+      { time: "3 PM to 4:30 PM", title: "Euphony", venue: "Ground", id: "euphony" },
+      { time: "4 PM to 6 PM", title: "Revival", venue: "A2-202", id: "revival" },
+      { time: "4:30 PM to 8 PM", title: "Battle of the Bands", venue: "Ground", id: "battle-of-bands" },
+      { time: "8:30 PM onwards", title: "Artist: Nanku", venue: "Ground", kind: "artist" },
     ],
   },
   {
     day: 2,
     weekday: "Sunday",
     date: "15 November",
-    concludes: "8 PM",
+    concludes: "10 PM",
     schedule: [
-      { time: "10 AM to 12 PM", title: "Rooh", id: "rooh" },
-      { time: "10 AM to 12 PM", title: "Riwayat", id: "riwayat" },
-      { time: "10 AM to 6 PM", title: "Rangeen Jeevan", id: "rangeen-jeevan" },
-      { time: "10 AM to 6 PM", title: "Murder Ballad 3.0", id: "murder-ballad" },
-      { time: "10 AM to 6 PM", title: "Climax", id: "climax" },
-      { time: "11 AM to 2 PM", title: "Jugaad Couture", id: "jugaad-couture" },
-      { time: "11 AM to 2 PM", title: "Cut to the Case", id: "cut-to-the-case" },
-      { time: "12 PM to 1 PM", title: "Rivals Riot", id: "rivals-riot" },
-      { time: "2 PM to 5 PM", title: "Rogue", id: "rogue" },
-      { time: "2 PM to 5 PM", title: "Reverb", id: "reverb" },
-      { time: "2 PM to 5 PM", title: "Revolution", id: "revolution" },
+      { time: "10 AM to 6 PM", title: "Rangeen Jeevan", venue: "Ground", id: "rangeen-jeevan" },
+      { time: "10 AM to 6 PM", title: "Murder Ballad 3.0", venue: "A1-001", id: "murder-ballad" },
+      { time: "10 AM to 11 AM", title: "Rooh", venue: "Auditorium", id: "rooh" },
+      { time: "11 AM to 3 PM", title: "Cut to the Case", venue: "A2-201", id: "cut-to-the-case" },
+      { time: "11 AM to 2 PM", title: "Jugaad Couture", venue: "Summer-Winter Court", id: "jugaad-couture" },
+      { time: "11 AM to 12 PM", title: "Riwayat", venue: "Auditorium", id: "riwayat" },
+      { time: "1 PM to 2 PM", title: "Rogue", venue: "Auditorium", id: "rogue" },
+      { time: "2 PM to 3 PM", title: "Reverb", venue: "Auditorium", id: "reverb" },
+      { time: "3 PM to 5 PM", title: "Revolution", venue: "Auditorium", id: "revolution" },
+      { time: "5 PM to 6 PM", title: "Rivals Riot", venue: "Ground", id: "rivals-riot" },
+      { time: "6 PM to 8 PM", title: "Artist: RCR", venue: "Ground", kind: "artist" },
+      { time: "8 PM to 10 PM", title: "DJ: Starboy Music", venue: "Ground", kind: "artist" },
     ],
   },
 ];
@@ -126,6 +131,6 @@ export const festDays: FestDay[] = [
 export const stats = [
   { value: "3rd", label: "edition" },
   { value: "2", label: "days" },
-  { value: "21", label: "events" },
+  { value: "20", label: "events" },
   { value: "800+", label: "students" },
 ];
