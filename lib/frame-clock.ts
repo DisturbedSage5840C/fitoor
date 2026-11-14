@@ -31,3 +31,18 @@ export function scrubFrame(progress: number, count: number): number {
   const p = Math.min(1, Math.max(0, progress));
   return Math.round(p * (count - 1));
 }
+
+/** Steps a (fractional) frame position from `current` towards `target`, but
+ *  never by more than `maxFps` frames a second, so a fast scroll still plays
+ *  the footage through at a watchable pace instead of jumping to the end. */
+export function approachFrame(
+  current: number,
+  target: number,
+  elapsedMs: number,
+  maxFps: number,
+): number {
+  if (!Number.isFinite(target) || !(elapsedMs > 0) || !(maxFps > 0)) return current;
+  const step = (elapsedMs / 1000) * maxFps;
+  const gap = target - current;
+  return Math.abs(gap) <= step ? target : current + Math.sign(gap) * step;
+}

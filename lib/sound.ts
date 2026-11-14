@@ -25,6 +25,10 @@ function audio(): AudioContext | null {
   }
 }
 
+/** The page's one AudioContext, shared with the background sitar so every
+ *  sound unlocks on the same first gesture. Null where Web Audio is missing. */
+export const sharedAudioContext = audio;
+
 /** One horn note: sawtooth trumpets through a lowpass, with a fast attack
  *  and a short release so the blast cuts off like a valve closing. */
 function playNote(ctx: AudioContext, out: AudioNode, note: HornNote, at: number) {

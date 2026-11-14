@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { setPreviewPlaying } from "@/lib/preview-duck";
 
 export type PreviewState = "idle" | "loading" | "playing" | "blocked";
 
@@ -36,8 +37,19 @@ export function useSongPreview(src: string | undefined) {
     if (!audioRef.current) {
       const audio = new Audio(src);
       audio.preload = "none";
-      audio.addEventListener("ended", () => setState("idle"));
-      audio.addEventListener("pause", () => setState((s) => (s === "blocked" ? s : "idle")));
+      // Only the current poster reports, so switching posters never flickers the duck off.
+      const reportStopped = () => {
+        if (nowPlaying === audio) setPreviewPlaying(false);
+      };
+      audio.addEventListener("playing", () => setPreviewPlaying(true));
+      audio.addEventListener("ended", () => {
+        reportStopped();
+        setState("idle");
+      });
+      audio.addEventListener("pause", () => {
+        reportStopped();
+        setState((s) => (s === "blocked" ? s : "idle"));
+      });
       audioRef.current = audio;
     }
     return audioRef.current;

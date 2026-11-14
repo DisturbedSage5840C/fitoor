@@ -9,6 +9,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieNotice } from "@/components/layout/CookieNotice";
 import { StickyRegister } from "@/components/layout/StickyRegister";
+import { SitarMusic } from "@/components/layout/SitarMusic";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { festJsonLd } from "@/lib/structured-data";
 import "./globals.css";
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </MotionConfig>
         <CookieNotice />
         <StickyRegister />
+        <SitarMusic />
         <JsonLd data={festJsonLd()} />
         <Analytics />
         <SpeedInsights />

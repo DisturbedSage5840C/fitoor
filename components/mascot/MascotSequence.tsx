@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { MotionValue } from "motion/react";
-import { frameAt, scrubFrame } from "@/lib/frame-clock";
+import { approachFrame, frameAt, scrubFrame } from "@/lib/frame-clock";
 
 export const FRAME_W = 560;
 export const FRAME_H = 598;
@@ -14,6 +14,9 @@ export const INTRO_COUNT = 78;
 export const LOOP_COUNT = 36;
 /** Both strips were cut from the clip at this rate. */
 const SITAR_FPS = 12;
+/** Top speed of the scroll-driven walk-in: 1.5x the clip, so scrolling feels
+ *  in control but a flick can't skip the footage (78 frames ≈ 4.3 s). */
+const MAX_SCRUB_FPS = 18;
 
 type Strip = "intro" | "frame";
 const stripSrc = (strip: Strip, i: number) =>
@@ -52,6 +55,8 @@ export function MascotSequence({ playing, scrub, className }: MascotSequenceProp
   const stripsRef = useRef<Record<Strip, HTMLImageElement[]>>({ intro: [], frame: [] });
   const targetRef = useRef<{ strip: Strip; idx: number }>({ strip: "intro", idx: 0 });
   const shownRef = useRef("");
+  /** Fractional intro frame the scroll-driven walk-in has reached. */
+  const scrubPosRef = useRef(0);
   const [introReady, setIntroReady] = useState(false);
   // One-way: once he has sat down and picked up the sitar, he keeps playing.
   const [seated, setSeated] = useState(false);
@@ -92,16 +97,24 @@ export function MascotSequence({ playing, scrub, className }: MascotSequenceProp
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Desktop: the scroll clock picks the intro frame; its last frame seats him.
+  // Desktop: the scroll clock sets where he should be, and he walks there at
+  // no more than MAX_SCRUB_FPS, so a fast flick still plays the whole walk-in
+  // instead of teleporting him onto the cushion. Its last frame seats him.
   useEffect(() => {
     if (!scrub || seated) return;
-    const onScroll = (v: number) => {
-      const idx = scrubFrame(v, INTRO_COUNT);
+    let raf = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      const target = scrubFrame(scrub.get(), INTRO_COUNT);
+      scrubPosRef.current = approachFrame(scrubPosRef.current, target, now - last, MAX_SCRUB_FPS);
+      last = now;
+      const idx = Math.round(scrubPosRef.current);
       show("intro", idx);
       if (idx === INTRO_COUNT - 1) setSeated(true);
+      else raf = requestAnimationFrame(tick);
     };
-    onScroll(scrub.get());
-    return scrub.on("change", onScroll);
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrub, seated]);
 

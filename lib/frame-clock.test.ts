@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { frameAt, frameDurationMs, scrubFrame } from "./frame-clock.ts";
+import { approachFrame, frameAt, frameDurationMs, scrubFrame } from "./frame-clock.ts";
 
 test("frame duration is one second split by fps", () => {
   assert.equal(frameDurationMs(10), 100);
@@ -54,4 +54,22 @@ test("scrub is safe on degenerate input", () => {
   assert.equal(scrubFrame(Number.NaN, 78), 0);
   assert.equal(scrubFrame(0.5, 1), 0);
   assert.equal(scrubFrame(0.5, 0), 0);
+});
+
+test("approachFrame moves no faster than maxFps towards the target", () => {
+  assert.equal(approachFrame(0, 77, 1000, 18), 18);
+  assert.equal(approachFrame(40, 0, 500, 18), 31);
+});
+
+test("approachFrame lands exactly on a near target without overshooting", () => {
+  assert.equal(approachFrame(10, 12, 1000, 18), 12);
+  assert.equal(approachFrame(12, 10, 1000, 18), 10);
+  assert.equal(approachFrame(5, 5, 16, 18), 5);
+});
+
+test("approachFrame holds still for a zero, negative or broken step", () => {
+  assert.equal(approachFrame(7, 30, 0, 18), 7);
+  assert.equal(approachFrame(7, 30, -16, 18), 7);
+  assert.equal(approachFrame(7, 30, 16, 0), 7);
+  assert.equal(approachFrame(7, Number.NaN, 16, 18), 7);
 });
